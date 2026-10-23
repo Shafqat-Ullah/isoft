@@ -89,22 +89,37 @@ class Application {
   }
 
   setupNavigation() {
+    const navLinks = document.querySelector('.nav-links');
+    const toggleBtn = document.getElementById('mobileMenuToggle');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+
+    const closeMobileMenu = () => {
+      if (navLinks) navLinks.classList.remove('show');
+      if (backdrop) backdrop.classList.remove('show');
+      if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    };
+
     // Nav links click
     document.querySelectorAll('[data-view-target]').forEach(el => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         const targetView = e.currentTarget.dataset.viewTarget;
         window.location.hash = targetView;
+        closeMobileMenu();
       });
     });
 
     // Mobile nav toggle
-    const toggleBtn = document.getElementById('mobileMenuToggle');
-    const navLinks = document.querySelector('.nav-links');
     if (toggleBtn && navLinks) {
       toggleBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
+        const isOpen = navLinks.classList.toggle('show');
+        if (backdrop) backdrop.classList.toggle('show', isOpen);
+        toggleBtn.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
       });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMobileMenu);
     }
   }
 

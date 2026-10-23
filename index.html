@@ -41,15 +41,23 @@
         <img src="assets/images/isoft-logo.png" alt="iSOFT IT Training & Consultancy Logo" class="brand-logo-img">
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <ul class="nav-links">
+      <!-- Desktop & Mobile Navigation Links -->
+      <ul class="nav-links" id="siteNavLinks">
         <li><a href="#home" class="nav-link active" data-view="home" data-view-target="home">Home</a></li>
         <li><a href="#courses" class="nav-link" data-view="courses" data-view-target="courses">All Courses</a></li>
         <li><a href="#drive-guide" class="nav-link" data-view="drive-guide" data-view-target="drive-guide">Drive Access Guide</a></li>
         <li><a href="#certificate-verify" class="nav-link" data-view="certificate-verify" data-view-target="certificate-verify">Verify Certificate</a></li>
         <li><a href="#about" class="nav-link" data-view="about" data-view-target="about">About Academy</a></li>
         <li><a href="#contact" class="nav-link" data-view="contact" data-view-target="contact">Contact</a></li>
+        <li class="mobile-only-nav-item">
+          <a href="#dashboard" class="nav-link" data-view="dashboard" data-view-target="dashboard" style="color: var(--primary-red); font-weight: 700;">
+            <i class="fa-solid fa-book-open-reader"></i> My Learning Dashboard
+          </a>
+        </li>
       </ul>
+
+      <!-- Mobile Backdrop Overlay -->
+      <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
 
       <!-- Navbar Action Tools -->
       <div class="nav-actions">
@@ -295,9 +303,9 @@
           <span id="courseDetailBreadcrumb" style="color: var(--brand-dark); font-weight: 600;">Course Detail</span>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 3rem; align-items: flex-start;">
+        <div class="course-detail-grid">
           <!-- Left Column: Video Preview Player & Curriculum -->
-          <div>
+          <div class="course-detail-main">
             <span class="status-badge" id="courseDetailCategory" style="background: var(--primary-red-light); color: var(--primary-red); font-size: 0.85rem; margin-bottom: 0.75rem; font-weight: 700;">Category</span>
             <h1 id="courseDetailTitle" style="font-size: 2.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem; line-height: 1.25;">Course Title</h1>
             <p id="courseDetailRating" style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1.5rem;"></p>
@@ -348,7 +356,7 @@
           </div>
 
           <!-- Right Column: Sticky Enrollment Box -->
-          <div style="position: sticky; top: 100px;">
+          <div class="course-detail-sidebar">
             <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-lg);">
               <div id="courseDetailPriceBox" style="margin-bottom: 1.5rem;"></div>
 
@@ -983,7 +991,7 @@
           <p class="section-subtitle">Have questions about admissions, fees, or Google Drive access? We're here to help.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 3rem;">
+        <div class="contact-grid-box">
           <div>
             <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Academy Headquarters</h3>
             <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem; line-height: 1.6;">

@@ -1757,47 +1757,189 @@ button {
   font-size: 0.85rem;
 }
 
+/* Course Detail Layout */
+.course-detail-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.course-detail-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.contact-grid-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  background: #FFFFFF;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+}
+
+.mobile-only-nav-item {
+  display: none;
+}
+
+.mobile-nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 98;
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.mobile-nav-backdrop.show {
+  display: block;
+  opacity: 1;
+}
+
 /* ==========================================================================
-   RESPONSIVENESS
+   COMPREHENSIVE RESPONSIVENESS SYSTEM (Mobile, Tablet, Laptop, Desktop)
    ========================================================================== */
+
+/* Tablet & Smaller Laptops (<= 1024px) */
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+  .course-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .course-detail-sidebar {
+    position: static;
   }
   .flow-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .course-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
   .admin-kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
   }
 }
 
+/* Tablets & Mobile (<= 768px) */
 @media (max-width: 768px) {
+  .top-bar-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.35rem;
+  }
+  .top-bar-left, .top-bar-right {
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.775rem;
+  }
+  .navbar {
+    height: 72px;
+  }
+  .brand-logo-img {
+    height: 44px;
+  }
   .mobile-toggle {
     display: block;
   }
   .nav-links {
     display: none;
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 72px;
     left: 0;
     right: 0;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
     background: #FFFFFF;
     flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    border-bottom: 2px solid var(--primary-red);
+    padding: 1.5rem 1.75rem 2rem;
+    box-shadow: var(--shadow-xl);
+    border-bottom: 3px solid var(--primary-red);
+    z-index: 99;
+    gap: 1rem;
+    animation: slide-down 0.25s ease;
   }
   .nav-links.show {
     display: flex;
   }
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mobile-only-nav-item {
+    display: block;
+    border-top: 1px solid var(--gray-200);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 3rem 0 4rem;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 5.5vw, 2.75rem);
+    line-height: 1.2;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-card {
+    padding: 1.5rem;
+  }
+
+  /* Catalog Controls & Filter Pills */
+  .catalog-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .category-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: thin;
+  }
+  .cat-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .search-input-wrapper {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  /* Grids & Cards */
   .flow-grid {
     grid-template-columns: 1fr;
   }
@@ -1807,24 +1949,170 @@ button {
   .checkout-grid {
     grid-template-columns: 1fr;
   }
+  .contact-grid-box {
+    grid-template-columns: 1fr;
+    padding: 1.75rem;
+    gap: 2rem;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    padding: 0.75rem;
+    align-items: flex-end;
+  }
+  .modal-card {
+    width: 100%;
+    max-height: 88vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+  .modal-body {
+    padding: 1.25rem 1rem;
+  }
+  .modal-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column-reverse;
+  }
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  /* Form Grid */
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   .form-group-full {
     grid-column: span 1;
   }
+
+  /* Student Dashboard */
+  .dashboard-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
   .my-course-card {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .my-course-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
   .drive-access-cta-box {
-    align-items: flex-start;
+    align-items: stretch;
     width: 100%;
+  }
+  .btn-open-drive {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Admin Dashboard */
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
   .admin-kpi-grid {
     grid-template-columns: 1fr;
   }
+  .admin-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+  .admin-tab-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .admin-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .admin-table {
+    min-width: 650px;
+  }
+
+  /* Footer */
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
   }
 }
+
+/* Small Smart Phones (<= 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    height: 64px;
+  }
+  .brand-logo-img {
+    height: 38px;
+  }
+  .role-pill span {
+    display: none;
+  }
+  .role-pill {
+    padding: 0.35rem 0.55rem;
+  }
+  #navDashboardBtn {
+    display: none;
+  }
+  .notif-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  /* Stepper in Checkout */
+  .status-stepper {
+    margin: 1.25rem 0;
+  }
+  .status-stepper::before {
+    top: 14px;
+    left: 15px;
+    right: 15px;
+  }
+  .step-node-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+  .step-node-label {
+    font-size: 0.65rem;
+    max-width: 65px;
+  }
+
+  /* Payment Tabs */
+  .payment-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.35rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pay-tab-btn {
+    flex-shrink: 0;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.8rem;
+  }
+}
+
