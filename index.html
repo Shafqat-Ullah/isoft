@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iSOFT IT Training & Consultancy | Premier Online Tech Academy & LMS</title>
+  <meta name="description" content="Official platform of iSOFT IT Training & Consultancy. Master Python, Data Science, Full Stack Web Development, and Artificial Intelligence with verified Google Drive lecture access.">
+  <link rel="icon" type="image/png" href="assets/images/isoft-logo.png">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Theme CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span class="top-bar-badge"><i class="fa-solid fa-bolt"></i> 2026 ADMISSIONS OPEN</span>
+        <span>Verified Google Drive Lecture Access provided upon payment approval</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+923001234567" class="top-bar-contact">
+          <i class="fa-solid fa-phone"></i> +92 300 1234567
+        </a>
+        <a href="https://wa.me/923001234567" target="_blank" class="top-bar-contact">
+          <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp Support
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Official Logo at Top Left -->
+      <a href="#home" class="brand-wrapper" data-view-target="home">
+        <img src="assets/images/isoft-logo.png" alt="iSOFT IT Training & Consultancy Logo" class="brand-logo-img">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active" data-view="home" data-view-target="home">Home</a></li>
+        <li><a href="#courses" class="nav-link" data-view="courses" data-view-target="courses">All Courses</a></li>
+        <li><a href="#drive-guide" class="nav-link" data-view="drive-guide" data-view-target="drive-guide">Drive Access Guide</a></li>
+        <li><a href="#certificate-verify" class="nav-link" data-view="certificate-verify" data-view-target="certificate-verify">Verify Certificate</a></li>
+        <li><a href="#about" class="nav-link" data-view="about" data-view-target="about">About Academy</a></li>
+        <li><a href="#contact" class="nav-link" data-view="contact" data-view-target="contact">Contact</a></li>
+      </ul>
+
+      <!-- Navbar Action Tools -->
+      <div class="nav-actions">
+        <!-- Quick Search -->
+        <div class="search-input-wrapper" style="min-width: 180px; display: none;">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="globalNavbarSearch" class="search-input" placeholder="Search courses...">
+        </div>
+
+        <!-- Notification Bell with Dropdown (Step 9) -->
+        <div style="position: relative;">
+          <button class="notif-btn" id="notifDropdownBtn" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-badge" id="notifBadgeCounter">0</span>
+          </button>
+          <div id="notifDropdownMenu" style="display: none; position: absolute; right: 0; top: 48px; width: 340px; background: #FFFFFF; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); z-index: 200; overflow: hidden;">
+            <div style="padding: 0.85rem 1rem; background: var(--brand-charcoal); color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+              <span><i class="fa-solid fa-bell"></i> Academy Notifications</span>
+              <span style="font-size: 0.75rem; color: var(--primary-red-border);">Live Updates</span>
+            </div>
+            <div id="notifDropdownList" style="max-height: 320px; overflow-y: auto;"></div>
+          </div>
+        </div>
+
+        <!-- Role Switcher (Student View <-> Admin View) -->
+        <button id="roleSwitcherBtn" class="role-pill" title="Toggle between Student View and Admin Portal">
+          <i class="fa-solid fa-user-graduate"></i>
+          <span>Student Mode</span>
+        </button>
+
+        <!-- Student Dashboard / My Learning Button -->
+        <a href="#dashboard" class="btn btn-outline btn-sm" data-view-target="dashboard" id="navDashboardBtn">
+          <i class="fa-solid fa-book-open-reader"></i> My Learning
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN APPLICATION VIEWS
+       ======================================================================== -->
+  <main id="mainContent">
+
+    <!-- ==================== VIEW 1: HOME ==================== -->
+    <section id="view_home" class="view-section">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <i class="fa-solid fa-award"></i> Premier IT Training & Consultancy
+            </div>
+            <h1 class="hero-title">
+              Empower Your Tech Career with <span class="text-red">iSOFT Academy</span>
+            </h1>
+            <p class="hero-subtitle">
+              Industry-standard courses in Python, Data Science, Full Stack Web Development, and Artificial Intelligence. Secure lecture streaming delivered directly via verified Google Drive folders.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#courses" class="btn btn-primary btn-lg" data-view-target="courses">
+                <i class="fa-solid fa-compass"></i> Explore Courses
+              </a>
+              <a href="#drive-guide" class="btn btn-outline btn-lg" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05);" data-view-target="drive-guide">
+                <i class="fa-brands fa-google-drive"></i> How Drive Access Works
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat-item">
+                <h4>5,000+</h4>
+                <p>Enrolled Students</p>
+              </div>
+              <div class="hero-stat-item">
+                <h4>100%</h4>
+                <p>Verified Drive Access</p>
+              </div>
+              <div class="hero-stat-item">
+                <h4>50+</h4>
+                <p>Hands-on Projects</p>
+              </div>
+              <div class="hero-stat-item">
+                <h4>4.9 ★</h4>
+                <p>Average Rating</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Right Workflow Card -->
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <span class="hero-card-title">
+                <i class="fa-solid fa-graduation-cap" style="color: var(--primary-red);"></i> Course Access Pipeline
+              </span>
+              <span class="drive-badge">
+                <i class="fa-brands fa-google-drive"></i> Protected Storage
+              </span>
+            </div>
+            <div class="hero-workflow-steps">
+              <div class="workflow-step-mini">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h5>Select Course & Preview</h5>
+                  <p>Browse syllabus, watch authorized sample lessons, and choose your track.</p>
+                </div>
+              </div>
+              <div class="workflow-step-mini">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h5>Submit Enrollment Form</h5>
+                  <p>Complete the 14-field application with your verified Gmail address.</p>
+                </div>
+              </div>
+              <div class="workflow-step-mini">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h5>Payment & Verification</h5>
+                  <p>Pay via JazzCash, Easypaisa, or Bank and submit transaction reference.</p>
+                </div>
+              </div>
+              <div class="workflow-step-mini" style="border-color: rgba(66, 133, 244, 0.4); background: rgba(26, 115, 232, 0.1);">
+                <div class="step-num" style="background: #1A73E8;"><i class="fa-brands fa-google-drive"></i></div>
+                <div class="step-content">
+                  <h5>Google Drive Access Granted</h5>
+                  <p>Admin confirms payment and shares 4K lecture folder with your email.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Prompt 4-Step Process Banner -->
+      <div class="workflow-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">How It Works</span>
+            <h2 class="section-title">The Official 4-Step Learning Journey</h2>
+            <p class="section-subtitle">A transparent, secure process ensuring every student gets verified Google Drive lecture access and official certification.</p>
+          </div>
+
+          <div class="flow-grid">
+            <div class="flow-card">
+              <div class="flow-icon"><i class="fa-solid fa-list-check"></i></div>
+              <div class="flow-step-tag">Step 01</div>
+              <h3 class="flow-title">Browse Course Catalog</h3>
+              <p class="flow-desc">Explore in-depth curriculums, lesson outlines, and free previews across Python, Data Science, AI, and Web Development.</p>
+            </div>
+            <div class="flow-card">
+              <div class="flow-icon"><i class="fa-solid fa-file-pen"></i></div>
+              <div class="flow-step-tag">Step 02</div>
+              <h3 class="flow-title">Course Access Application</h3>
+              <p class="flow-desc">Fill out the standardized application with your registered Gmail address, skill level, and learning objectives.</p>
+            </div>
+            <div class="flow-card">
+              <div class="flow-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+              <div class="flow-step-tag">Step 03</div>
+              <h3 class="flow-title">Payment Verification</h3>
+              <p class="flow-desc">Transfer via JazzCash, Easypaisa, or Meezan Bank. Our admissions administrator verifies the receipt against bank records.</p>
+            </div>
+            <div class="flow-card" style="border-color: rgba(26, 115, 232, 0.4);">
+              <div class="flow-icon" style="color: #1A73E8;"><i class="fa-brands fa-google-drive"></i></div>
+              <div class="flow-step-tag" style="color: #1A73E8;">Step 04</div>
+              <h3 class="flow-title">Google Drive Access</h3>
+              <p class="flow-desc">Once verified, the private Google Drive lecture folder is unlocked on your dashboard with full 4K streaming permissions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Courses on Home -->
+      <div class="courses-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Featured Tracks</span>
+            <h2 class="section-title">Industry-Demanded Tech Programs</h2>
+            <p class="section-subtitle">Curated by veteran software architects and data scientists for the 2026 job market.</p>
+          </div>
+          <div class="course-grid" id="homeFeaturedCourses"></div>
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="#courses" class="btn btn-secondary btn-lg" data-view-target="courses">
+              <i class="fa-solid fa-layer-group"></i> View All Available Courses
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="padding: 5rem 0; background: #FFFFFF; border-top: 1px solid var(--gray-200);">
+        <div class="container" style="max-width: 860px;">
+          <div class="section-header">
+            <span class="section-badge">Got Questions?</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about enrollments, payments, and Google Drive lecture access.</p>
+          </div>
+          <div id="faqAccordion"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: ALL COURSES (CATALOG) ==================== -->
+    <section id="view_courses" class="view-section" style="display: none; padding: 4rem 0 6rem;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Academy Catalog</span>
+          <h2 class="section-title">Explore All Online Courses</h2>
+          <p class="section-subtitle">From zero-experience foundations to advanced machine learning and full-stack software engineering.</p>
+        </div>
+
+        <!-- Catalog Controls: Filter pills & Search -->
+        <div class="catalog-controls">
+          <div class="category-pills">
+            <button class="cat-btn active" data-category="all"><i class="fa-solid fa-layer-group"></i> All Programs</button>
+            <button class="cat-btn" data-category="python"><i class="fa-brands fa-python"></i> Python</button>
+            <button class="cat-btn" data-category="datascience"><i class="fa-solid fa-chart-line"></i> Data Science</button>
+            <button class="cat-btn" data-category="webdev"><i class="fa-brands fa-react"></i> Web Development</button>
+            <button class="cat-btn" data-category="ai"><i class="fa-solid fa-brain"></i> Artificial Intelligence</button>
+            <button class="cat-btn" data-category="graphic"><i class="fa-solid fa-palette"></i> Graphic Design</button>
+          </div>
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="catalogSearchInput" class="search-input" placeholder="Search by title or topic...">
+          </div>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="course-grid" id="catalogCoursesGrid"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: COURSE DETAIL & LECTURE PREVIEW (STEP 2) ==================== -->
+    <section id="view_course-detail" class="view-section" style="display: none; padding: 3rem 0 6rem;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <div style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <a href="#home" data-view-target="home"><i class="fa-solid fa-house"></i> Home</a>
+          <span>/</span>
+          <a href="#courses" data-view-target="courses">Courses</a>
+          <span>/</span>
+          <span id="courseDetailBreadcrumb" style="color: var(--brand-dark); font-weight: 600;">Course Detail</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 3rem; align-items: flex-start;">
+          <!-- Left Column: Video Preview Player & Curriculum -->
+          <div>
+            <span class="status-badge" id="courseDetailCategory" style="background: var(--primary-red-light); color: var(--primary-red); font-size: 0.85rem; margin-bottom: 0.75rem; font-weight: 700;">Category</span>
+            <h1 id="courseDetailTitle" style="font-size: 2.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem; line-height: 1.25;">Course Title</h1>
+            <p id="courseDetailRating" style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1.5rem;"></p>
+
+            <!-- Video Preview Player (Plays free preview lessons) -->
+            <div style="background: #000000; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; box-shadow: var(--shadow-lg);">
+              <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                <iframe id="previewVideoPlayer" src="https://www.youtube.com/embed/kqtD5dpn9C8" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+              </div>
+              <div style="padding: 0.85rem 1.25rem; background: var(--brand-charcoal); color: #FFFFFF; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+                <span id="previewVideoTitle" style="font-weight: 600;"><i class="fa-solid fa-circle-play" style="color: var(--primary-red);"></i> Sample Lecture Preview</span>
+                <span style="font-size: 0.75rem; color: var(--gray-400);">4K Ultra HD</span>
+              </div>
+            </div>
+
+            <!-- Course Description -->
+            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.75rem; margin-bottom: 2rem;">
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem;">About This Course</h3>
+              <p id="courseDetailDesc" style="color: var(--gray-700); line-height: 1.7; font-size: 0.95rem;"></p>
+            </div>
+
+            <!-- What You'll Learn -->
+            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.75rem; margin-bottom: 2rem;">
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1rem;">What You'll Learn</h3>
+              <ul id="courseLearningObjectives" style="list-style: none;"></ul>
+            </div>
+
+            <!-- Course Curriculum with Locked Lectures (Step 2 & Step 3) -->
+            <div style="margin-bottom: 2.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark);">Course Curriculum</h3>
+                <span style="font-size: 0.85rem; color: var(--gray-500);"><i class="fa-solid fa-lock" style="color: var(--primary-red);"></i> Paid Lectures require enrollment approval</span>
+              </div>
+              <div id="curriculumAccordion"></div>
+            </div>
+
+            <!-- Instructor Profile -->
+            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.75rem; display: flex; gap: 1.5rem; align-items: center;">
+              <div style="width: 72px; height: 72px; border-radius: var(--radius-full); background: var(--brand-charcoal); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; flex-shrink: 0;">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div>
+                <h4 id="courseInstructorName" style="font-size: 1.2rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.2rem;"></h4>
+                <div id="courseInstructorTitle" style="font-size: 0.85rem; color: var(--primary-red); font-weight: 700; margin-bottom: 0.5rem;"></div>
+                <p id="courseInstructorBio" style="font-size: 0.875rem; color: var(--gray-600); line-height: 1.5;"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Sticky Enrollment Box -->
+          <div style="position: sticky; top: 100px;">
+            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-lg);">
+              <div id="courseDetailPriceBox" style="margin-bottom: 1.5rem;"></div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+                <button id="courseDetailEnrollBtn" class="btn btn-primary btn-lg" style="width: 100%;">
+                  <i class="fa-solid fa-shield-check"></i> Enroll & Apply for Access
+                </button>
+              </div>
+
+              <!-- Important Business Notice Required by Prompt -->
+              <div style="background: #FEF2F2; border: 1px solid var(--primary-red-border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; font-size: 0.825rem; color: var(--brand-dark); line-height: 1.5;">
+                <div style="font-weight: 700; color: var(--primary-red); margin-bottom: 0.25rem;">
+                  <i class="fa-solid fa-lock"></i> Google Drive Access Policy:
+                </div>
+                Full 4K lecture archives and source code folders are hosted on secure Google Drive. Access is granted to your registered Gmail address once your enrollment form and payment are approved by admin.
+              </div>
+
+              <div style="border-top: 1px solid var(--gray-100); padding-top: 1.25rem; font-size: 0.875rem; color: var(--gray-600); display: flex; flex-direction: column; gap: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-brands fa-google-drive" style="color: #4285F4; font-size: 1.1rem;"></i>
+                  <span>Private Google Drive Lecture Access</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-certificate" style="color: #10B981; font-size: 1.1rem;"></i>
+                  <span>Verified Completion Certificate</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-comments" style="color: var(--primary-red); font-size: 1.1rem;"></i>
+                  <span>Instructor Q&A & Support Group</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-rotate-left" style="color: var(--gray-500); font-size: 1.1rem;"></i>
+                  <span>7-Day Money-Back Guarantee</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: PAYMENT & CHECKOUT (STEP 5) ==================== -->
+    <section id="view_checkout" class="view-section checkout-view" style="display: none;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Checkout & Instructions</span>
+          <h2 class="section-title">Payment & Enrollment Verification</h2>
+          <p class="section-subtitle">Follow verified payment steps to unlock your course lectures on Google Drive.</p>
+        </div>
+
+        <div class="checkout-grid">
+          <!-- Left: Status Stepper & Payment Methods -->
+          <div>
+            <!-- Status Card -->
+            <div class="payment-status-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <span style="font-size: 0.8rem; color: var(--gray-500); text-transform: uppercase; font-weight: 700;">Application ID:</span>
+                  <h3 id="checkoutAppId" style="font-size: 1.4rem; font-weight: 800; color: var(--brand-dark); margin-top: 0.2rem;">ISOFT-APP-2026-XXXX</h3>
+                </div>
+                <div id="checkoutCurrentStatusText">
+                  <span class="status-badge pending">Under Verification</span>
+                </div>
+              </div>
+
+              <!-- Visual 4-Stage Stepper -->
+              <div class="status-stepper">
+                <div class="step-node checkout-step-node completed">
+                  <div class="step-node-circle"><i class="fa-solid fa-check"></i></div>
+                  <div class="step-node-label">Application Submitted</div>
+                </div>
+                <div class="step-node checkout-step-node active">
+                  <div class="step-node-circle">2</div>
+                  <div class="step-node-label">Payment Instructions</div>
+                </div>
+                <div class="step-node checkout-step-node">
+                  <div class="step-node-circle">3</div>
+                  <div class="step-node-label">Admin Verification</div>
+                </div>
+                <div class="step-node checkout-step-node">
+                  <div class="step-node-circle"><i class="fa-brands fa-google-drive"></i></div>
+                  <div class="step-node-label">Drive Access</div>
+                </div>
+              </div>
+
+              <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem; color: var(--gray-700);">
+                <i class="fa-solid fa-shield-halved" style="color: var(--primary-red);"></i>
+                <strong>Important:</strong> Payments are not auto-confirmed. Our admissions administrator verifies the bank record or transaction reference before granting Google Drive permissions.
+              </div>
+            </div>
+
+            <!-- Payment Methods Guide -->
+            <div class="payment-status-card">
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">
+                Select Payment Method Instructions:
+              </h3>
+
+              <!-- Payment Tabs -->
+              <div class="payment-tabs">
+                <button class="pay-tab-btn active" data-method="jazzcash" onclick="app.switchPaymentTab('jazzcash')">
+                  <i class="fa-solid fa-mobile-screen"></i> JazzCash
+                </button>
+                <button class="pay-tab-btn" data-method="easypaisa" onclick="app.switchPaymentTab('easypaisa')">
+                  <i class="fa-solid fa-wallet"></i> Easypaisa
+                </button>
+                <button class="pay-tab-btn" data-method="bank" onclick="app.switchPaymentTab('bank')">
+                  <i class="fa-solid fa-building-columns"></i> Bank Transfer
+                </button>
+                <button class="pay-tab-btn" data-method="card" onclick="app.switchPaymentTab('card')">
+                  <i class="fa-regular fa-credit-card"></i> Card (Online)
+                </button>
+              </div>
+
+              <!-- JazzCash Content -->
+              <div class="payment-tab-content" id="payTab_jazzcash">
+                <div class="payment-method-box">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--brand-dark);">JazzCash Mobile Account</h4>
+                    <span class="status-badge" style="background: #FEF2F2; color: var(--primary-red); border: 1px solid var(--primary-red-border);">Instant TID</span>
+                  </div>
+                  <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem;">
+                    Transfer via JazzCash Mobile App or dial <strong>*786#</strong>. Enter the following recipient details:
+                  </p>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Account Title:</label>
+                    <input type="text" class="form-control" value="iSOFT IT Training & Consultancy" readonly>
+                  </div>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Account Number:</label>
+                    <div class="copy-input-group">
+                      <input type="text" id="jazzcashAccNum" class="form-control" value="0300 1234567" readonly>
+                      <button class="copy-btn" onclick="app.copyToClipboard('03001234567', 'JazzCash Account copied!')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="form-label">JazzCash Till ID:</label>
+                    <div class="copy-input-group">
+                      <input type="text" class="form-control" value="0098412" readonly>
+                      <button class="copy-btn" onclick="app.copyToClipboard('0098412', 'Till ID copied!')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Easypaisa Content -->
+              <div class="payment-tab-content" id="payTab_easypaisa" style="display: none;">
+                <div class="payment-method-box">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--brand-dark);">Easypaisa Mobile Wallet</h4>
+                    <span class="status-badge" style="background: #ECFDF5; color: #047857;">Recommended</span>
+                  </div>
+                  <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem;">
+                    Open Easypaisa App -> Select <strong>Send Money</strong> -> <strong>Easypaisa Transfer</strong>:
+                  </p>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Account Title:</label>
+                    <input type="text" class="form-control" value="iSOFT IT Training & Consultancy" readonly>
+                  </div>
+                  <div>
+                    <label class="form-label">Easypaisa Number:</label>
+                    <div class="copy-input-group">
+                      <input type="text" class="form-control" value="0345 9876543" readonly>
+                      <button class="copy-btn" onclick="app.copyToClipboard('03459876543', 'Easypaisa Number copied!')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bank Transfer Content -->
+              <div class="payment-tab-content" id="payTab_bank" style="display: none;">
+                <div class="payment-method-box">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--brand-dark);">Meezan Bank Limited (Corporate)</h4>
+                    <span class="status-badge approved">Official Bank Account</span>
+                  </div>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Bank Name & Branch:</label>
+                    <input type="text" class="form-control" value="Meezan Bank Ltd (DHA Phase 5 Branch, Lahore)" readonly>
+                  </div>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Account Title:</label>
+                    <input type="text" class="form-control" value="iSOFT IT Training & Consultancy Pvt Ltd" readonly>
+                  </div>
+                  <div style="margin-bottom: 0.75rem;">
+                    <label class="form-label">Corporate IBAN (For 1Link Transfer):</label>
+                    <div class="copy-input-group">
+                      <input type="text" class="form-control" value="PK36MEZN0001020104567891" readonly>
+                      <button class="copy-btn" onclick="app.copyToClipboard('PK36MEZN0001020104567891', 'IBAN copied!')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Online Card Content -->
+              <div class="payment-tab-content" id="payTab_card" style="display: none;">
+                <div class="payment-method-box">
+                  <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.5rem;">256-Bit SSL Encrypted Card Checkout</h4>
+                  <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem;">Pay directly with Visa or MasterCard:</p>
+                  <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div>
+                      <label class="form-label">Card Number</label>
+                      <input type="text" class="form-control" placeholder="4242 •••• •••• 4242">
+                    </div>
+                    <div>
+                      <label class="form-label">MM/YY</label>
+                      <input type="text" class="form-control" placeholder="12/28">
+                    </div>
+                    <div>
+                      <label class="form-label">CVC</label>
+                      <input type="text" class="form-control" placeholder="123">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" style="width: 100%;" onclick="alert('Demo Card Gateway: Transaction simulated successfully. Submitting reference for verification.');">
+                    <i class="fa-solid fa-lock"></i> Authorize & Pay Fee Online
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 5: Transaction Reference & Proof Submission Form -->
+              <div style="margin-top: 2rem; border-top: 1px solid var(--gray-200); padding-top: 1.75rem;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.5rem;">
+                  <i class="fa-solid fa-file-invoice" style="color: var(--primary-red);"></i> Submit or Update Payment Proof
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem;">
+                  If you have completed your payment, enter your Transaction ID (TID) or upload your receipt screenshot below so admin can approve your Google Drive access:
+                </p>
+
+                <form id="checkoutSubmitTxForm">
+                  <div style="margin-bottom: 1rem;">
+                    <label class="form-label" for="checkoutInputTrxId">Transaction ID / Bank Reference <span class="required">*</span></label>
+                    <input type="text" id="checkoutInputTrxId" class="form-control" placeholder="e.g. TID-9824018290 or MEZ-FT-849102" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Proof for Verification
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Order Summary Sticky Card -->
+          <div>
+            <div class="order-summary-card">
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">
+                Order Summary
+              </h3>
+
+              <div class="summary-row">
+                <span style="color: var(--gray-600);">Course Selected:</span>
+                <strong id="checkoutCourseTitle" style="max-width: 180px; text-align: right; font-size: 0.85rem;">Python Programming</strong>
+              </div>
+              <div class="summary-row">
+                <span style="color: var(--gray-600);">Student Name:</span>
+                <span id="checkoutStudentName" style="font-weight: 600;">Ali Raza Khan</span>
+              </div>
+              <div class="summary-row">
+                <span style="color: var(--gray-600);">Google Drive Email:</span>
+                <span id="checkoutStudentEmail" style="font-weight: 700; color: #1A73E8; font-size: 0.85rem;">student@example.com</span>
+              </div>
+              <div class="summary-row">
+                <span style="color: var(--gray-600);">Lecture Delivery:</span>
+                <span style="font-weight: 600;"><i class="fa-brands fa-google-drive" style="color: #4285F4;"></i> Google Drive 4K</span>
+              </div>
+              <div class="summary-row total">
+                <span>Final Payable Amount:</span>
+                <span id="checkoutFee" style="color: var(--primary-red);">Rs. 12,500 PKR</span>
+              </div>
+
+              <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <a href="#dashboard" class="btn btn-outline" data-view-target="dashboard" style="width: 100%;">
+                  <i class="fa-solid fa-book-open"></i> Go to Student Dashboard
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: STUDENT DASHBOARD ("MY LEARNING") (STEP 8) ==================== -->
+    <section id="view_dashboard" class="view-section dashboard-view" style="display: none;">
+      <div class="container">
+        <!-- Student Header Card -->
+        <div class="dashboard-header-card">
+          <div class="student-profile-info">
+            <div class="student-avatar-lg">
+              <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.85rem; color: #FCA5A5; font-weight: 700; text-transform: uppercase;">Verified Student Account</div>
+              <h2 id="dashStudentName" style="font-size: 1.85rem; font-weight: 800; margin: 0.2rem 0;">Ali Raza Khan</h2>
+              <div id="dashStudentEmail" style="font-size: 0.9rem; color: var(--gray-300);"><i class="fa-solid fa-envelope"></i> student@example.com</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="#courses" class="btn btn-primary" data-view-target="courses">
+              <i class="fa-solid fa-plus"></i> Enroll In Another Course
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.5rem;">
+            My Enrolled Courses & Drive Access
+          </h3>
+          <p style="font-size: 0.9rem; color: var(--gray-600);">
+            Track your payment verification and launch Google Drive lecture archives once approved.
+          </p>
+        </div>
+
+        <!-- Enrolled Courses List (Step 8 Exact Requirement) -->
+        <div id="myCoursesListContainer"></div>
+
+        <!-- Google Drive Access Instructions Reminder -->
+        <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem; margin-top: 3rem;">
+          <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem;">
+            <i class="fa-brands fa-google-drive" style="color: #4285F4;"></i> How to Watch Lectures on Google Drive
+          </h4>
+          <ol style="margin-left: 1.25rem; font-size: 0.9rem; color: var(--gray-700); line-height: 1.8;">
+            <li>Make sure you are logged into your web browser or Google Drive app with your registered Gmail address.</li>
+            <li>Click the blue <strong>"Open Course Lectures on Google Drive"</strong> button above for your approved course.</li>
+            <li>In Google Drive, look under the <strong>"Shared with me"</strong> tab if the folder does not automatically pop up.</li>
+            <li>Videos are provided in 1080p / 4K resolution. You can stream them directly using Google Drive's built-in player.</li>
+            <li>Need help or have permission issues? WhatsApp our technical coordinator at <strong>+92 300 1234567</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 6: ADMIN MANAGEMENT PORTAL (SECTION 3, STEP 6 & 7) ==================== -->
+    <section id="view_admin" class="view-section admin-view" style="display: none;">
+      <div class="container">
+        <!-- Admin Header -->
+        <div class="admin-header">
+          <div>
+            <span class="top-bar-badge" style="background: var(--brand-charcoal);"><i class="fa-solid fa-shield-halved"></i> SECURE ADMIN CONSOLE</span>
+            <h2 style="font-size: 2rem; font-weight: 800; color: var(--brand-dark); margin-top: 0.35rem;">
+              iSOFT Academy Management Portal
+            </h2>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-outline btn-sm" onclick="app.setupRoleSwitcher(); store.toggleUserRole(); window.location.hash='dashboard';">
+              <i class="fa-solid fa-arrow-left"></i> Exit to Student View
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Grid (Section 3 Reports) -->
+        <div class="admin-kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background: #ECFDF5; color: #10B981;">
+              <i class="fa-solid fa-sack-dollar"></i>
+            </div>
+            <div>
+              <div class="kpi-val" id="kpiRevenue">Rs. 0</div>
+              <div class="kpi-lbl">Total Confirmed Sales</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background: #FFFBEB; color: #F59E0B;">
+              <i class="fa-solid fa-hourglass-start"></i>
+            </div>
+            <div>
+              <div class="kpi-val" id="kpiPending">0</div>
+              <div class="kpi-lbl">Pending Verifications</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background: #FEF2F2; color: var(--primary-red);">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <div class="kpi-val" id="kpiConfirmed">0</div>
+              <div class="kpi-lbl">Approved Enrollments</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-box" style="background: #F0F9FF; color: #0284C7;">
+              <i class="fa-brands fa-google-drive"></i>
+            </div>
+            <div>
+              <div class="kpi-val" id="kpiDriveAccess">0</div>
+              <div class="kpi-lbl">Drive Access Shares Active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Navigation Tabs -->
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" data-tab="applications">
+            <i class="fa-solid fa-file-invoice"></i> Course Applications & Payment Verification
+          </button>
+          <button class="admin-tab-btn" data-tab="drive">
+            <i class="fa-brands fa-google-drive"></i> Google Drive Sharing Manager
+          </button>
+          <button class="admin-tab-btn" data-tab="courses">
+            <i class="fa-solid fa-book-bookmark"></i> Course Catalog & Folder IDs
+          </button>
+          <button class="admin-tab-btn" data-tab="audit">
+            <i class="fa-solid fa-clock-rotate-left"></i> Security Audit Logs
+          </button>
+        </div>
+
+        <!-- PANE 1: APPLICATIONS & PAYMENT VERIFICATION (STEP 6) -->
+        <div class="admin-tab-pane" id="adminPane_applications">
+          <!-- Filters & Search -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="cat-btn app-filter-btn active" data-status="all">All Applications</button>
+              <button class="cat-btn app-filter-btn" data-status="pending">Needs Verification</button>
+              <button class="cat-btn app-filter-btn" data-status="confirmed">Approved & Paid</button>
+              <button class="cat-btn app-filter-btn" data-status="rejected">Rejected</button>
+            </div>
+            <div class="search-input-wrapper" style="min-width: 300px;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="adminAppSearch" class="search-input" placeholder="Search by student, email, TRX ID...">
+            </div>
+          </div>
+
+          <!-- Applications Table -->
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Application ID</th>
+                  <th>Student</th>
+                  <th>Course & Fee</th>
+                  <th>Payment Info</th>
+                  <th>Drive Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminAppsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PANE 2: GOOGLE DRIVE SHARING MANAGER (STEP 7) -->
+        <div class="admin-tab-pane" id="adminPane_drive" style="display: none;">
+          <div style="background: #FFFFFF; border-radius: var(--radius-xl); padding: 2rem; border: 1px solid var(--gray-200); margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.25rem; margin-bottom: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-dark);">
+                  <i class="fa-brands fa-google-drive" style="color: #4285F4;"></i> Google Drive Service Account Configuration
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--gray-500); margin-top: 0.2rem;">
+                  Authorized account: <strong style="color: #1A73E8;">drive-admin@isoft.edu.pk</strong> (Status: Connected & Verified)
+                </p>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="alert('Google Drive API Connection Validated! Quota status: 100% Operational.')">
+                <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Test Drive API Connection
+              </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; font-size: 0.85rem;">
+              <div style="background: var(--gray-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+                <strong>Default Permission Role:</strong>
+                <div style="color: var(--primary-red); font-weight: 700; margin-top: 0.25rem;">Viewer (Read & Stream Only)</div>
+                <div style="font-size: 0.75rem; color: var(--gray-500);">Students cannot modify or delete lectures.</div>
+              </div>
+              <div style="background: var(--gray-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+                <strong>Sharing Mode:</strong>
+                <div style="color: #1A73E8; font-weight: 700; margin-top: 0.25rem;">Option A: Individual Student Email</div>
+                <div style="font-size: 0.75rem; color: var(--gray-500);">Permissions granted to verified student Gmail.</div>
+              </div>
+              <div style="background: var(--gray-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+                <strong>Automated Notification:</strong>
+                <div style="color: var(--success); font-weight: 700; margin-top: 0.25rem;">Enabled (Google Drive Invite)</div>
+                <div style="font-size: 0.75rem; color: var(--gray-500);">Google sends official folder sharing notification.</div>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1rem;">
+            Active Google Drive Permission Shares Log
+          </h4>
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Share Ref</th>
+                  <th>Student Email</th>
+                  <th>Course & Folder ID</th>
+                  <th>Drive Status</th>
+                  <th>Granted At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminDriveSharesBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PANE 3: COURSE CATALOG & FOLDER IDS -->
+        <div class="admin-tab-pane" id="adminPane_courses" style="display: none;">
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Pricing (PKR)</th>
+                  <th>Google Drive Folder ID</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminCoursesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PANE 4: AUDIT LOGS -->
+        <div class="admin-tab-pane" id="adminPane_audit" style="display: none;">
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Admin Actor</th>
+                  <th>Action Event</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="adminAuditLogsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 7: DRIVE ACCESS GUIDE ==================== -->
+    <section id="view_drive-guide" class="view-section" style="display: none; padding: 4rem 0 6rem;">
+      <div class="container" style="max-width: 900px;">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-brands fa-google-drive"></i> Access Protocol</span>
+          <h2 class="section-title">How Google Drive Lecture Access Works</h2>
+          <p class="section-subtitle">A comprehensive walkthrough for students on receiving, streaming, and accessing course materials.</p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="step-num" style="width: 38px; height: 38px; font-size: 1.1rem;">1</div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.35rem;">Register With Your Active Gmail Account</h3>
+              <p style="color: var(--gray-600); line-height: 1.6;">When applying for any course on iSOFT, always input your genuine Gmail address. Our backend permissions engine uses the official Google Drive API to link folder viewer rights to that specific account.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="step-num" style="width: 38px; height: 38px; font-size: 1.1rem;">2</div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.35rem;">Payment Verification by Admin</h3>
+              <p style="color: var(--gray-600); line-height: 1.6;">Once you submit your payment transaction ID or receipt screenshot, our admissions staff cross-verifies the bank deposit. This guarantees security and prevents unauthorized distribution.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="step-num" style="width: 38px; height: 38px; font-size: 1.1rem; background: #1A73E8;"><i class="fa-brands fa-google-drive"></i></div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.35rem;">Access Notification & Drive Folder Delivery</h3>
+              <p style="color: var(--gray-600); line-height: 1.6;">You receive an instant approval notification. Simply head over to <strong>"My Learning"</strong> in your Student Dashboard and click the button <strong>"Open Course Lectures on Google Drive"</strong> to start streaming immediately.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.5rem;">
+            <div class="step-num" style="width: 38px; height: 38px; font-size: 1.1rem; background: var(--brand-charcoal);"><i class="fa-solid fa-shield"></i></div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.35rem;">Troubleshooting & "Access Denied" Errors</h3>
+              <p style="color: var(--gray-600); line-height: 1.6;">If Google Drive shows an "Access Denied" or "Request Access" screen, it usually means your browser is signed into a different secondary Google account. Switch accounts in the top right corner of Google Drive to your registered email.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 8: CERTIFICATE VERIFICATION ==================== -->
+    <section id="view_certificate-verify" class="view-section" style="display: none; padding: 4rem 0 6rem;">
+      <div class="container" style="max-width: 760px;">
+        <div class="section-header">
+          <span class="section-badge"><i class="fa-solid fa-certificate"></i> Official Authenticator</span>
+          <h2 class="section-title">Verify Student Certificate</h2>
+          <p class="section-subtitle">Authenticate certificates issued by iSOFT IT Training & Consultancy for employers and academic institutions.</p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+          <label class="form-label" style="font-size: 1rem; margin-bottom: 0.6rem;">Enter Certificate Serial Number / ID:</label>
+          <div style="display: flex; gap: 0.75rem;">
+            <input type="text" id="certInputId" class="form-control" placeholder="e.g. ISOFT-CERT-2026-001" value="ISOFT-CERT-2026-001">
+            <button class="btn btn-primary" onclick="app.verifyCertificate()">
+              <i class="fa-solid fa-magnifying-glass"></i> Verify
+            </button>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 0.5rem;">
+            Try sample certificates: <code>ISOFT-CERT-2026-001</code> or <code>ISOFT-CERT-2026-002</code>
+          </div>
+        </div>
+
+        <div id="certVerificationResult" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 9: ABOUT ACADEMY ==================== -->
+    <section id="view_about" class="view-section" style="display: none; padding: 4rem 0 6rem;">
+      <div class="container" style="max-width: 960px;">
+        <div class="section-header">
+          <span class="section-badge">About Us</span>
+          <h2 class="section-title">iSOFT IT Training & Consultancy</h2>
+          <p class="section-subtitle">Bridging the gap between academic education and modern global software industry standards.</p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 3rem; line-height: 1.8; color: var(--gray-700);">
+          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.5rem;">
+            <img src="assets/images/isoft-logo.png" alt="iSOFT Logo" style="height: 60px;">
+            <div>
+              <h3 style="font-size: 1.35rem; color: var(--brand-dark); font-weight: 800; margin: 0;">Excellence in Technology Education</h3>
+              <p style="font-size: 0.85rem; color: var(--primary-red); font-weight: 700; margin: 0;">Certified Training & Enterprise Advisory</p>
+            </div>
+          </div>
+          <p style="margin-bottom: 1.25rem;">
+            <strong>iSOFT IT Training & Consultancy</strong> is a premier tech training academy established to empower students, career switchers, and working engineers with real-world technical skills. We specialize in high-demand domains including <strong>Python Programming, Data Science, Full Stack MERN Development, Generative AI, and Brand Identity Design</strong>.
+          </p>
+          <p style="margin-bottom: 1.25rem;">
+            Unlike generic course aggregators, iSOFT pairs structured curriculum with <strong>verified Google Drive lecture archives</strong>, enabling students to access high-bitrate 4K recorded lectures, downloadable project repositories, Jupyter notebooks, and interactive instructor mentorship sessions without buffering or platform barriers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 10: CONTACT & SUPPORT ==================== -->
+    <section id="view_contact" class="view-section" style="display: none; padding: 4rem 0 6rem;">
+      <div class="container" style="max-width: 900px;">
+        <div class="section-header">
+          <span class="section-badge">Get in Touch</span>
+          <h2 class="section-title">Contact Admissions & Support</h2>
+          <p class="section-subtitle">Have questions about admissions, fees, or Google Drive access? We're here to help.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 3rem;">
+          <div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Academy Headquarters</h3>
+            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem; line-height: 1.6;">
+              <i class="fa-solid fa-location-dot" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+              iSOFT Tower, Commercial Zone, Phase 5, DHA, Lahore, Pakistan
+            </p>
+            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1rem;">
+              <i class="fa-solid fa-phone" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+              +92 300 1234567
+            </p>
+            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem;">
+              <i class="fa-solid fa-envelope" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+              admissions@isoft.edu.pk
+            </p>
+            <a href="https://wa.me/923001234567" target="_blank" class="btn btn-primary">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Send Inquiry</h3>
+            <form onsubmit="event.preventDefault(); alert('Inquiry sent! Our admissions counselor will call you shortly.'); this.reset();">
+              <div style="margin-bottom: 1rem;">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" placeholder="Your name" required>
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="your@email.com" required>
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label class="form-label">Message / Inquiry</label>
+                <textarea class="form-control" rows="3" placeholder="Tell us which course you are interested in..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       MODAL SYSTEM (STEPS 3, 4, 6 & GOOGLE DRIVE VIEWER)
+       ======================================================================== -->
+
+  <!-- STEP 3 MODAL: WHEN A VISITOR CLICKS A LOCKED PAID VIDEO -->
+  <div class="modal-overlay" id="lockedVideoModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3>Course Access Required</h3>
+          <p>Protected Video Lecture</p>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('lockedVideoModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="locked-modal-alert">
+          <div class="lock-giant-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <!-- Exact text mandated by Master Prompt Step 3 -->
+          <h4 class="locked-title">Get Access to This Course</h4>
+          <p class="locked-desc">
+            To access the complete video lectures on Google Drive, please complete the enrollment form and payment process. Once your payment has been verified and your enrollment is approved, you will receive access to the course materials.
+          </p>
+        </div>
+
+        <div class="locked-course-summary">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-500); font-weight: 700;">Selected Course:</div>
+            <strong id="lockedCourseNameSummary" style="color: var(--brand-dark); font-size: 1.05rem;">Course Title</strong>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--gray-500); font-weight: 700;">Total Fee:</div>
+            <strong id="lockedCourseFeeSummary" style="color: var(--primary-red); font-size: 1.15rem;">Rs. 12,500 PKR</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exact 3 Buttons required by Master Prompt Step 3 -->
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button class="btn btn-outline" onclick="app.closeModal('lockedVideoModal')">
+          <i class="fa-solid fa-arrow-left"></i> Back to Course
+        </button>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.closeModal('lockedVideoModal'); app.showView('course-detail');">
+            View Course Details
+          </button>
+          <button class="btn btn-primary" onclick="app.openEnrollmentForm()">
+            <i class="fa-solid fa-file-signature"></i> Apply for Course Access
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 MODAL: COURSE ACCESS APPLICATION FORM (All 14 Required Fields) -->
+  <div class="modal-overlay" id="enrollmentFormModal">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3>Course Access Application Form</h3>
+          <p>Please provide authentic details for Google Drive lecture delivery and verification</p>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('enrollmentFormModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="courseAccessForm">
+          <input type="hidden" id="formCourseId">
+          <input type="hidden" id="formDriveFolderId">
+
+          <div class="form-grid">
+            <!-- 5. Selected Course (Read-only) -->
+            <div>
+              <label class="form-label" for="formCourseTitle">Selected Course (Read-Only):</label>
+              <input type="text" id="formCourseTitle" class="form-control" readonly>
+            </div>
+
+            <!-- 6. Course Fee (Read-only) -->
+            <div>
+              <label class="form-label" for="formCourseFee">Payable Fee (Read-Only):</label>
+              <input type="text" id="formCourseFee" class="form-control" readonly style="color: var(--primary-red); font-weight: 700;">
+            </div>
+
+            <!-- 1. Full Name -->
+            <div>
+              <label class="form-label" for="formStudentName">1. Full Name <span class="required">*</span></label>
+              <input type="text" id="formStudentName" class="form-control" placeholder="e.g. Ali Raza Khan" required>
+            </div>
+
+            <!-- 2. Email Address (Used for Google Drive Sharing) -->
+            <div>
+              <label class="form-label" for="formStudentEmail">2. Gmail Address (For Drive Access) <span class="required">*</span></label>
+              <input type="email" id="formStudentEmail" class="form-control" placeholder="your.name@gmail.com" required>
+              <div class="form-hint">Must be an active Gmail to receive Google Drive folder permissions.</div>
+            </div>
+
+            <!-- 3. WhatsApp or Contact Number -->
+            <div>
+              <label class="form-label" for="formStudentPhone">3. WhatsApp / Phone Number <span class="required">*</span></label>
+              <input type="tel" id="formStudentPhone" class="form-control" placeholder="+92 300 1234567" required>
+            </div>
+
+            <!-- 4. Country & City -->
+            <div>
+              <label class="form-label" for="formCountry">4. Country & City <span class="required">*</span></label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <input type="text" id="formCountry" class="form-control" value="Pakistan" required>
+                <input type="text" id="formCity" class="form-control" placeholder="City (e.g. Lahore)" required>
+              </div>
+            </div>
+
+            <!-- 7. Current Skill Level -->
+            <div>
+              <label class="form-label" for="formSkillLevel">7. Current Skill Level <span class="required">*</span></label>
+              <select id="formSkillLevel" class="form-control" required>
+                <option value="Beginner" selected>Beginner (Little to no prior coding)</option>
+                <option value="Intermediate">Intermediate (Basic understanding)</option>
+                <option value="Advanced">Advanced (Working professional)</option>
+              </select>
+            </div>
+
+            <!-- 8. Reason for Joining -->
+            <div>
+              <label class="form-label" for="formReason">8. Reason for Joining the Course <span class="required">*</span></label>
+              <select id="formReason" class="form-control" required>
+                <option value="Career Switch" selected>Career Switch to Software Industry</option>
+                <option value="Skill Enhancement">Skill Enhancement / Promotion</option>
+                <option value="Academic Support">Academic University Degree Support</option>
+                <option value="Freelancing">Freelancing on Upwork / Fiverr</option>
+              </select>
+            </div>
+
+            <!-- 9. Preferred Learning Method -->
+            <div class="form-group-full">
+              <label class="form-label" for="formPreferredMethod">9. Preferred Learning Method</label>
+              <select id="formPreferredMethod" class="form-control">
+                <option value="Google Drive Video Lectures" selected>Google Drive Video Lectures (Self-Paced with 4K Streaming)</option>
+                <option value="Live Weekend Mentorship">Live Weekend Q&A Mentorship + Drive Lectures</option>
+              </select>
+            </div>
+
+            <!-- 10. Payment Method Selection -->
+            <div>
+              <label class="form-label" for="formPaymentMethod">10. Payment Method <span class="required">*</span></label>
+              <select id="formPaymentMethod" class="form-control" required>
+                <option value="jazzcash" selected>JazzCash Mobile Account / Till</option>
+                <option value="easypaisa">Easypaisa Mobile Wallet</option>
+                <option value="bank">Meezan Bank Direct Transfer</option>
+                <option value="card">Credit / Debit Card Online</option>
+              </select>
+            </div>
+
+            <!-- 11. Transaction Reference (If already paid) -->
+            <div>
+              <label class="form-label" for="formTransactionId">11. Transaction ID / TID (Optional if paying next)</label>
+              <input type="text" id="formTransactionId" class="form-control" placeholder="e.g. TID-9824018290 (or enter later)">
+            </div>
+
+            <!-- 12. Payment Receipt Upload -->
+            <div class="form-group-full">
+              <label class="form-label">12. Payment Screenshot or Receipt (Optional on form, can upload in Checkout):</label>
+              <div class="receipt-dropzone" onclick="document.getElementById('formReceiptInput').click()">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--primary-red); margin-bottom: 0.5rem;"></i>
+                <div style="font-weight: 600; color: var(--brand-dark); font-size: 0.9rem;">Click to upload payment receipt screenshot</div>
+                <div style="font-size: 0.75rem; color: var(--gray-500);">Supported formats: PNG, JPG, WebP (Max 5MB)</div>
+                <input type="file" id="formReceiptInput" accept="image/*" style="display: none;">
+                <img id="formReceiptPreview" class="receipt-preview-img" style="display: none;" alt="Receipt Preview">
+              </div>
+            </div>
+
+            <!-- 13. Acceptance of Terms & Refund Policy -->
+            <div class="form-group-full">
+              <label class="checkbox-label">
+                <input type="checkbox" id="formTermsConsent" required checked>
+                <span><strong>13.</strong> I accept the academy's <a href="#about" style="color: var(--primary-red); text-decoration: underline;">Terms & Conditions</a> and 7-day transparent Refund Policy.</span>
+              </label>
+
+              <!-- 14. Consent to Course Updates -->
+              <label class="checkbox-label">
+                <input type="checkbox" id="formUpdatesConsent" checked>
+                <span><strong>14.</strong> I consent to receive important course-related updates, lecture announcements, and Google Drive access notifications via Email and WhatsApp.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding: 1.25rem 0 0; background: transparent; border-top: 1px solid var(--gray-200); margin-top: 1.5rem;">
+            <button type="button" class="btn btn-outline" onclick="app.closeModal('enrollmentFormModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-arrow-right"></i> Submit Application & Proceed to Payment
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6 MODAL: ADMIN APPLICATION REVIEW & PAYMENT VERIFICATION -->
+  <div class="modal-overlay" id="adminReviewModal">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3>Review Student Application & Payment</h3>
+          <p>Verify bank reference and authorize Google Drive lecture access</p>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('adminReviewModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body" id="adminReviewModalContent"></div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" style="color: var(--primary-red); border-color: var(--primary-red-border);" onclick="admin.rejectApplicationPrompt()">
+          <i class="fa-solid fa-xmark"></i> Reject Submission
+        </button>
+        <button class="btn btn-primary" onclick="admin.confirmAndGrantAccess()">
+          <i class="fa-solid fa-check"></i> Confirm Payment & Grant Drive Access
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMULATED GOOGLE DRIVE LECTURE REPOSITORY VIEWER (STEP 7 & 8) -->
+  <div class="modal-overlay" id="driveViewerModal">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header" style="background: #1F2937; color: #FFFFFF;">
+        <div class="modal-title-group">
+          <h3 style="color: #FFFFFF; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-brands fa-google-drive" style="color: #4285F4;"></i> Google Drive Course Folder
+          </h3>
+          <p style="color: #9CA3AF;" id="driveModalCourseTitle">Course Title</p>
+        </div>
+        <button class="modal-close-btn" style="background: #374151; color: #FFFFFF;" onclick="app.closeModal('driveViewerModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body" style="padding: 1.5rem;">
+        <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 0.75rem; text-transform: uppercase; color: #1D4ED8; font-weight: 700;">Google Drive Folder ID:</span>
+            <div id="driveModalFolderId" style="font-family: monospace; font-weight: 700; color: #1E40AF;">FOLDER_ID</div>
+          </div>
+          <a href="https://drive.google.com" target="_blank" class="btn btn-drive btn-sm">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in Google Drive Tab
+          </a>
+        </div>
+
+        <h4 style="font-size: 1rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.75rem;">
+          Lectures & Course Files (Viewer Streaming Active):
+        </h4>
+        <div id="driveModalFilesList" style="border: 1px solid var(--gray-200); border-radius: var(--radius-md); overflow: hidden;"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="app.closeModal('driveViewerModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMULATED EMAIL MODAL (STEP 9) -->
+  <div class="modal-overlay" id="emailPreviewModal">
+    <div class="modal-card">
+      <div class="modal-header" style="background: #F8FAFC;">
+        <div class="modal-title-group">
+          <h3><i class="fa-solid fa-envelope" style="color: var(--primary-red);"></i> Simulated Student Email</h3>
+          <p>Inbox Notification Preview</p>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('emailPreviewModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div style="border-bottom: 1px solid var(--gray-200); padding-bottom: 1rem; margin-bottom: 1rem; font-size: 0.85rem;">
+          <div><strong>From:</strong> iSOFT Admissions &lt;admissions@isoft.edu.pk&gt;</div>
+          <div><strong>To:</strong> <span id="simEmailTo">student@example.com</span></div>
+          <div><strong>Subject:</strong> <span id="simEmailSubject" style="font-weight: 700; color: var(--brand-dark);">Subject</span></div>
+        </div>
+        <div id="simEmailBody"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="app.closeModal('emailPreviewModal')">Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info with Official Logo -->
+        <div class="footer-brand">
+          <img src="assets/images/isoft-logo.png" alt="iSOFT IT Training & Consultancy Logo" style="height: 52px; background: #FFFFFF; padding: 6px 12px; border-radius: 8px;">
+          <p>
+            Official Online Academy of iSOFT IT Training & Consultancy. Providing career-defining software engineering, data science, and AI training with verified Google Drive lecture delivery and real mentorship.
+          </p>
+          <div class="footer-socials">
+            <a href="https://facebook.com" target="_blank" class="footer-social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="footer-social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://youtube.com" target="_blank" class="footer-social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://github.com" target="_blank" class="footer-social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-view-target="home">Home</a></li>
+            <li><a href="#courses" data-view-target="courses">All Courses</a></li>
+            <li><a href="#dashboard" data-view-target="dashboard">My Learning Dashboard</a></li>
+            <li><a href="#drive-guide" data-view-target="drive-guide">Drive Access Guide</a></li>
+            <li><a href="#certificate-verify" data-view-target="certificate-verify">Certificate Verification</a></li>
+          </ul>
+        </div>
+
+        <!-- Course Tracks -->
+        <div class="footer-col">
+          <h4>Popular Programs</h4>
+          <ul class="footer-links">
+            <li><a href="#course/course-py-01">Python Programming</a></li>
+            <li><a href="#course/course-ds-01">Applied Data Science & ML</a></li>
+            <li><a href="#course/course-web-01">Full Stack Web (MERN)</a></li>
+            <li><a href="#course/course-ai-01">Generative AI & LLMs</a></li>
+            <li><a href="#course/course-gd-01">Graphic Design Mastery</a></li>
+          </ul>
+        </div>
+
+        <!-- Academy Contact -->
+        <div class="footer-col">
+          <h4>Head Office</h4>
+          <p style="color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            iSOFT Tower, Commercial Zone, Phase 5, DHA, Lahore, Pakistan
+          </p>
+          <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">
+            <strong>Phone:</strong> +92 300 1234567
+          </p>
+          <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">
+            <strong>Email:</strong> admissions@isoft.edu.pk
+          </p>
+          <p style="color: var(--gray-400); font-size: 0.9rem;">
+            <strong>Google Drive Support:</strong> drive-admin@isoft.edu.pk
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>iSOFT IT Training & Consultancy</strong>. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#about" data-view-target="about">Terms & Conditions</a>
+          <a href="#about" data-view-target="about">Privacy Policy</a>
+          <a href="#about" data-view-target="about">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
