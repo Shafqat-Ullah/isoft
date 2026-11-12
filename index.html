@@ -64,13 +64,13 @@
       <!-- Navbar Action Tools -->
       <div class="nav-actions">
         <!-- Online Registration Primary CTA Button -->
-        <button class="btn btn-primary btn-sm" onclick="app.openRegistrationModal()" title="Apply for Course Online">
-          <i class="fa-solid fa-file-pen"></i> <span>Register Online</span>
+        <button class="btn btn-primary btn-sm nav-reg-btn" onclick="app.openRegistrationModal()" title="Apply for Course Online">
+          <i class="fa-solid fa-file-pen"></i> <span class="nav-reg-text-full">Register Online</span><span class="nav-reg-text-short">Register</span>
         </button>
 
         <!-- Quick WhatsApp Button -->
-        <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp-outline btn-sm" title="WhatsApp Helpline">
-          <i class="fa-brands fa-whatsapp"></i> <span>0333 6606262</span>
+        <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp-outline btn-sm nav-wa-btn" title="WhatsApp Helpline">
+          <i class="fa-brands fa-whatsapp"></i> <span class="nav-wa-text">0333 6606262</span>
         </a>
 
         <!-- Mobile Menu Hamburger -->
@@ -200,15 +200,15 @@
                 <p style="color: var(--gray-300); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
                   From beginner programming in C++ & Python to Cisco CCNA, Microsoft MCSE 2025, Oracle/SQL Server Database Administration, Full Stack Web Development, and Cybersecurity. Choose your track and start building practical career skills today.
                 </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                  <div style="background: rgba(255,255,255,0.08); padding: 0.6rem 1rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15);">
+                <div class="packages-banner-badges">
+                  <div class="packages-badge-item">
                     <i class="fa-solid fa-phone" style="color: var(--primary-red);"></i> <strong>0333 6606262</strong> / 0313 9999749
                   </div>
-                  <div style="background: rgba(255,255,255,0.08); padding: 0.6rem 1rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15);">
+                  <div class="packages-badge-item">
                     <i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Office 17, Abdra BRT Station, Peshawar
                   </div>
                 </div>
-                <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
+                <div class="packages-banner-actions">
                   <button class="btn btn-primary btn-lg" onclick="app.openRegistrationModal('course-net-diploma')">
                     <i class="fa-solid fa-file-pen"></i> Register for Course Package
                   </button>
@@ -451,7 +451,7 @@
         </div>
 
         <!-- Academy Vision & Profile -->
-        <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 3rem; line-height: 1.8; color: var(--gray-700); box-shadow: var(--shadow-sm); margin-bottom: 3.5rem;">
+        <div class="about-vision-card">
           <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.5rem; flex-wrap: wrap;">
             <img src="assets/images/isoft-logo.png" alt="iSOFT Logo" style="height: 60px;">
             <div>

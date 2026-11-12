@@ -315,6 +315,13 @@ class Application {
 
   // --- POSTER LIGHTBOX MODAL ---
   openPosterLightbox(imgSrc, title, courseId = null) {
+    // Close mobile menu if open
+    const navLinks = document.querySelector('.nav-links');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    const toggleBtn = document.getElementById('mobileMenuToggle');
+    if (navLinks) navLinks.classList.remove('show');
+    if (backdrop) backdrop.classList.remove('show');
+    if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
     const modal = document.getElementById('posterLightboxModal');
     const img = document.getElementById('lightboxPosterImg');
     const titleEl = document.getElementById('lightboxPosterTitle');
@@ -394,6 +401,13 @@ class Application {
   }
 
   openRegistrationModal(preSelectedCourseId = null) {
+    // Close mobile menu if open
+    const navLinks = document.querySelector('.nav-links');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    const toggleBtn = document.getElementById('mobileMenuToggle');
+    if (navLinks) navLinks.classList.remove('show');
+    if (backdrop) backdrop.classList.remove('show');
+    if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
     const modal = document.getElementById('courseRegistrationModal');
     if (!modal) return;
 

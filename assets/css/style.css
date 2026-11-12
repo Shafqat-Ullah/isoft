@@ -2869,3 +2869,669 @@ button {
     justify-content: center;
   }
 }
+
+
+
+/* ==========================================================================
+   ULTRA-RESPONSIVE MOBILE ENGINE (For Every Smartphone & Tablet)
+   ========================================================================== */
+
+/* Universal Anti-Overflow & Mobile Reset */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent unwanted auto-zooming on iPhone/iOS Safari */
+@media (max-width: 768px) {
+  .form-control, input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Navbar toggle elements defaults */
+.nav-reg-text-short {
+  display: none;
+}
+.nav-reg-text-full {
+  display: inline;
+}
+
+/* Base helper classes */
+.packages-banner-badges {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.packages-badge-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.packages-banner-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.about-vision-card {
+  background: #FFFFFF;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  line-height: 1.8;
+  color: var(--gray-700);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 3.5rem;
+}
+
+/* Fixed Accessible Poster Lightbox Close Button */
+.lightbox-close-btn {
+  position: fixed !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 1100 !important;
+  background: rgba(17, 24, 39, 0.9) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  font-size: 1.3rem !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close-btn:hover {
+  background: var(--primary-red) !important;
+  border-color: #FFFFFF !important;
+  transform: scale(1.08);
+}
+
+.lightbox-content-box {
+  width: 100%;
+  max-width: 900px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 0.5rem 1.5rem;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+}
+
+/* ----------------------------------------------------
+   MEDIA QUERY: TABLETS & SMALL LAPTOPS (<= 1024px)
+   ---------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .packages-banner-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .course-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .course-detail-sidebar {
+    position: static;
+  }
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .poster-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* ----------------------------------------------------
+   MEDIA QUERY: TABLETS & LARGE MOBILE (<= 768px)
+   ---------------------------------------------------- */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Top Bar */
+  .top-bar {
+    padding: 0.4rem 0;
+  }
+  .top-bar-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.35rem;
+  }
+  .top-bar-left, .top-bar-right {
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.775rem;
+  }
+
+  /* Header & Navigation Drawer */
+  .navbar {
+    height: 70px;
+  }
+  .brand-logo-img {
+    height: 42px;
+  }
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--gray-100);
+    color: var(--brand-dark);
+    font-size: 1.25rem;
+    border: 1px solid var(--gray-200);
+    cursor: pointer;
+  }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #FFFFFF;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 2.5rem;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid var(--primary-red);
+    z-index: 99;
+    gap: 0.75rem;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--gray-100);
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 2.5rem 0 3.5rem;
+  }
+  .hero-title {
+    font-size: clamp(1.85rem, 5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem 1.25rem;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .hero-stat-item .stat-num {
+    font-size: 1.6rem;
+  }
+  .hero-card {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Packages Banner Card */
+  .packages-banner-card {
+    padding: 1.75rem 1.5rem;
+  }
+  .packages-banner-info h2 {
+    font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+    line-height: 1.25;
+  }
+  .packages-banner-badges {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .packages-badge-item {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+  .packages-banner-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .packages-banner-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem 1rem;
+  }
+  .packages-banner-poster img {
+    max-height: 380px;
+    margin: 0 auto;
+  }
+
+  /* Posters Grid */
+  .poster-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .poster-card {
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Courses Catalog */
+  .catalog-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .search-input-wrapper {
+    min-width: 100%;
+    width: 100%;
+  }
+  .category-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+  .cat-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .course-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* About Academy */
+  .about-vision-card {
+    padding: 1.75rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .team-section-box {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+  }
+  .team-header-box {
+    margin-bottom: 2rem;
+  }
+  .ceo-showcase-card {
+    padding: 1.75rem 1.5rem;
+  }
+  .ceo-card-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .ceo-avatar-wrap {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    font-size: 2.8rem;
+  }
+  .ceo-info-content h3 {
+    justify-content: center;
+    font-size: 1.45rem;
+  }
+  .faculty-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Contact Section */
+  .contact-grid-box {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal-card {
+    width: 100%;
+    max-height: 92vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+  }
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+  .modal-body {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  /* Poster Lightbox */
+  .lightbox-modal {
+    padding: 0.5rem;
+  }
+  .lightbox-img {
+    max-height: 56vh;
+    width: 100%;
+    object-fit: contain;
+  }
+  .lightbox-footer-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6rem;
+  }
+  .lightbox-footer-bar span {
+    text-align: center;
+    margin-right: 0 !important;
+    font-size: 1rem;
+  }
+  .lightbox-footer-bar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+/* ----------------------------------------------------
+   MEDIA QUERY: STANDARD SMARTPHONES (<= 480px)
+   ---------------------------------------------------- */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Top Bar Compact */
+  .top-bar-text {
+    display: none;
+  }
+  .top-bar-left, .top-bar-right {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    height: 64px;
+  }
+  .nav-links {
+    top: 64px;
+    max-height: calc(100vh - 64px);
+    padding: 1.25rem 1.25rem 2rem;
+  }
+  .brand-logo-img {
+    height: 36px;
+  }
+  .nav-actions {
+    gap: 0.4rem;
+  }
+  .nav-wa-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-wa-text {
+    display: none;
+  }
+  .nav-reg-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.78rem;
+  }
+  .nav-reg-text-full {
+    display: none;
+  }
+  .nav-reg-text-short {
+    display: inline;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding: 2rem 0 3rem;
+  }
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  .hero-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .hero-stats {
+    gap: 0.65rem;
+  }
+  .hero-stat-item {
+    padding: 0.75rem 0.5rem;
+  }
+  .hero-stat-item .stat-num {
+    font-size: 1.35rem;
+  }
+  .hero-stat-item .stat-lbl {
+    font-size: 0.7rem;
+  }
+  .hero-card {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Packages Banner Card */
+  .packages-banner-card {
+    padding: 1.35rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+  .packages-banner-info h2 {
+    font-size: 1.35rem;
+  }
+  .packages-banner-info p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .packages-badge-item {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Poster Cards */
+  .poster-card-body {
+    padding: 1.15rem 0.85rem;
+  }
+  .poster-card-title {
+    font-size: 1.1rem;
+  }
+  .poster-card-desc {
+    font-size: 0.82rem;
+  }
+  .poster-actions {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .poster-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section Headers */
+  .section-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .section-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* About Academy */
+  .about-vision-card {
+    padding: 1.25rem 1rem;
+  }
+  .ceo-showcase-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+  .ceo-avatar-wrap {
+    width: 95px;
+    height: 95px;
+    font-size: 2.2rem;
+  }
+  .ceo-info-content h3 {
+    font-size: 1.25rem;
+  }
+  .ceo-designation {
+    font-size: 0.88rem;
+  }
+  .ceo-bio {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    text-align: left;
+  }
+  .faculty-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Contact */
+  .contact-grid-box {
+    padding: 1.15rem 0.85rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Registration Modal */
+  .modal-title-group h3 {
+    font-size: 1.1rem !important;
+  }
+  .modal-title-group p {
+    font-size: 0.75rem !important;
+  }
+  .form-label {
+    font-size: 0.85rem;
+  }
+  .form-control {
+    padding: 0.65rem 0.85rem;
+    min-height: 44px;
+  }
+  .reg-course-preview {
+    padding: 0.75rem 0.85rem;
+  }
+  .reg-preview-title {
+    font-size: 0.92rem;
+  }
+  .reg-preview-price {
+    font-size: 1.15rem;
+  }
+  .btn-whatsapp.btn-lg {
+    font-size: 0.92rem !important;
+    padding: 0.85rem 0.65rem !important;
+  }
+
+  /* Floating Widget */
+  .floating-contact-widget {
+    bottom: 14px;
+    right: 14px;
+    gap: 8px;
+  }
+  .floating-wa-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  .floating-reg-btn {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+}
+
+/* ----------------------------------------------------
+   MEDIA QUERY: COMPACT PHONES (<= 360px & 320px)
+   ---------------------------------------------------- */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  .brand-logo-img {
+    height: 32px;
+  }
+  .nav-reg-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.72rem;
+  }
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .poster-price-box {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+}
