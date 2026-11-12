@@ -1,6 +1,8 @@
 /**
- * iSOFT IT Training & Consultancy
+ * iSOFT IT Training & Software Solutions
  * Main Application Controller, Routing, UI Interactions & Event Handlers
+ * Official WhatsApp Helpline: 0333 6606262 | Alternate: 0313 9999749
+ * Campus: Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar
  */
 
 class Application {
@@ -17,27 +19,43 @@ class Application {
     this.setupCourseForm();
     this.setupReceiptUpload();
     this.setupNotifications();
-    this.setupRoleSwitcher();
+    this.setupRegistrationFormModal();
     this.renderHome();
+    this.renderCoursePackages();
     this.renderCatalog();
-    this.renderStudentDashboard();
-    admin.init();
+    this.renderTeamMembers();
 
-    // Check URL hash for routing (e.g. #courses, #dashboard, #admin)
+    // Check URL hash for routing
     window.addEventListener('hashchange', () => this.handleRouting());
     this.handleRouting();
 
     // Re-render when data updates
-    window.addEventListener('isoft:data-updated', () => {
-      this.renderStudentDashboard();
-      this.updateNotifBadge();
-    });
+    
   }
 
   // --- ROUTING & VIEW SWITCHING ---
   handleRouting() {
     const hash = window.location.hash.replace('#', '') || 'home';
     const [viewName, param] = hash.split('/');
+
+    if (viewName === 'register' || viewName === 'apply') {
+      this.openRegistrationModal(param || null);
+      return;
+    }
+
+    if (viewName === 'packages') {
+      this.showView('home');
+      setTimeout(() => {
+        const sec = document.getElementById('packagesSection');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+
+    if (['admin', 'dashboard', 'drive-guide', 'certificate-verify'].includes(viewName)) {
+      window.location.hash = 'home';
+      return;
+    }
 
     if (viewName === 'course' && param) {
       const course = COURSES.find(c => c.id === param || c.slug === param);
@@ -54,6 +72,9 @@ class Application {
   }
 
   showView(viewName) {
+    if (viewName === 'admin') {
+      viewName = 'home';
+    }
     this.currentView = viewName;
 
     // Hide all view sections
@@ -76,11 +97,8 @@ class Application {
     // View-specific initializers
     if (viewName === 'courses') {
       this.renderCatalog();
-    } else if (viewName === 'dashboard') {
-      this.renderStudentDashboard();
-    } else if (viewName === 'admin') {
-      admin.renderKPIs();
-      admin.renderApplicationsTable();
+    } else if (viewName === 'about') {
+      this.renderTeamMembers();
     }
 
     // Close mobile menu if open
@@ -104,7 +122,17 @@ class Application {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         const targetView = e.currentTarget.dataset.viewTarget;
-        window.location.hash = targetView;
+        if (targetView === 'register') {
+          this.openRegistrationModal();
+        } else if (targetView === 'packages') {
+          this.showView('home');
+          setTimeout(() => {
+            const sec = document.getElementById('packagesSection');
+            if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        } else {
+          window.location.hash = targetView;
+        }
         closeMobileMenu();
       });
     });
@@ -123,55 +151,21 @@ class Application {
     }
   }
 
-  // --- ROLE SWITCHER (Student <-> Admin) ---
-  setupRoleSwitcher() {
-    const roleBtn = document.getElementById('roleSwitcherBtn');
-    if (!roleBtn) return;
-
-    this.updateRoleButtonUI();
-
-    roleBtn.addEventListener('click', () => {
-      const newUser = store.toggleUserRole();
-      this.updateRoleButtonUI();
-      this.showToast(`Switched view to ${newUser.role.toUpperCase()}: ${newUser.name}`, 'info');
-
-      if (newUser.role === 'admin') {
-        window.location.hash = 'admin';
-      } else {
-        window.location.hash = 'dashboard';
-      }
-    });
-  }
-
-  updateRoleButtonUI() {
-    const roleBtn = document.getElementById('roleSwitcherBtn');
-    if (!roleBtn) return;
-    const user = store.getCurrentUser();
-
-    if (user.role === 'admin') {
-      roleBtn.className = 'role-pill admin-active';
-      roleBtn.innerHTML = `<i class="fa-solid fa-shield-halved"></i> <span>Admin Mode (${user.name.split(' ')[0]})</span>`;
-    } else {
-      roleBtn.className = 'role-pill';
-      roleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> <span>Student Mode (${user.name.split(' ')[0]})</span>`;
-    }
-  }
-
   // --- HOME VIEW RENDERING ---
   renderHome() {
     // Render featured courses on homepage
     const container = document.getElementById('homeFeaturedCourses');
-    if (!container) return;
-
-    const featured = COURSES.slice(0, 3);
-    container.innerHTML = featured.map(c => this.createCourseCardHTML(c)).join('');
+    if (container) {
+      const featured = COURSES.slice(0, 4);
+      container.innerHTML = featured.map(c => this.createCourseCardHTML(c)).join('');
+    }
 
     // Render FAQs
     const faqContainer = document.getElementById('faqAccordion');
     if (faqContainer) {
       faqContainer.innerHTML = FAQS.map((faq, idx) => `
         <div class="faq-item" style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-md); margin-bottom:1rem; overflow:hidden;">
-          <button class="faq-question-btn" onclick="app.toggleFaq(${idx})" style="width:100%; text-align:left; padding:1.25rem 1.5rem; display:flex; justify-content:space-between; align-items:center; font-weight:700; color:var(--brand-dark); font-size:1.05rem;">
+          <button class="faq-question-btn" onclick="app.toggleFaq(${idx})" style="width:100%; text-align:left; padding:1.25rem 1.5rem; display:flex; justify-content:space-between; align-items:center; font-weight:700; color:var(--brand-dark); font-size:1.05rem; background:transparent; border:none; cursor:pointer;">
             <span>${faq.question}</span>
             <i class="fa-solid fa-chevron-down faq-chevron" id="faqChevron_${idx}" style="transition:transform 0.2s;"></i>
           </button>
@@ -193,6 +187,426 @@ class Application {
     }
   }
 
+  // --- COURSE PACKAGES & POSTERS SHOWCASE ---
+  
+  // --- FACULTY & LEADERSHIP TEAM (5 Teachers with CEO Sir Shafiq) ---
+  renderTeamMembers() {
+    const ceoContainer = document.getElementById('ceoShowcaseContainer');
+    const facultyContainer = document.getElementById('facultyGridContainer');
+    if (typeof TEAM_MEMBERS === 'undefined' || !TEAM_MEMBERS) return;
+
+    const ceo = TEAM_MEMBERS.find(m => m.isCeo) || TEAM_MEMBERS[0];
+    const faculty = TEAM_MEMBERS.filter(m => !m.isCeo);
+
+    if (ceoContainer && ceo) {
+      ceoContainer.innerHTML = `
+        <div class="ceo-showcase-card">
+          <div class="ceo-card-grid">
+            <div class="ceo-avatar-wrap">
+              <span>${ceo.initials}</span>
+              <div class="ceo-crown-pill">
+                <i class="fa-solid fa-crown"></i> CEO &amp; FOUNDER
+              </div>
+            </div>
+            <div class="ceo-info-content">
+              <h3>
+                <span>${ceo.name} (Sir Shafiq)</span>
+                <span class="ceo-role-badge">Founder &amp; CEO</span>
+              </h3>
+              <div class="ceo-designation">${ceo.designation}</div>
+              <p class="ceo-bio">${ceo.bio}</p>
+              
+              <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
+                ${ceo.specializations.map(s => `<span class="faculty-pill" style="background:#FEF2F2; color:var(--primary-red); font-weight:700;"><i class="fa-solid fa-check"></i> ${s}</span>`).join('')}
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding-top:1rem; border-top:1px solid var(--gray-200);">
+                <div style="display:flex; gap:1.5rem; font-size:0.85rem; color:var(--gray-600); flex-wrap:wrap;">
+                  <span><i class="fa-solid fa-award" style="color:var(--primary-red);"></i> ${ceo.experience}</span>
+                  <span><i class="fa-solid fa-star" style="color:#F59E0B;"></i> <strong>${ceo.rating} Rating</strong></span>
+                  <span><i class="fa-solid fa-user-graduate" style="color:var(--success);"></i> <strong>${ceo.studentsCount} Students</strong> Mentored</span>
+                </div>
+                <a href="https://wa.me/923336606262?text=${encodeURIComponent('Hello Sir Shafiq! I would like to inquire about courses and admission at iSOFT.')}" target="_blank" class="btn btn-whatsapp btn-sm">
+                  <i class="fa-brands fa-whatsapp"></i> Chat with Sir Shafiq
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (facultyContainer) {
+      facultyContainer.innerHTML = faculty.map(member => `
+        <div class="faculty-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem;">
+            <div class="faculty-avatar-box">
+              ${member.initials}
+            </div>
+            <span style="font-size:0.8rem; font-weight:700; color:#F59E0B; background:#FFFBEB; padding:3px 8px; border-radius:var(--radius-full); border:1px solid #FDE68A;">
+              ${member.rating}
+            </span>
+          </div>
+
+          <h4 class="faculty-name">${member.name}</h4>
+          <div class="faculty-role">${member.role}</div>
+          <div style="font-size:0.775rem; color:var(--gray-500); margin-bottom:0.75rem; font-weight:500;">${member.designation}</div>
+          
+          <p class="faculty-bio">${member.bio}</p>
+
+          <div class="faculty-pills">
+            ${member.specializations.map(s => `<span class="faculty-pill">${s}</span>`).join('')}
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:1rem; border-top:1px solid var(--gray-100); font-size:0.8rem; color:var(--gray-500);">
+            <span><i class="fa-solid fa-briefcase"></i> ${member.experience}</span>
+            <span><i class="fa-solid fa-users"></i> ${member.studentsCount}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  renderCoursePackages() {
+    const gridContainer = document.getElementById('coursePackagesGrid');
+    if (!gridContainer || !COURSE_PACKAGES) return;
+
+    // Filter out the overall master catalog poster for the grid, as it's shown in the top banner
+    const individualPackages = COURSE_PACKAGES.filter(p => p.id !== 'pkg-all-packages');
+
+    gridContainer.innerHTML = individualPackages.map(pkg => `
+      <div class="poster-card" id="card_${pkg.id}">
+        <div class="poster-img-wrap" onclick="app.openPosterLightbox('${pkg.posterImage}', '${this.escapeHtml(pkg.title)}', '${pkg.courseId}')" title="Click to view full poster">
+          <img src="${pkg.posterImage}" alt="${this.escapeHtml(pkg.title)}" loading="lazy">
+          <div class="poster-discount-ribbon">${pkg.discountBadge}</div>
+          <div class="poster-overlay-btn">
+            <span class="poster-overlay-badge"><i class="fa-solid fa-magnifying-glass-plus"></i> View Full Poster</span>
+          </div>
+        </div>
+
+        <div class="poster-card-body">
+          <div class="poster-meta-tags">
+            <span class="poster-pill pill-duration"><i class="fa-solid fa-calendar-days"></i> ${pkg.duration}</span>
+            <span class="poster-pill pill-mode"><i class="fa-solid fa-location-dot"></i> ${pkg.mode}</span>
+            <span class="poster-pill pill-time"><i class="fa-solid fa-clock"></i> ${pkg.timing}</span>
+          </div>
+
+          <h3 class="poster-card-title">${pkg.shortTitle || pkg.title}</h3>
+          <p class="poster-card-desc">${pkg.summary}</p>
+
+          <div class="poster-price-box">
+            <span class="poster-price-current">${pkg.feeFormatted}</span>
+            ${pkg.regularFee ? `<span class="poster-price-original">Rs. ${pkg.regularFee.toLocaleString()}</span>` : ''}
+            <span style="font-size:0.75rem; color:var(--gray-500); margin-left:auto; font-weight:600;">${pkg.feeUnit}</span>
+          </div>
+
+          <div class="poster-actions">
+            <button class="btn btn-primary" onclick="app.openRegistrationModal('${pkg.courseId}')">
+              <i class="fa-solid fa-file-pen"></i> Register Now
+            </button>
+            <a href="https://wa.me/923336606262?text=${encodeURIComponent(`Hello iSOFT! I want details and admission in: ${pkg.title}`)}" target="_blank" class="btn btn-whatsapp-outline" title="WhatsApp Admissions Desk">
+              <i class="fa-brands fa-whatsapp"></i> Chat
+            </a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // --- POSTER LIGHTBOX MODAL ---
+  openPosterLightbox(imgSrc, title, courseId = null) {
+    const modal = document.getElementById('posterLightboxModal');
+    const img = document.getElementById('lightboxPosterImg');
+    const titleEl = document.getElementById('lightboxPosterTitle');
+    const regBtn = document.getElementById('lightboxRegisterBtn');
+    const waBtn = document.getElementById('lightboxWhatsAppBtn');
+
+    if (img) img.src = imgSrc;
+    if (titleEl) titleEl.innerText = title || "iSOFT Course Poster";
+
+    if (regBtn) {
+      regBtn.onclick = () => {
+        this.closePosterLightbox();
+        this.openRegistrationModal(courseId);
+      };
+    }
+
+    if (waBtn) {
+      waBtn.href = `https://wa.me/923336606262?text=${encodeURIComponent(`Hello iSOFT! I am interested in: ${title}. Please send admission information.`)}`;
+    }
+
+    if (modal) modal.classList.add('active');
+  }
+
+  closePosterLightbox() {
+    const modal = document.getElementById('posterLightboxModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  // --- COMPREHENSIVE COURSE REGISTRATION MODAL & WHATSAPP SUBMISSION ---
+  setupRegistrationFormModal() {
+    const select = document.getElementById('regCourseSelect');
+    if (select) {
+      this.populateCourseSelectOptions(select);
+      select.addEventListener('change', () => this.updateCoursePreviewCard());
+    }
+
+    const form = document.getElementById('quickRegistrationForm');
+    if (form) {
+      form.addEventListener('submit', (e) => this.submitRegistrationToWhatsApp(e));
+    }
+  }
+
+  populateCourseSelectOptions(select) {
+    if (!select) return;
+    select.innerHTML = '<option value="" disabled selected>-- Select a Course or Special Package --</option>';
+
+    // Group 1: Special Packages from posters
+    const optGroupPackages = document.createElement('optgroup');
+    optGroupPackages.label = "🔥 SPECIAL PROMOTION PACKAGES & POSTERS";
+
+    COURSE_PACKAGES.forEach(pkg => {
+      const opt = document.createElement('option');
+      opt.value = pkg.courseId || pkg.id;
+      opt.dataset.type = 'package';
+      opt.dataset.pkgId = pkg.id;
+      opt.innerText = `${pkg.shortTitle || pkg.title} (${pkg.feeFormatted} • ${pkg.durationShort || pkg.duration})`;
+      optGroupPackages.appendChild(opt);
+    });
+    select.appendChild(optGroupPackages);
+
+    // Group 2: All Other Academy Programs
+    const optGroupCourses = document.createElement('optgroup');
+    optGroupCourses.label = "🎓 ALL CERTIFIED PROGRAMS & DIPLOMAS";
+
+    COURSES.forEach(c => {
+      // Avoid duplicate display if already in packages group
+      const alreadyInPackages = COURSE_PACKAGES.some(p => p.courseId === c.id);
+      if (!alreadyInPackages) {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.dataset.type = 'course';
+        opt.innerText = `${c.title} (Rs. ${c.discountPrice.toLocaleString()} • ${c.duration})`;
+        optGroupCourses.appendChild(opt);
+      }
+    });
+    select.appendChild(optGroupCourses);
+  }
+
+  openRegistrationModal(preSelectedCourseId = null) {
+    const modal = document.getElementById('courseRegistrationModal');
+    if (!modal) return;
+
+    // Reset views inside modal
+    const formBox = document.getElementById('regFormContainer');
+    const successBox = document.getElementById('regSuccessContainer');
+    if (formBox) formBox.style.display = 'block';
+    if (successBox) successBox.style.display = 'none';
+
+    // Populate select if empty
+    const select = document.getElementById('regCourseSelect');
+    if (select && select.children.length <= 1) {
+      this.populateCourseSelectOptions(select);
+    }
+
+    // Pre-select course if requested
+    if (select && preSelectedCourseId) {
+      const matchingOpt = Array.from(select.options).find(opt => 
+        opt.value === preSelectedCourseId || 
+        opt.dataset.pkgId === preSelectedCourseId
+      );
+      if (matchingOpt) {
+        select.value = matchingOpt.value;
+      }
+    }
+
+    this.updateCoursePreviewCard();
+    modal.classList.add('active');
+  }
+
+  closeRegistrationModal() {
+    const modal = document.getElementById('courseRegistrationModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  updateCoursePreviewCard() {
+    const select = document.getElementById('regCourseSelect');
+    const previewBox = document.getElementById('regCoursePreviewBox');
+    if (!select || !previewBox) return;
+
+    const val = select.value;
+    if (!val) {
+      previewBox.style.display = 'none';
+      return;
+    }
+
+    // Find course or package
+    const pkg = COURSE_PACKAGES.find(p => p.courseId === val || p.id === val);
+    const course = COURSES.find(c => c.id === val);
+
+    const title = pkg ? pkg.title : (course ? course.title : val);
+    const fee = pkg ? pkg.feeFormatted : (course ? `Rs. ${course.discountPrice.toLocaleString()}` : '');
+    const duration = pkg ? pkg.duration : (course ? course.duration : '');
+    const timing = pkg ? pkg.timing : (course ? (course.classTiming || 'Evening Batch') : 'Flexible');
+    const mode = pkg ? pkg.mode : (course ? (course.learningMode || 'Online & On-Site') : 'Online / On-Site');
+    const badge = pkg ? pkg.discountBadge : (course ? course.badge : 'Admissions Open');
+
+    previewBox.style.display = 'flex';
+    previewBox.innerHTML = `
+      <div>
+        <div style="font-size:0.75rem; font-weight:700; color:var(--primary-red); text-transform:uppercase;">
+          <i class="fa-solid fa-graduation-cap"></i> Selected Track: ${badge}
+        </div>
+        <div class="reg-preview-title">${title}</div>
+        <div class="reg-preview-meta">
+          <span><i class="fa-solid fa-calendar-days" style="color:var(--success);"></i> ${duration}</span>
+          <span><i class="fa-solid fa-clock" style="color:var(--warning);"></i> ${timing}</span>
+          <span><i class="fa-solid fa-location-dot" style="color:var(--info);"></i> ${mode}</span>
+        </div>
+      </div>
+      <div>
+        <div class="reg-preview-price">${fee}</div>
+        <div style="font-size:0.75rem; color:var(--gray-500); text-align:right;">Official Academy Fee</div>
+      </div>
+    `;
+
+    // Also auto-select mode radio if course is on-site only or online only
+    const modeRadioOnline = document.querySelector('input[name="regMode"][value="Online"]');
+    const modeRadioOnsite = document.querySelector('input[name="regMode"][value="On-Site"]');
+    if (mode.toLowerCase().includes('on-site') && !mode.toLowerCase().includes('online')) {
+      if (modeRadioOnsite) modeRadioOnsite.checked = true;
+    } else if (mode.toLowerCase().includes('online') && !mode.toLowerCase().includes('on-site')) {
+      if (modeRadioOnline) modeRadioOnline.checked = true;
+    }
+  }
+
+  submitRegistrationToWhatsApp(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById('regStudentName')?.value.trim();
+    const phone = document.getElementById('regStudentPhone')?.value.trim();
+    const email = document.getElementById('regStudentEmail')?.value.trim() || 'Not Provided';
+    const city = document.getElementById('regStudentCity')?.value.trim();
+    const courseVal = document.getElementById('regCourseSelect')?.value;
+    const mode = document.querySelector('input[name="regMode"]:checked')?.value || 'Online';
+    const shift = document.getElementById('regBatchTime')?.value || 'As per poster timing';
+    const education = document.getElementById('regEducation')?.value || 'Not Specified';
+    const notes = document.getElementById('regNotes')?.value.trim() || 'None';
+
+    if (!fullName || !phone || !city || !courseVal) {
+      this.showToast('Please fill out all required fields marked with *', 'danger');
+      return;
+    }
+
+    // Resolve course information
+    const pkg = COURSE_PACKAGES.find(p => p.courseId === courseVal || p.id === courseVal);
+    const course = COURSES.find(c => c.id === courseVal);
+    const courseTitle = pkg ? pkg.title : (course ? course.title : courseVal);
+    const courseFee = pkg ? pkg.feeFormatted : (course ? `Rs. ${course.discountPrice.toLocaleString()}` : 'N/A');
+    const courseDuration = pkg ? pkg.duration : (course ? course.duration : 'Standard');
+    const courseTiming = pkg ? pkg.timing : (course ? (course.classTiming || 'Evening') : 'Flexible');
+
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    // Construct Clean, Elegant WhatsApp Message
+    const whatsappMessage = 
+`🎓 *iSOFT IT TRAINING & SOFTWARE SOLUTIONS*
+📋 *NEW COURSE REGISTRATION APPLICATION*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 *Student Name:* ${fullName}
+📱 *WhatsApp Number:* ${phone}
+📧 *Email Address:* ${email}
+📍 *City / Campus:* ${city}
+🎓 *Education / Background:* ${education}
+
+📚 *Selected Course:* ${courseTitle}
+💰 *Course Fee:* ${courseFee}
+⏱️ *Duration:* ${courseDuration}
+🕒 *Course Schedule:* ${courseTiming}
+🏫 *Learning Mode:* ${mode}
+⏰ *Preferred Shift:* ${shift}
+
+💬 *Student Note / Query:*
+${notes}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 *Date:* ${formattedDate}
+🌐 *Sent via Official Website:* https://isoft.edu.pk
+📍 *Campus:* Office 17, Jabir Flat, Abdra BRT Station, Peshawar`;
+
+    const cleanNumber = ACADEMY_INFO.whatsappClean || "923336606262";
+    const waUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // Store application locally in store for student tracking
+    try {
+      store.createApplication({
+        courseId: courseVal,
+        courseTitle: courseTitle,
+        courseFee: (pkg && pkg.fee) || (course && course.discountPrice) || 0,
+        studentName: fullName,
+        studentEmail: email !== 'Not Provided' ? email : `student_${phone.replace(/\D/g, '')}@isoft.edu.pk`,
+        studentPhone: phone,
+        country: "Pakistan",
+        city: city,
+        skillLevel: education,
+        reason: "Career Training",
+        preferredMethod: mode,
+        paymentMethod: "whatsapp_direct",
+        transactionId: "WA-" + Date.now().toString().slice(-6),
+        receiptUrl: "",
+        driveFolderId: (course && course.driveFolderId) || ""
+      });
+    } catch (err) {
+      console.warn("Local storage log warning:", err);
+    }
+
+    // Try to open WhatsApp in a new window/tab
+    const waWindow = window.open(waUrl, '_blank');
+
+    // Switch Modal View to Success View
+    const formBox = document.getElementById('regFormContainer');
+    const successBox = document.getElementById('regSuccessContainer');
+    if (formBox) formBox.style.display = 'none';
+
+    if (successBox) {
+      successBox.style.display = 'block';
+      successBox.innerHTML = `
+        <div class="reg-success-box">
+          <div class="reg-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h3 style="font-size:1.6rem; font-weight:800; color:var(--brand-dark); margin-bottom:0.5rem;">Registration Application Ready!</h3>
+          <p style="color:var(--gray-600); font-size:0.95rem; max-width:520px; margin:0 auto 1.5rem;">
+            Thank you <strong>${this.escapeHtml(fullName)}</strong>! Your registration details for <strong>${this.escapeHtml(courseTitle)}</strong> have been compiled.
+          </p>
+
+          <div style="background:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--radius-lg); padding:1.25rem; max-width:520px; margin:0 auto 1.5rem; text-align:left;">
+            <div style="font-weight:700; color:var(--brand-dark); margin-bottom:0.5rem;"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp Submission:</div>
+            <div style="font-size:0.85rem; color:var(--gray-700); line-height:1.6;">
+              Please click the green button below to deliver your application directly to our admissions officer on WhatsApp (<strong>0333 6606262</strong>).
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.75rem; max-width:420px; margin:0 auto;">
+            <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-lg" style="width:100%; font-size:1.05rem;">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.35rem;"></i> Send to WhatsApp Now (0333 6606262)
+            </a>
+            <a href="https://wa.me/923139999749?text=${encodeURIComponent(whatsappMessage)}" target="_blank" class="btn btn-whatsapp-outline" style="width:100%;">
+              <i class="fa-brands fa-whatsapp"></i> Send to Secondary Line (0313 9999749)
+            </a>
+            <button type="button" class="btn btn-outline" onclick="app.closeRegistrationModal()" style="margin-top:0.5rem;">
+              Done & Return to Website
+            </button>
+          </div>
+
+          <div style="margin-top:2rem; font-size:0.8rem; color:var(--gray-500);">
+            <i class="fa-solid fa-location-dot" style="color:var(--primary-red);"></i> Campus: Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar
+          </div>
+        </div>
+      `;
+    }
+
+    this.showToast('Registration prepared! Opening WhatsApp...', 'success');
+  }
+
   // --- CATALOG VIEW & FILTERING ---
   renderCatalog(catFilter = 'all', searchQuery = '') {
     const container = document.getElementById('catalogCoursesGrid');
@@ -200,14 +614,19 @@ class Application {
 
     let list = COURSES;
     if (catFilter !== 'all') {
-      list = list.filter(c => c.category === catFilter);
+      if (catFilter === 'packages') {
+        // Return courses that have poster packages
+        list = COURSES.filter(c => COURSE_PACKAGES.some(p => p.courseId === c.id));
+      } else {
+        list = list.filter(c => c.category === catFilter);
+      }
     }
 
     if (searchQuery) {
       list = list.filter(c => 
         c.title.toLowerCase().includes(searchQuery) ||
-        c.shortDesc.toLowerCase().includes(searchQuery) ||
-        c.categoryLabel.toLowerCase().includes(searchQuery)
+        (c.shortDesc && c.shortDesc.toLowerCase().includes(searchQuery)) ||
+        (c.categoryLabel && c.categoryLabel.toLowerCase().includes(searchQuery))
       );
     }
 
@@ -231,15 +650,16 @@ class Application {
     const priceDisplay = isFree 
       ? `<span class="course-final-price" style="color:var(--success);">FREE</span>`
       : `<span class="course-final-price">Rs. ${course.discountPrice.toLocaleString()}</span>
-         <span class="course-original-price">Rs. ${course.price.toLocaleString()}</span>`;
+         ${course.price ? `<span class="course-original-price">Rs. ${course.price.toLocaleString()}</span>` : ''}`;
 
-    // Visual placeholder gradient if image fails or before loading
-    const cardSvgThumb = this.getCourseGraphicSVG(course.category);
+    const thumbHtml = course.posterImage 
+      ? `<img src="${course.posterImage}" alt="${this.escapeHtml(course.title)}" style="width:100%; height:100%; object-fit:cover;">`
+      : this.getCourseGraphicSVG(course.category);
 
     return `
       <div class="course-card" data-course-id="${course.id}">
         <div class="course-card-thumb-wrapper" onclick="app.openCourseDetail('${course.id}')" style="cursor: pointer;">
-          ${cardSvgThumb}
+          ${thumbHtml}
           <div class="course-badge-top">${badgeText}</div>
           <div class="course-drive-notice">
             <i class="fa-brands fa-google-drive" style="color: #4285F4;"></i>
@@ -250,7 +670,7 @@ class Application {
         <div class="course-card-body">
           <div class="course-meta-top">
             <span style="font-weight: 700; color: var(--primary-red);"><i class="fa-solid fa-tag"></i> ${course.categoryLabel}</span>
-            <span><i class="fa-solid fa-star" style="color: #F59E0B;"></i> ${course.rating} (${course.reviewsCount})</span>
+            <span><i class="fa-solid fa-star" style="color: #F59E0B;"></i> ${course.rating || '4.9'} (${course.reviewsCount || 100})</span>
           </div>
 
           <h3 class="course-card-title" onclick="app.openCourseDetail('${course.id}')">${course.title}</h3>
@@ -258,25 +678,22 @@ class Application {
 
           <div class="course-details-pills">
             <span><i class="fa-solid fa-clock"></i> ${course.duration}</span>
-            <span><i class="fa-solid fa-video"></i> ${course.lecturesCount} Lectures</span>
-            <span><i class="fa-solid fa-chart-simple"></i> ${course.level}</span>
+            <span><i class="fa-solid fa-video"></i> ${course.lecturesCount || 30} Lectures</span>
+            <span><i class="fa-solid fa-chart-simple"></i> ${course.level || 'All Levels'}</span>
           </div>
 
-          <div class="course-instructor-info">
-            <div class="instructor-avatar-sm">${course.instructor.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
-            <div>
-              <div class="instructor-name-sm">${course.instructor.name}</div>
-              <div style="font-size: 0.75rem; color: var(--gray-500);">${course.instructor.title.split('&')[0]}</div>
-            </div>
-          </div>
-
-          <div class="course-card-footer">
+          <div class="course-card-footer" style="margin-top:auto; padding-top:1rem; display:flex; justify-content:space-between; align-items:center;">
             <div class="course-price-box">
               ${priceDisplay}
             </div>
-            <button class="btn btn-primary btn-sm" onclick="app.openCourseDetail('${course.id}')">
-              <i class="fa-solid fa-arrow-right"></i> View Details
-            </button>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-outline btn-sm" onclick="app.openCourseDetail('${course.id}')" title="Course details">
+                Details
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="app.openRegistrationModal('${course.id}')" title="Register for this course">
+                Register
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -286,12 +703,15 @@ class Application {
   getCourseGraphicSVG(category) {
     const gradients = {
       python: ['#1E252B', '#0D1117', '#306998', 'fa-brands fa-python', '#FFD43B'],
+      programming: ['#181B1F', '#2A1012', '#DC2626', 'fa-solid fa-code', '#F87171'],
+      networking: ['#0B192C', '#1E3E62', '#0284C7', 'fa-solid fa-network-wired', '#38BDF8'],
       datascience: ['#0F172A', '#1E293B', '#10B981', 'fa-solid fa-chart-line', '#34D399'],
+      cybersecurity: ['#111827', '#1F2937', '#DC2626', 'fa-solid fa-shield-halved', '#FCA5A5'],
+      database: ['#1A1A24', '#2C1820', '#E11D48', 'fa-solid fa-database', '#FB7185'],
       webdev: ['#181B1F', '#20262E', '#D32027', 'fa-brands fa-react', '#61DAFB'],
-      ai: ['#111827', '#1F2937', '#8B5CF6', 'fa-solid fa-brain', '#C084FC'],
-      graphic: ['#1E1E24', '#2A2035', '#EC4899', 'fa-solid fa-palette', '#F472B6']
+      ai: ['#111827', '#1F2937', '#8B5CF6', 'fa-solid fa-brain', '#C084FC']
     };
-    const [c1, c2, c3, icon, iconColor] = gradients[category] || gradients['python'];
+    const [c1, c2, c3, icon, iconColor] = gradients[category] || gradients['programming'];
 
     return `
       <div style="width:100%; height:100%; background: linear-gradient(135deg, ${c1} 0%, ${c2} 100%); display:flex; align-items:center; justify-content:center; position:relative;">
@@ -304,7 +724,7 @@ class Application {
   }
 
   setupSearch() {
-    // Catalog category pills
+    // Catalog categories click
     document.querySelectorAll('.cat-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -344,7 +764,7 @@ class Application {
     }
   }
 
-  // --- STEP 2: COURSE DETAIL & LECTURE PREVIEW PAGE ---
+  // --- COURSE DETAIL VIEW ---
   openCourseDetail(courseId) {
     const course = COURSES.find(c => c.id === courseId);
     if (!course) return;
@@ -359,7 +779,7 @@ class Application {
     document.getElementById('courseDetailBreadcrumb').innerText = course.title;
     document.getElementById('courseDetailTitle').innerText = course.title;
     document.getElementById('courseDetailCategory').innerText = course.categoryLabel;
-    document.getElementById('courseDetailRating').innerText = `${course.rating} (${course.reviewsCount} verified reviews)`;
+    document.getElementById('courseDetailRating').innerText = `${course.rating || '4.9'} (${course.reviewsCount || 100} verified reviews)`;
     document.getElementById('courseDetailDesc').innerText = course.longDesc || course.shortDesc;
 
     // Fill Price Card
@@ -370,7 +790,7 @@ class Application {
       } else {
         priceBox.innerHTML = `
           <div style="font-size:2rem; font-weight:800; color:var(--brand-dark);">Rs. ${course.discountPrice.toLocaleString()}</div>
-          <div style="font-size:1rem; color:var(--gray-400); text-decoration:line-through;">Rs. ${course.price.toLocaleString()} (30% OFF)</div>
+          ${course.price ? `<div style="font-size:1rem; color:var(--gray-400); text-decoration:line-through;">Rs. ${course.price.toLocaleString()}</div>` : ''}
         `;
       }
     }
@@ -385,9 +805,9 @@ class Application {
         enrollCtaBtn.className = "btn btn-drive btn-lg";
         enrollCtaBtn.onclick = () => this.launchDriveViewer(course.id);
       } else {
-        enrollCtaBtn.innerHTML = `<i class="fa-solid fa-shield-check"></i> Enroll Now & Get Drive Access`;
+        enrollCtaBtn.innerHTML = `<i class="fa-solid fa-file-pen"></i> Register for Course Online`;
         enrollCtaBtn.className = "btn btn-primary btn-lg";
-        enrollCtaBtn.onclick = () => this.handleLockedLectureClick(course.id, null);
+        enrollCtaBtn.onclick = () => this.openRegistrationModal(course.id);
       }
     }
 
@@ -406,67 +826,70 @@ class Application {
     this.renderCurriculum(course);
 
     // Instructor info
-    document.getElementById('courseInstructorName').innerText = course.instructor.name;
-    document.getElementById('courseInstructorTitle').innerText = course.instructor.title;
-    document.getElementById('courseInstructorBio').innerText = course.instructor.bio;
-
-    // Reset preview player to first available preview lesson
-    const firstPreview = course.modules[0]?.lessons.find(l => l.isPreview);
-    if (firstPreview && firstPreview.previewVideoUrl) {
-      this.playVideoPreview(firstPreview.title, firstPreview.previewVideoUrl);
+    if (course.instructor) {
+      document.getElementById('courseInstructorName').innerText = course.instructor.name;
+      document.getElementById('courseInstructorTitle').innerText = course.instructor.title;
+      document.getElementById('courseInstructorBio').innerText = course.instructor.bio;
+      document.getElementById('courseInstructorStudents').innerText = `${course.instructor.studentsCount}+`;
+      document.getElementById('courseInstructorRating').innerText = `${course.instructor.rating} ★`;
     }
   }
 
   renderCurriculum(course) {
-    const container = document.getElementById('curriculumAccordion');
-    if (!container) return;
+    const list = document.getElementById('curriculumAccordion');
+    if (!list) return;
 
-    container.innerHTML = course.modules.map((mod, modIdx) => `
-      <div class="curriculum-module" style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-md); margin-bottom:1rem; overflow:hidden;">
+    if (!course.modules || course.modules.length === 0) {
+      list.innerHTML = `<p style="color:var(--gray-500); padding:1rem;">Complete syllabus and project guide will be unlocked inside Google Drive.</p>`;
+      return;
+    }
+
+    const currentUser = store.getCurrentUser();
+    const hasAccess = store.hasApprovedAccess(currentUser.email, course.id);
+
+    list.innerHTML = course.modules.map((mod, modIdx) => `
+      <div class="curriculum-mod-item" style="border:1px solid var(--gray-200); border-radius:var(--radius-md); margin-bottom:0.75rem; overflow:hidden;">
         <div style="background:var(--gray-50); padding:1rem 1.25rem; font-weight:700; color:var(--brand-dark); display:flex; justify-content:space-between; align-items:center;">
           <span>${mod.title}</span>
-          <span style="font-size:0.8rem; color:var(--gray-500); font-weight:600;">${mod.lessons.length} Lectures</span>
+          <span style="font-size:0.8rem; color:var(--gray-500); font-weight:500;">${mod.lessons.length} Lectures</span>
         </div>
-        <div class="module-lessons-list">
+        <div style="background:#FFFFFF;">
           ${mod.lessons.map(les => {
-            if (les.isPreview) {
-              return `
-                <div class="lesson-item preview-available" onclick="app.playVideoPreview('${les.title}', '${les.previewVideoUrl}')" style="display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1.25rem; border-top:1px solid var(--gray-100); cursor:pointer; background:#FFFFFF; transition:background 0.15s;">
-                  <div style="display:flex; align-items:center; gap:0.75rem;">
-                    <i class="fa-solid fa-play-circle" style="color:var(--primary-red); font-size:1.15rem;"></i>
-                    <span style="font-weight:600; font-size:0.9rem; color:var(--brand-dark);">${les.title}</span>
-                  </div>
-                  <div style="display:flex; align-items:center; gap:0.75rem;">
-                    <span class="status-badge" style="background:var(--primary-red-light); color:var(--primary-red); border:1px solid var(--primary-red-border); font-size:0.7rem;">Free Preview</span>
-                    <span style="font-size:0.8rem; color:var(--gray-500);"><i class="fa-solid fa-clock"></i> ${les.duration}</span>
-                  </div>
+            const isUnlocked = hasAccess || les.isPreview;
+            return `
+              <div class="curriculum-lesson-row" style="display:flex; justify-content:space-between; align-items:center; padding:0.85rem 1.25rem; border-top:1px solid var(--gray-100); font-size:0.9rem;">
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <i class="fa-solid ${isUnlocked ? 'fa-play-circle text-red' : 'fa-lock'}" style="color:${isUnlocked ? 'var(--primary-red)' : 'var(--gray-400)'};"></i>
+                  <span style="color:${isUnlocked ? 'var(--brand-dark)' : 'var(--gray-600)'};">${les.title}</span>
                 </div>
-              `;
-            } else {
-              // Locked Paid Lecture - STEP 2 & STEP 3 Trigger
-              return `
-                <div class="lesson-item locked-item" onclick="app.handleLockedLectureClick('${course.id}', '${les.id}')" style="display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1.25rem; border-top:1px solid var(--gray-100); cursor:pointer; background:var(--gray-50); transition:background 0.15s;">
-                  <div style="display:flex; align-items:center; gap:0.75rem;">
-                    <i class="fa-solid fa-lock" style="color:var(--primary-red); font-size:1rem;"></i>
-                    <span style="font-weight:600; font-size:0.9rem; color:var(--gray-700);">${les.title}</span>
-                  </div>
-                  <div style="display:flex; align-items:center; gap:0.75rem;">
-                    <span style="font-size:0.75rem; color:var(--gray-500);"><i class="fa-brands fa-google-drive"></i> Drive Locked</span>
-                    <span style="font-size:0.8rem; color:var(--gray-500);"><i class="fa-solid fa-clock"></i> ${les.duration}</span>
-                  </div>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <span style="font-size:0.8rem; color:var(--gray-400);">${les.duration}</span>
+                  ${les.isPreview ? `
+                    <button class="btn btn-outline btn-sm" onclick="app.playVideoPreview('${les.previewVideoUrl}', '${this.escapeHtml(les.title)}')">
+                      <i class="fa-solid fa-play"></i> Watch Sample
+                    </button>
+                  ` : isUnlocked ? `
+                    <button class="btn btn-drive btn-sm" onclick="app.launchDriveViewer('${course.id}')">
+                      <i class="fa-brands fa-google-drive"></i> Open in Drive
+                    </button>
+                  ` : `
+                    <button class="btn btn-sm" style="background:var(--gray-100); color:var(--gray-600);" onclick="app.openRegistrationModal('${course.id}')">
+                      <i class="fa-solid fa-lock"></i> Register to Unlock
+                    </button>
+                  `}
                 </div>
-              `;
-            }
+              </div>
+            `;
           }).join('')}
         </div>
       </div>
     `).join('');
   }
 
-  playVideoPreview(title, url) {
+  playVideoPreview(url, title) {
     const player = document.getElementById('previewVideoPlayer');
-    const titleEl = document.getElementById('previewVideoTitle');
-    if (player && url) {
+    const titleEl = document.getElementById('currentPlayingLessonTitle');
+    if (player) {
       player.src = url;
     }
     if (titleEl) {
@@ -474,134 +897,38 @@ class Application {
     }
   }
 
-  // --- STEP 3: WHEN A STUDENT CLICKS A LOCKED VIDEO ---
-  handleLockedLectureClick(courseId, lessonId) {
-    const course = COURSES.find(c => c.id === courseId);
-    if (!course) return;
-
-    this.selectedLockedCourse = course;
-    const currentUser = store.getCurrentUser();
-
-    // Check if student already has verified access (Requirement: Do not charge again)
-    const hasAccess = store.hasApprovedAccess(currentUser.email, course.id);
-    if (hasAccess) {
-      this.launchDriveViewer(course.id);
-      return;
-    }
-
-    // Check if application is pending verification
-    const pendingApp = store.getPendingApplication(currentUser.email, course.id);
-    if (pendingApp && pendingApp.paymentStatus === 'Under Verification') {
-      this.showToast(`Your payment verification for ${course.title} is currently under review by admin.`, 'info');
-      window.location.hash = `checkout/${pendingApp.id}`;
-      return;
-    }
-
-    // Open Step 3 Dedicated Modal with Exact Master Prompt Text
-    const modal = document.getElementById('lockedVideoModal');
-    document.getElementById('lockedCourseNameSummary').innerText = course.title;
-    document.getElementById('lockedCourseFeeSummary').innerText = `Rs. ${course.discountPrice.toLocaleString()} (PKR)`;
-    
-    if (modal) modal.classList.add('active');
-  }
-
-  // --- STEP 4: COURSE ACCESS APPLICATION FORM (14 Fields) ---
-  openEnrollmentForm(courseId = null) {
-    const c = courseId ? COURSES.find(crs => crs.id === courseId) : this.selectedLockedCourse || this.activeCourse || COURSES[0];
-    if (!c) return;
-
-    this.selectedLockedCourse = c;
-    this.closeModal('lockedVideoModal');
-
-    // Auto-populate read-only fields
-    document.getElementById('formCourseId').value = c.id;
-    document.getElementById('formCourseTitle').value = c.title;
-    document.getElementById('formCourseFee').value = `Rs. ${c.discountPrice.toLocaleString()} PKR`;
-    document.getElementById('formDriveFolderId').value = c.driveFolderId;
-
-    // Prefill student details if logged in
-    const user = store.getCurrentUser();
-    if (user.email && user.name) {
-      const nameInput = document.getElementById('formStudentName');
-      const emailInput = document.getElementById('formStudentEmail');
-      const phoneInput = document.getElementById('formStudentPhone');
-      if (nameInput && !nameInput.value) nameInput.value = user.name;
-      if (emailInput && !emailInput.value) emailInput.value = user.email;
-      if (phoneInput && !phoneInput.value) phoneInput.value = user.phone || '';
-    }
-
-    const modal = document.getElementById('enrollmentFormModal');
-    if (modal) modal.classList.add('active');
-  }
-
+  // --- STEP 4 & CHECKOUT COMPATIBILITY ---
   setupCourseForm() {
     const form = document.getElementById('courseAccessForm');
     if (!form) return;
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      // Retrieve all 14 form fields
       const courseId = document.getElementById('formCourseId').value;
-      const courseTitle = document.getElementById('formCourseTitle').value;
-      const rawFee = document.getElementById('formCourseFee').value.replace(/[^0-9]/g, '');
-      const courseFee = Number(rawFee);
-      const driveFolderId = document.getElementById('formDriveFolderId').value;
+      const course = COURSES.find(c => c.id === courseId);
 
-      const studentName = document.getElementById('formStudentName').value.trim();
-      const studentEmail = document.getElementById('formStudentEmail').value.trim();
-      const studentPhone = document.getElementById('formStudentPhone').value.trim();
-      const country = document.getElementById('formCountry').value.trim();
-      const city = document.getElementById('formCity').value.trim();
-      const skillLevel = document.getElementById('formSkillLevel').value;
-      const reason = document.getElementById('formReason').value.trim();
-      const preferredMethod = document.getElementById('formPreferredMethod').value;
-      const paymentMethod = document.getElementById('formPaymentMethod').value;
-      const transactionId = document.getElementById('formTransactionId').value.trim();
-      const termsAccepted = document.getElementById('formTermsConsent').checked;
-      const updatesConsent = document.getElementById('formUpdatesConsent').checked;
+      const appData = {
+        courseId: courseId,
+        courseTitle: document.getElementById('formCourseTitle').value,
+        courseFee: course ? course.discountPrice : 0,
+        studentName: document.getElementById('formStudentName').value,
+        studentEmail: document.getElementById('formStudentEmail').value,
+        studentPhone: document.getElementById('formStudentPhone').value,
+        country: document.getElementById('formCountry').value,
+        city: document.getElementById('formCity').value,
+        skillLevel: document.getElementById('formSkillLevel').value,
+        reason: document.getElementById('formReason').value,
+        preferredMethod: document.getElementById('formPreferredMethod').value,
+        paymentMethod: document.getElementById('formPaymentMethod').value,
+        transactionId: document.getElementById('formTransactionId').value,
+        receiptUrl: this.currentReceiptDataUrl,
+        driveFolderId: document.getElementById('formDriveFolderId').value
+      };
 
-      // Validation
-      if (!studentName || !studentEmail || !studentPhone || !country) {
-        alert("Please complete all required fields (Name, Email, WhatsApp, Country).");
-        return;
-      }
-
-      if (!termsAccepted) {
-        alert("Please accept the academy's terms and refund policy to proceed.");
-        return;
-      }
-
-      try {
-        const newApp = store.createApplication({
-          courseId,
-          courseTitle,
-          courseFee,
-          driveFolderId,
-          studentName,
-          studentEmail,
-          studentPhone,
-          country,
-          city,
-          skillLevel,
-          reason,
-          preferredMethod,
-          paymentMethod,
-          transactionId,
-          receiptUrl: this.currentReceiptDataUrl
-        });
-
-        this.closeModal('enrollmentFormModal');
-        this.currentReceiptDataUrl = '';
-        form.reset();
-
-        this.showToast(`Application ${newApp.id} created successfully!`, 'success');
-
-        // Redirect to Step 5: Payment Instructions and Checkout
-        window.location.hash = `checkout/${newApp.id}`;
-      } catch (err) {
-        alert(err.message);
-      }
+      const newApp = store.createApplication(appData);
+      this.closeModal('enrollmentFormModal');
+      this.showToast('Application successfully recorded!', 'success');
+      window.location.hash = `checkout/${newApp.id}`;
     });
   }
 
@@ -612,278 +939,151 @@ class Application {
 
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
-      if (!file) return;
-
-      if (!file.type.startsWith('image/')) {
-        alert('Please upload an image file (JPG, PNG, WebP).');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        this.currentReceiptDataUrl = event.target.result;
-        if (preview) {
-          preview.src = event.target.result;
-          preview.style.display = 'block';
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+          alert('File size exceeds 5MB limit.');
+          return;
         }
-      };
-      reader.readAsDataURL(file);
+        const reader = new FileReader();
+        reader.onload = (re) => {
+          this.currentReceiptDataUrl = re.target.result;
+          if (preview) {
+            preview.src = re.target.result;
+            preview.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     });
   }
 
-  // --- STEP 5: PAYMENT INSTRUCTIONS & CHECKOUT ---
+  // --- CHECKOUT VIEW ---
   openCheckoutView(appId) {
     const application = store.getApplicationById(appId);
     if (!application) {
       this.showToast('Application not found', 'danger');
-      this.showView('courses');
+      window.location.hash = 'courses';
       return;
     }
 
     this.showView('checkout');
-    if (window.location.hash !== `#checkout/${appId}`) {
-      window.location.hash = `checkout/${appId}`;
-    }
-
-    // Populate checkout fields
     document.getElementById('checkoutAppId').innerText = application.id;
     document.getElementById('checkoutCourseTitle').innerText = application.courseTitle;
-    document.getElementById('checkoutFee').innerText = `Rs. ${application.courseFee.toLocaleString()} PKR`;
+    document.getElementById('checkoutTotalFee').innerText = `Rs. ${Number(application.courseFee).toLocaleString()} PKR`;
     document.getElementById('checkoutStudentEmail').innerText = application.studentEmail;
-    document.getElementById('checkoutStudentName').innerText = application.studentName;
 
-    // Render Status Stepper based on paymentStatus
-    const statusText = document.getElementById('checkoutCurrentStatusText');
-    const stepperNodes = document.querySelectorAll('.checkout-step-node');
-
-    stepperNodes.forEach(n => {
-      n.classList.remove('completed', 'active');
-    });
-
-    if (application.paymentStatus === 'Awaiting Payment') {
-      stepperNodes[0].classList.add('completed');
-      stepperNodes[1].classList.add('active');
-      statusText.innerHTML = `<span class="status-badge pending">Awaiting Payment</span>`;
-    } else if (application.paymentStatus === 'Under Verification') {
-      stepperNodes[0].classList.add('completed');
-      stepperNodes[1].classList.add('completed');
-      stepperNodes[2].classList.add('active');
-      statusText.innerHTML = `<span class="status-badge pending">Payment Under Verification</span>`;
-    } else if (application.paymentStatus === 'Payment Confirmed' && application.driveAccessStatus === 'Granted') {
-      stepperNodes[0].classList.add('completed');
-      stepperNodes[1].classList.add('completed');
-      stepperNodes[2].classList.add('completed');
-      stepperNodes[3].classList.add('completed', 'active');
-      statusText.innerHTML = `<span class="status-badge approved">Google Drive Access Granted!</span>`;
-    } else if (application.paymentStatus === 'Payment Rejected') {
-      statusText.innerHTML = `<span class="status-badge rejected">Payment Rejected</span>`;
-    }
-
-    // Set active payment tab matching application choice
-    this.switchPaymentTab(application.paymentMethod || 'jazzcash');
-
-    // Setup transaction update form inside checkout
-    const txForm = document.getElementById('checkoutSubmitTxForm');
-    if (txForm) {
-      document.getElementById('checkoutInputTrxId').value = application.transactionId || '';
-      txForm.onsubmit = (e) => {
-        e.preventDefault();
-        const tid = document.getElementById('checkoutInputTrxId').value.trim();
-        if (!tid) {
-          alert('Please enter your Transaction Reference ID.');
-          return;
-        }
-        store.updatePaymentSubmission(application.id, {
-          transactionId: tid,
-          receiptUrl: this.currentReceiptDataUrl || application.receiptUrl
-        });
-        this.showToast('Payment details updated and sent for Admin verification!', 'success');
-        this.openCheckoutView(application.id);
-      };
-    }
+    // Render payment method tabs
+    this.renderPaymentMethodTabs();
   }
 
-  switchPaymentTab(tabKey) {
-    document.querySelectorAll('.pay-tab-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.method === tabKey);
-    });
+  renderPaymentMethodTabs() {
+    const container = document.getElementById('paymentTabsContainer');
+    if (!container) return;
 
-    document.querySelectorAll('.payment-tab-content').forEach(pane => {
-      pane.style.display = pane.id === `payTab_${tabKey}` ? 'block' : 'none';
-    });
+    container.innerHTML = `
+      <div style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-lg); padding:1.5rem; margin-top:1rem;">
+        <h4 style="font-weight:700; color:var(--brand-dark); margin-bottom:0.75rem;"><i class="fa-solid fa-money-bill-transfer" style="color:var(--primary-red);"></i> Easy Payment Transfer</h4>
+        <p style="font-size:0.9rem; color:var(--gray-600); margin-bottom:1rem;">
+          Transfer your fee via JazzCash / EasyPaisa / 1Link Bank Transfer to our official admissions account:
+        </p>
+        <div style="background:var(--gray-50); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--gray-200); margin-bottom:1rem;">
+          <div style="font-size:0.85rem; color:var(--gray-600);">Account Title:</div>
+          <div style="font-size:1.1rem; font-weight:800; color:var(--brand-dark);">iSOFT IT Training & Software Solutions</div>
+          <div style="font-size:0.85rem; color:var(--gray-600); margin-top:0.5rem;">JazzCash / WhatsApp Helpline:</div>
+          <div style="font-size:1.35rem; font-weight:800; color:var(--primary-red);">0333 6606262</div>
+          <div style="font-size:0.85rem; color:var(--gray-600); margin-top:0.5rem;">Campus Address:</div>
+          <div style="font-size:0.9rem; font-weight:600; color:var(--brand-dark);">Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar</div>
+        </div>
+        <a href="https://wa.me/923336606262?text=${encodeURIComponent('Hello iSOFT Admissions Desk! I have submitted my payment. Here is the receipt.')}" target="_blank" class="btn btn-whatsapp" style="width:100%;">
+          <i class="fa-brands fa-whatsapp"></i> Send Payment Screenshot on WhatsApp
+        </a>
+      </div>
+    `;
   }
 
-  copyToClipboard(text, message = 'Copied to clipboard!') {
-    navigator.clipboard.writeText(text).then(() => {
-      this.showToast(message, 'info');
-    }).catch(() => {
-      // Fallback
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      this.showToast(message, 'info');
-    });
-  }
-
-  // --- STEP 8: STUDENT DASHBOARD ("MY LEARNING") ---
+  // --- STUDENT DASHBOARD VIEW ---
   renderStudentDashboard() {
     const user = store.getCurrentUser();
-    const studentApps = store.getStudentApplications(user.email);
+    const nameEl = document.getElementById('dashStudentName');
+    const emailEl = document.getElementById('dashStudentEmail');
+    if (nameEl) nameEl.innerText = user.name || "Student";
+    if (emailEl) emailEl.innerHTML = `<i class="fa-solid fa-envelope"></i> ${user.email}`;
+
     const container = document.getElementById('myCoursesListContainer');
     if (!container) return;
 
-    document.getElementById('dashStudentName').innerText = user.name;
-    document.getElementById('dashStudentEmail').innerText = user.email;
-
-    if (studentApps.length === 0) {
+    const apps = store.getStudentApplications(user.email);
+    if (apps.length === 0) {
       container.innerHTML = `
-        <div style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-xl); padding:3.5rem; text-align:center;">
-          <i class="fa-solid fa-graduation-cap" style="font-size:3rem; color:var(--gray-300); margin-bottom:1rem;"></i>
-          <h3 style="font-size:1.35rem; color:var(--brand-dark); margin-bottom:0.5rem;">You haven't enrolled in any courses yet</h3>
-          <p style="color:var(--gray-500); max-width:450px; margin:0 auto 1.5rem;">Explore our industry-driven courses in Python, Data Science, Web Development, and AI with verified Google Drive lecture access.</p>
-          <a href="#courses" class="btn btn-primary" onclick="app.showView('courses')">Browse Course Catalog</a>
+        <div style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-xl); padding:3rem; text-align:center;">
+          <i class="fa-solid fa-book-open" style="font-size:3rem; color:var(--gray-300); margin-bottom:1rem;"></i>
+          <h4 style="font-size:1.25rem; font-weight:800; color:var(--brand-dark);">No Course Enrollments Found</h4>
+          <p style="color:var(--gray-600); font-size:0.9rem; margin-bottom:1.5rem;">Explore our courses and special packages to enroll with verified Google Drive access.</p>
+          <a href="#courses" class="btn btn-primary" data-view-target="courses"><i class="fa-solid fa-compass"></i> Explore Courses</a>
         </div>
       `;
       return;
     }
 
-    container.innerHTML = studentApps.map(appItem => {
-      const isApproved = appItem.enrollmentStatus === 'Enrollment Approved' && appItem.driveAccessStatus === 'Granted';
-      const isPending = appItem.paymentStatus === 'Under Verification' || appItem.paymentStatus === 'Awaiting Payment';
-
-      let statusBadge = `<span class="status-badge pending"><i class="fa-solid fa-hourglass-half"></i> Under Verification</span>`;
-      let actionArea = `
-        <div class="drive-access-cta-box">
-          <span style="font-size:0.8rem; color:var(--gray-500);">Awaiting Admin Payment Verification</span>
-          <button class="btn btn-outline btn-sm" onclick="app.openCheckoutView('${appItem.id}')">
-            <i class="fa-solid fa-receipt"></i> View Order / Submit Proof
-          </button>
-        </div>
-      `;
-
-      if (isApproved) {
-        statusBadge = `<span class="status-badge granted"><i class="fa-solid fa-check-circle"></i> Access Active</span>`;
-        actionArea = `
-          <div class="drive-access-cta-box">
-            <button class="btn btn-open-drive" onclick="app.launchDriveViewer('${appItem.courseId}')">
-              <i class="fa-brands fa-google-drive"></i> Open Course Lectures on Google Drive
-            </button>
-            <div style="font-size:0.75rem; color:var(--gray-500);">
-              <i class="fa-solid fa-shield-check" style="color:var(--success);"></i> Shared with ${appItem.studentEmail}
-            </div>
-          </div>
-        `;
-      } else if (appItem.paymentStatus === 'Payment Rejected') {
-        statusBadge = `<span class="status-badge rejected"><i class="fa-solid fa-triangle-exclamation"></i> Verification Rejected</span>`;
-        actionArea = `
-          <div class="drive-access-cta-box">
-            <button class="btn btn-outline btn-sm" onclick="app.openCheckoutView('${appItem.id}')">
-              <i class="fa-solid fa-rotate-right"></i> Update Payment Details
-            </button>
-          </div>
-        `;
-      }
-
+    container.innerHTML = apps.map(appItem => {
+      const isApproved = appItem.driveAccessStatus === 'Granted';
       return `
-        <div class="my-course-card">
-          <div class="my-course-info">
-            <div class="my-course-icon">
-              <i class="fa-solid fa-code"></i>
-            </div>
-            <div>
-              <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.35rem;">
-                <h4 style="font-size:1.2rem; font-weight:700; color:var(--brand-dark); margin:0;">${appItem.courseTitle}</h4>
-                ${statusBadge}
-              </div>
-              <div style="font-size:0.85rem; color:var(--gray-500); display:flex; gap:1.25rem; flex-wrap:wrap;">
-                <span><strong>Application:</strong> ${appItem.id}</span>
-                <span><strong>Enrolled on:</strong> ${new Date(appItem.createdAt).toLocaleDateString()}</span>
-                <span><strong>Google Drive ID:</strong> <code style="font-size:0.75rem; background:var(--gray-100); padding:2px 4px; border-radius:3px;">${appItem.driveFolderId || 'Default'}</code></span>
-              </div>
+        <div style="background:#FFFFFF; border:1px solid var(--gray-200); border-radius:var(--radius-xl); padding:1.5rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <span class="status-badge ${isApproved ? 'approved' : 'pending'}" style="margin-bottom:0.5rem; display:inline-block;">
+              ${isApproved ? 'DRIVE ACCESS UNLOCKED' : 'VERIFICATION IN PROGRESS'}
+            </span>
+            <h4 style="font-size:1.2rem; font-weight:800; color:var(--brand-dark);">${appItem.courseTitle}</h4>
+            <div style="font-size:0.85rem; color:var(--gray-600); margin-top:0.25rem;">
+              Application ID: <code>${appItem.id}</code> • Registered via ${appItem.paymentMethod}
             </div>
           </div>
-          ${actionArea}
+          <div>
+            ${isApproved ? `
+              <button class="btn btn-drive" onclick="app.launchDriveViewer('${appItem.courseId}')">
+                <i class="fa-brands fa-google-drive"></i> Open Lectures on Drive
+              </button>
+            ` : `
+              <a href="https://wa.me/923336606262?text=${encodeURIComponent(`Hello iSOFT! Checking status for my course registration ID: ${appItem.id}`)}" target="_blank" class="btn btn-whatsapp-outline">
+                <i class="fa-brands fa-whatsapp"></i> Check Status on WhatsApp
+              </a>
+            `}
+          </div>
         </div>
       `;
     }).join('');
   }
 
-  // --- GOOGLE DRIVE VIEWER SIMULATOR MODAL ---
+  // --- DRIVE VIEWER LAUNCHER ---
   launchDriveViewer(courseId) {
-    const course = COURSES.find(c => c.id === courseId) || this.activeCourse;
-    if (!course) return;
-
+    const course = COURSES.find(c => c.id === courseId);
     const modal = document.getElementById('driveViewerModal');
-    document.getElementById('driveModalCourseTitle').innerText = course.title;
-    document.getElementById('driveModalFolderId').innerText = course.driveFolderId;
+    if (!modal) return;
 
-    // Render list of drive files & lectures inside modal
-    const filesContainer = document.getElementById('driveModalFilesList');
-    if (filesContainer) {
-      let fileItems = [];
-      course.modules.forEach(m => {
-        m.lessons.forEach((les, idx) => {
-          fileItems.push(`
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; border-bottom:1px solid var(--gray-200); background:#FFFFFF; transition:background 0.15s;">
-              <div style="display:flex; align-items:center; gap:0.75rem;">
-                <i class="fa-solid fa-file-video" style="color:#EA4335; font-size:1.2rem;"></i>
-                <div>
-                  <div style="font-weight:600; font-size:0.9rem; color:var(--brand-dark);">${m.title.split(':')[0]} - ${les.title} [1080p HD].mp4</div>
-                  <div style="font-size:0.75rem; color:var(--gray-400);">${les.duration} | 350 MB | Google Drive Video Stream</div>
-                </div>
-              </div>
-              <button class="btn btn-outline btn-sm" onclick="alert('Streaming authenticated lecture: ${les.title}\\nGoogle Drive Viewer Permission Verified.')">
-                <i class="fa-solid fa-play"></i> Watch Stream
-              </button>
-            </div>
-          `);
-        });
-      });
-
-      // Add source code and notes zip
-      fileItems.push(`
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:#F8FAFC;">
-          <div style="display:flex; align-items:center; gap:0.75rem;">
-            <i class="fa-solid fa-file-zipper" style="color:#FBBC05; font-size:1.2rem;"></i>
-            <div>
-              <div style="font-weight:700; font-size:0.9rem; color:var(--brand-dark);">Course_Complete_Source_Code_&_Jupyter_Notebooks.zip</div>
-              <div style="font-size:0.75rem; color:var(--gray-400);">Official GitHub Repository Mirror | 45 MB</div>
-            </div>
-          </div>
-          <button class="btn btn-outline btn-sm" onclick="alert('Downloading verified course resources archive...')">
-            <i class="fa-solid fa-download"></i> Download Zip
-          </button>
-        </div>
-      `);
-
-      filesContainer.innerHTML = fileItems.join('');
-    }
-
-    if (modal) modal.classList.add('active');
+    document.getElementById('driveModalCourseTitle').innerText = course ? course.title : "Google Drive Lecture Archive";
+    document.getElementById('driveModalFolderId').innerText = course ? course.driveFolderId : "iSOFT_DRIVE_FOLDER";
+    modal.classList.add('active');
   }
 
-  // --- NOTIFICATIONS SYSTEM (Step 9) ---
+  // --- NOTIFICATIONS ---
   setupNotifications() {
-    this.updateNotifBadge();
-
-    const notifBtn = document.getElementById('notifDropdownBtn');
-    const notifDropdown = document.getElementById('notifDropdownMenu');
-
-    if (notifBtn && notifDropdown) {
-      notifBtn.addEventListener('click', (e) => {
+    const btn = document.getElementById('notifDropdownBtn');
+    const menu = document.getElementById('notifDropdownMenu');
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = notifDropdown.style.display === 'block';
-        notifDropdown.style.display = isOpen ? 'none' : 'block';
+        const isOpen = menu.style.display === 'block';
+        menu.style.display = isOpen ? 'none' : 'block';
         if (!isOpen) this.renderNotificationsList();
       });
 
-      document.addEventListener('click', () => {
-        if (notifDropdown) notifDropdown.style.display = 'none';
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && e.target !== btn) {
+          menu.style.display = 'none';
+        }
       });
     }
+    this.updateNotifBadge();
   }
 
   updateNotifBadge() {
@@ -909,40 +1109,19 @@ class Application {
     }
 
     list.innerHTML = notifs.slice(0, 6).map(n => `
-      <div style="padding:0.85rem 1rem; border-bottom:1px solid var(--gray-100); background:${n.read ? '#FFFFFF' : '#FEF2F2'}; cursor:pointer;" onclick="app.viewEmailSimulation('${n.id}')">
+      <div style="padding:0.85rem 1rem; border-bottom:1px solid var(--gray-100); background:${n.read ? '#FFFFFF' : '#FEF2F2'}; cursor:pointer;">
         <div style="font-weight:700; font-size:0.85rem; color:var(--brand-dark); margin-bottom:0.2rem;">
           ${n.title}
         </div>
         <div style="font-size:0.775rem; color:var(--gray-600); line-height:1.4;">${n.message}</div>
-        <div style="font-size:0.7rem; color:var(--gray-400); margin-top:0.35rem; display:flex; justify-content:space-between;">
-          <span>${new Date(n.createdAt).toLocaleTimeString()}</span>
-          <span style="color:var(--primary-red); font-weight:600;"><i class="fa-solid fa-envelope-open"></i> View Simulated Email</span>
+        <div style="font-size:0.7rem; color:var(--gray-400); margin-top:0.35rem;">
+          ${new Date(n.createdAt).toLocaleTimeString()}
         </div>
       </div>
     `).join('');
 
     store.markAllNotificationsRead(user.email);
     this.updateNotifBadge();
-  }
-
-  viewEmailSimulation(notifId) {
-    const all = store.getNotifications();
-    const notif = all.find(n => n.id === notifId);
-    if (!notif) return;
-
-    const modal = document.getElementById('emailPreviewModal');
-    document.getElementById('simEmailSubject').innerText = notif.title;
-    document.getElementById('simEmailTo').innerText = notif.recipientEmail === 'all' ? 'All Enrolled Students' : notif.recipientEmail;
-    document.getElementById('simEmailBody').innerHTML = `
-      <p style="font-size:1rem; color:var(--gray-800); margin-bottom:1rem;">Dear Student,</p>
-      <div style="background:#F8FAFC; border-left:4px solid var(--primary-red); padding:1rem 1.25rem; margin-bottom:1.5rem; font-size:0.95rem; line-height:1.7; color:var(--gray-800);">
-        ${notif.message}
-      </div>
-      <p style="font-size:0.875rem; color:var(--gray-600); margin-bottom:0.5rem;">For assistance or lecture link queries, please contact:</p>
-      <p style="font-size:0.85rem; color:var(--gray-700);"><strong>iSOFT Admissions & Google Drive Delivery Team</strong><br>Email: admissions@isoft.edu.pk | WhatsApp: +92 300 1234567</p>
-    `;
-
-    if (modal) modal.classList.add('active');
   }
 
   // --- CERTIFICATE VERIFICATION TOOL ---
@@ -975,7 +1154,7 @@ class Application {
             <div><strong>Lead Instructor:</strong><br>${cert.instructor}</div>
           </div>
           <div style="margin-top:1.25rem; font-size:0.75rem; color:var(--gray-500);">
-            Authenticated by iSOFT IT Training & Consultancy Academic Council
+            Authenticated by iSOFT IT Training & Software Solutions Academic Council
           </div>
         </div>
       `;
@@ -1020,6 +1199,16 @@ class Application {
   closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) modal.classList.remove('active');
+  }
+
+  escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 }
 
