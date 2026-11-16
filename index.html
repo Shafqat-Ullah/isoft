@@ -2,58 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iSOFT IT Training & Software Solutions | Peshawar & Online Academy</title>
-  <meta name="description" content="Official platform of iSOFT IT Training & Software Solutions. Master C++, Python, CCNA, MCSE 2025, Cyber Security, Data Science, and Full Stack Web Development. Led by CEO Engr. Shafiq Ur Rehman. Peshawar Campus & Online. WhatsApp: 0333 6606262">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>iSOFT IT Training & Software Solutions | Peshawar Campus & Online Academy</title>
+  <meta name="description" content="Official platform of iSOFT IT Training & Software Solutions. Master C++, Python, CCNA, MCSE 2025, Cyber Security, Data Science, and Databases. Led by CEO Engr. Shafiq Ur Rehman. Peshawar Campus & Online. WhatsApp: 0333 6606262">
   <link rel="icon" type="image/png" href="assets/images/isoft-logo.png">
 
-  <!-- FontAwesome 6 Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Custom Theme CSS -->
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
+  <!-- ========================================================================
+       TOP ANNOUNCEMENT BAR
+       ======================================================================== -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-bar-left">
         <span class="top-bar-badge"><i class="fa-solid fa-bolt"></i> 2026 ADMISSIONS OPEN</span>
-        <span>50% Special Discount on Selected Course Packages • Peshawar Campus & Online</span>
+        <span class="top-bar-text">50% Discount on Selected Course Packages • Peshawar Campus &amp; Online</span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:03336606262" class="top-bar-contact">
-          <i class="fa-solid fa-phone"></i> 0333 6606262
-        </a>
-        <a href="https://wa.me/923336606262" target="_blank" class="top-bar-contact">
-          <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp: 0333 6606262
-        </a>
-        <a href="javascript:void(0)" onclick="app.openRegistrationModal()" class="top-bar-badge" style="background: var(--primary-red); color: #FFFFFF; cursor: pointer; text-decoration: none;">
-          <i class="fa-solid fa-file-pen"></i> Register Online
-        </a>
+        <a href="tel:03336606262" class="top-bar-phone"><i class="fa-solid fa-phone"></i> 0333 6606262</a>
+        <a href="https://wa.me/923336606262" target="_blank" class="top-bar-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp: 0333 6606262</a>
+        <a href="javascript:void(0)" onclick="app.openRegistrationModal()" class="top-bar-link"><i class="fa-solid fa-file-pen"></i> REGISTER ONLINE</a>
       </div>
     </div>
   </div>
 
-  <!-- Main Sticky Header -->
-  <header class="site-header">
+  <!-- ========================================================================
+       NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar-wrapper">
     <div class="container navbar">
-      <!-- Official Logo at Top Left -->
-      <a href="#home" class="brand-wrapper" data-view-target="home">
+      <!-- Official Brand Logo -->
+      <a href="#home" class="brand-logo" data-view-target="home">
         <img src="assets/images/isoft-logo.png" alt="iSOFT IT Training & Software Solutions Logo" class="brand-logo-img">
       </a>
 
       <!-- Desktop & Mobile Navigation Links -->
       <ul class="nav-links" id="siteNavLinks">
         <li><a href="#home" class="nav-link active" data-view="home" data-view-target="home">Home</a></li>
-        <li><a href="#packages" class="nav-link" data-view-target="packages" style="color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-fire"></i> Course Packages</a></li>
-        <li><a href="#courses" class="nav-link" data-view="courses" data-view-target="courses">All Courses</a></li>
-        <li><a href="#about" class="nav-link" data-view="about" data-view-target="about">About Academy</a></li>
+        <li><a href="#packages" class="nav-link" data-view="packages" data-view-target="packages">Course Packages</a></li>
+        <li><a href="#about" class="nav-link" data-view="about" data-view-target="about">About Academy & Team</a></li>
         <li><a href="#contact" class="nav-link" data-view="contact" data-view-target="contact">Contact</a></li>
         <li class="mobile-only-nav-item">
           <a href="javascript:void(0)" onclick="app.openRegistrationModal()" class="nav-link" style="color: var(--primary-red); font-weight: 700;">
-            <i class="fa-solid fa-file-pen"></i> Online Registration
+            <i class="fa-solid fa-file-pen"></i> Online Registration Form
           </a>
         </li>
       </ul>
@@ -82,526 +84,369 @@
   </header>
 
   <!-- ========================================================================
-       MAIN APPLICATION VIEWS
+       MAIN APPLICATION CONTENT
        ======================================================================== -->
   <main id="mainContent">
 
-    <!-- ==================== VIEW 1: HOME ==================== -->
+    <!-- ==================== VIEW 1: HOME & HERO WITH EMBEDDED QUICK ADMISSION ==================== -->
     <section id="view_home" class="view-section">
-      <!-- Hero Section (Light Theme Matching Official Logo) -->
+      <!-- Modern Light Hero Section with Logo Colors -->
       <div class="hero-section">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <div class="hero-tag">
-              <i class="fa-solid fa-award"></i> Professional skills • Practical learning • Career-focused training
-            </div>
-            <h1 class="hero-title">
-              Empower Your Tech Career with <span class="text-red">iSOFT Solutions</span>
-            </h1>
-            <p class="hero-subtitle">
-              Industry-standard training in C++, Python, Cisco CCNA, MCSE 2025, Cyber Security, Database Software Engineering, and Full Stack Web Development. Hands-on labs at our Peshawar campus & verified Google Drive lecture access.
-            </p>
-            <div class="hero-cta-group">
-              <button class="btn btn-primary btn-lg" onclick="app.openRegistrationModal()">
-                <i class="fa-solid fa-file-pen"></i> Register for 2026 Batch
-              </button>
-              <a href="#packages" class="btn btn-outline btn-lg" style="background: #FFFFFF; color: var(--brand-dark); border-color: var(--gray-300);" data-view-target="packages">
-                <i class="fa-solid fa-fire" style="color: var(--primary-red);"></i> Special Course Packages
-              </a>
-              <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp btn-lg">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp: 0333 6606262
-              </a>
-            </div>
-            <div class="hero-stats">
-              <div class="hero-stat-item">
-                <h4>5,000+</h4>
-                <p>Trained Students</p>
+        <div class="container">
+          <div class="hero-grid">
+            <!-- Left Hero Content -->
+            <div class="hero-content">
+              <div class="hero-tag">
+                <i class="fa-solid fa-certificate"></i> Official IT Training &amp; Software Solutions
               </div>
-              <div class="hero-stat-item">
-                <h4 style="color: var(--primary-red);">50% OFF</h4>
-                <p>Special Packages</p>
-              </div>
-              <div class="hero-stat-item">
-                <h4>100%</h4>
-                <p>Hands-on Labs</p>
-              </div>
-              <div class="hero-stat-item">
-                <h4>4.9 ★</h4>
-                <p>Student Rating</p>
-              </div>
-            </div>
-          </div>
+              <h1 class="hero-title">
+                Empower Your Tech Career with <span class="text-gradient">iSOFT Solutions</span>
+              </h1>
+              <p class="hero-subtitle">
+                Industry-standard training in C++, Python, Cisco CCNA, MCSE 2025, Cyber Security, Database Software Engineering, and Data Science. Hands-on computer labs at our Peshawar campus &amp; verified Google Drive 4K lecture archives.
+              </p>
 
-          <!-- Hero Right Workflow Card -->
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <span class="hero-card-title">
-                <i class="fa-solid fa-graduation-cap" style="color: var(--primary-red);"></i> Course Admission Steps
-              </span>
-              <span class="drive-badge">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp Direct
-              </span>
+              <!-- Hero CTA Buttons -->
+              <div class="hero-cta-group">
+                <button class="btn btn-primary btn-lg" onclick="app.openRegistrationModal()">
+                  <i class="fa-solid fa-file-pen"></i> Register for 2026 Batch
+                </button>
+                <a href="#packages" class="btn btn-outline btn-lg hero-outline-btn" data-view-target="packages">
+                  <i class="fa-solid fa-layer-group" style="color: var(--primary-red);"></i> Course Packages & Posters
+                </a>
+                <a href="https://wa.me/923336606262?text=Hello%20iSOFT!%20I%20would%20like%20to%20inquire%20about%20admissions." target="_blank" class="btn btn-whatsapp btn-lg">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp: 0333 6606262
+                </a>
+              </div>
+
+              <!-- Key Academy Metrics -->
+              <div class="hero-stats">
+                <div class="hero-stat-item">
+                  <div class="stat-num">5,000+</div>
+                  <div class="stat-lbl">Trained Students</div>
+                </div>
+                <div class="hero-stat-item">
+                  <div class="stat-num" style="color: var(--primary-red);">50% OFF</div>
+                  <div class="stat-lbl">Limited Packages</div>
+                </div>
+                <div class="hero-stat-item">
+                  <div class="stat-num">100%</div>
+                  <div class="stat-lbl">Hands-on Labs</div>
+                </div>
+                <div class="hero-stat-item">
+                  <div class="stat-num" style="color: #F59E0B;">4.9 ★</div>
+                  <div class="stat-lbl">Student Rating</div>
+                </div>
+              </div>
             </div>
-            <div class="hero-workflow-steps">
-              <div class="workflow-step-mini">
-                <div class="step-num">1</div>
-                <div class="step-content">
-                  <h5>Browse Packages & Posters</h5>
-                  <p>Explore special offers in C++, CCNA, Cyber Security, Data Science & MCSE.</p>
+
+            <!-- Right Hero Card: LIVE DIRECT COURSE ADMISSION FORM -->
+            <div class="hero-card hero-reg-card">
+              <div class="hero-reg-header">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.35rem;">
+                  <span class="top-bar-badge" style="background: var(--primary-red); color: #fff; font-size: 0.72rem; padding: 3px 8px;">
+                    <i class="fa-solid fa-bolt"></i> 2026 ADMISSIONS OPEN
+                  </span>
+                  <span style="font-size: 0.8rem; color: #25D366; font-weight: 700;">
+                    <i class="fa-brands fa-whatsapp"></i> 0333 6606262
+                  </span>
                 </div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin: 0;">
+                  Quick Course Admission
+                </h3>
+                <p style="font-size: 0.82rem; color: var(--gray-600); margin: 0.25rem 0 0 0;">
+                  Apply online &amp; submit your registration directly to admissions on WhatsApp.
+                </p>
               </div>
-              <div class="workflow-step-mini">
-                <div class="step-num" style="background: var(--brand-charcoal);">2</div>
-                <div class="step-content">
-                  <h5>Fill Quick Registration Form</h5>
-                  <p>Select your desired course, timing, and learning mode (Online or On-Site).</p>
+
+              <form id="heroQuickRegForm" class="hero-reg-form" novalidate>
+                <!-- Course Selection -->
+                <div class="form-group mb-2">
+                  <label class="form-label" for="heroCourseSelect" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                    Select Course / Package <span class="required">*</span>
+                  </label>
+                  <select id="heroCourseSelect" class="form-control" style="font-size: 0.9rem; padding: 0.6rem 0.75rem; border-color: var(--primary-red-border);" required>
+                    <!-- Populated dynamically -->
+                  </select>
                 </div>
-              </div>
-              <div class="workflow-step-mini">
-                <div class="step-num" style="background: #25D366;"><i class="fa-brands fa-whatsapp"></i></div>
-                <div class="step-content">
-                  <h5>Submit via WhatsApp</h5>
-                  <p>Instantly send your application directly to admissions at <strong>0333 6606262</strong>.</p>
+
+                <div class="hero-form-row">
+                  <!-- Full Name -->
+                  <div class="form-group mb-2">
+                    <label class="form-label" for="heroStudentName" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                      Full Name <span class="required">*</span>
+                    </label>
+                    <input type="text" id="heroStudentName" class="form-control" placeholder="e.g. Muhammad Hamza" required autocomplete="name">
+                  </div>
+
+                  <!-- Father's Name -->
+                  <div class="form-group mb-2">
+                    <label class="form-label" for="heroFatherName" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                      Father's Name <span class="required">*</span>
+                    </label>
+                    <input type="text" id="heroFatherName" class="form-control" placeholder="e.g. Tariq Mehmood" required>
+                  </div>
                 </div>
-              </div>
-              <div class="workflow-step-mini" style="border-color: rgba(211, 32, 39, 0.3); background: #FFF5F5;">
-                <div class="step-num" style="background: var(--primary-red);"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="step-content">
-                  <h5>Seat Confirmation & Lab Access</h5>
-                  <p>Get confirmed seat, campus lab schedule, and 4K Google Drive video lecture folder.</p>
+
+                <div class="hero-form-row">
+                  <!-- WhatsApp Number -->
+                  <div class="form-group mb-2">
+                    <label class="form-label" for="heroStudentPhone" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                      WhatsApp Number <span class="required">*</span>
+                    </label>
+                    <input type="tel" id="heroStudentPhone" class="form-control" placeholder="0333 1234567" required autocomplete="tel">
+                  </div>
+
+                  <!-- City -->
+                  <div class="form-group mb-2">
+                    <label class="form-label" for="heroStudentCity" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                      City / Location <span class="required">*</span>
+                    </label>
+                    <input type="text" id="heroStudentCity" class="form-control" value="Peshawar" required>
+                  </div>
                 </div>
-              </div>
+
+                <!-- Learning Mode -->
+                <div class="form-group mb-3">
+                  <label class="form-label" style="font-size: 0.82rem; font-weight: 700; color: var(--brand-dark);">
+                    Preferred Learning Method <span class="required">*</span>
+                  </label>
+                  <div class="hero-mode-grid">
+                    <label class="hero-mode-card">
+                      <input type="radio" name="heroMode" value="Online" checked>
+                      <span><strong>Online</strong> (Live Virtual Classes)</span>
+                    </label>
+                    <label class="hero-mode-card">
+                      <input type="radio" name="heroMode" value="Physical (Peshawar Campus)">
+                      <span><strong>On-Site</strong> (Peshawar Campus)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Submit directly to WhatsApp -->
+                <button type="submit" class="btn btn-whatsapp btn-lg hero-submit-btn">
+                  <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Submit Admission via WhatsApp
+                </button>
+                <div class="hero-form-trust">
+                  <span><i class="fa-solid fa-shield-check" style="color: var(--success);"></i> 100% Verified Admissions</span>
+                  <span><i class="fa-solid fa-phone"></i> Helpline: 0333 6606262</span>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ==================== SPECIAL COURSE PACKAGES & POSTERS SECTION ==================== -->
+      <!-- ==================== FEATURED COURSE PACKAGES & POSTERS SECTION ==================== -->
       <div class="packages-section" id="packagesSection">
         <div class="container">
           <div class="section-header">
-            <span class="section-badge"><i class="fa-solid fa-fire text-red"></i> Special Offers & Packages</span>
-            <h2 class="section-title">Featured Course Packages & Admission Offers</h2>
+            <span class="section-badge"><i class="fa-solid fa-tag text-red"></i> Official Promotional Offers</span>
+            <h2 class="section-title">Special Course Packages & Career Posters</h2>
             <p class="section-subtitle">
-              Exclusive discount packages with live classes, verified Google Drive lecture archives, and on-site practical labs at our Peshawar campus.
+              Enroll in complete professional career tracks and beginner-to-advanced packages at up to 50% discount with physical lab sessions in Peshawar and verified 4K Google Drive video lecture archives.
             </p>
           </div>
 
-          <!-- Master Package Poster Banner -->
+          <!-- Featured Master Packages Banner -->
           <div class="packages-banner">
-            <div class="packages-banner-grid">
-              <div>
-                <span class="top-bar-badge" style="background: rgba(220, 38, 38, 0.25); color: #FCA5A5; border: 1px solid rgba(220, 38, 38, 0.4); margin-bottom: 1rem; display: inline-flex;">
-                  <i class="fa-solid fa-certificate"></i> OFFICIAL ISOFT COURSES PACKAGES
-                </span>
-                <h3 style="font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin-bottom: 1rem;">
-                  Complete IT Career Diplomas & Modular Tracks
-                </h3>
-                <p style="color: var(--gray-300); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
-                  From beginner programming in C++ & Python to Cisco CCNA, Microsoft MCSE 2025, Oracle/SQL Server Database Administration, Full Stack Web Development, and Cybersecurity. Choose your track and start building practical career skills today.
-                </p>
-                <div class="packages-banner-badges">
-                  <div class="packages-badge-item">
-                    <i class="fa-solid fa-phone" style="color: var(--primary-red);"></i> <strong>0333 6606262</strong> / 0313 9999749
+            <div class="packages-banner-card">
+              <div class="packages-banner-grid">
+                <!-- Left Banner Text -->
+                <div class="packages-banner-info">
+                  <span class="top-bar-badge" style="background: var(--primary-red); margin-bottom: 0.75rem; display: inline-block;">
+                    <i class="fa-solid fa-certificate"></i> OFFICIAL ISOFT COURSES PACKAGES
+                  </span>
+                  <h2>Complete IT Career Diplomas &amp; Modular Tracks</h2>
+                  <p>
+                    From beginner programming in C++ &amp; Python to Cisco CCNA, Microsoft MCSE 2025, Oracle/SQL Server Database Administration, Full Stack Web Development, and Cybersecurity. Choose your track and start building practical career skills today.
+                  </p>
+                  <div class="packages-banner-badges">
+                    <div class="packages-badge-item">
+                      <i class="fa-solid fa-phone" style="color: var(--primary-red);"></i> <strong>0333 6606262</strong> / 0313 9999749
+                    </div>
+                    <div class="packages-badge-item">
+                      <i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Office 17, Abdra BRT Station, Peshawar
+                    </div>
                   </div>
-                  <div class="packages-badge-item">
-                    <i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Office 17, Abdra BRT Station, Peshawar
+                  <div class="packages-banner-actions">
+                    <button class="btn btn-primary btn-lg" onclick="app.openRegistrationModal('course-net-diploma')">
+                      <i class="fa-solid fa-file-pen"></i> Register for Course Package
+                    </button>
+                    <button class="btn btn-dark-outline btn-lg" onclick="app.openPosterLightbox('assets/images/packages/courses-packages-poster.png', 'ISOFT Complete Courses Packages Poster', 'course-net-diploma')">
+                      <i class="fa-solid fa-magnifying-glass-plus" style="color: #38BDF8;"></i> View Full Poster
+                    </button>
+                    <a href="https://wa.me/923336606262?text=Hello%20iSOFT!%20I%20want%20information%20about%20the%20complete%20courses%20packages." target="_blank" class="btn btn-whatsapp btn-lg">
+                      <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
                   </div>
                 </div>
-                <div class="packages-banner-actions">
-                  <button class="btn btn-primary btn-lg" onclick="app.openRegistrationModal('course-net-diploma')">
-                    <i class="fa-solid fa-file-pen"></i> Register for Course Package
-                  </button>
-                  <button class="btn btn-dark-outline btn-lg" onclick="app.openPosterLightbox('assets/images/packages/courses-packages-poster.png', 'ISOFT Complete Courses Packages Poster', 'course-net-diploma')">
-                    <i class="fa-solid fa-magnifying-glass-plus" style="color: #38BDF8;"></i> View Full Poster
-                  </button>
-                  <a href="https://wa.me/923336606262?text=Hello%20iSOFT!%20I%20want%20information%20about%20the%20complete%20courses%20packages." target="_blank" class="btn btn-whatsapp btn-lg">
-                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-                  </a>
-                </div>
-              </div>
 
-              <!-- Right Poster Thumbnail Clickable -->
-              <div class="packages-banner-poster" onclick="app.openPosterLightbox('assets/images/packages/courses-packages-poster.png', 'ISOFT Complete Courses Packages Poster', 'course-net-diploma')">
-                <img src="assets/images/packages/courses-packages-poster.png" alt="ISOFT Courses Packages Poster">
-                <div class="poster-zoom-hint">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom Full Poster
+                <!-- Right Poster Thumbnail Clickable -->
+                <div class="packages-banner-poster" onclick="app.openPosterLightbox('assets/images/packages/courses-packages-poster.png', 'ISOFT Complete Courses Packages Poster', 'course-net-diploma')">
+                  <img src="assets/images/packages/courses-packages-poster.png" alt="ISOFT Courses Packages Poster" loading="lazy">
+                  <div class="poster-zoom-hint">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to View Full Poster
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Promotional Posters Grid (C++, CCNA, Cyber Security, Data Science, Database, MCSE) -->
-          <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-            <div>
-              <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--brand-dark);">Active Special Admission Offers</h3>
-              <p style="color: var(--gray-600); font-size: 0.95rem;">Click on any poster to zoom in or click 'Register Now' to apply directly via WhatsApp.</p>
-            </div>
-            <div>
-              <button class="btn btn-primary" onclick="app.openRegistrationModal()">
-                <i class="fa-solid fa-pen-to-square"></i> Apply Online Now
-              </button>
-            </div>
-          </div>
-
+          <!-- Individual Posters Dynamic Grid (6 Promotional Posters) -->
           <div class="poster-grid" id="coursePackagesGrid"></div>
         </div>
       </div>
 
-      <!-- Master 4-Step Process Banner -->
-      <div class="workflow-section">
+      <!-- ==================== ABOUT ACADEMY & 5-TEACHER FACULTY TEAM ==================== -->
+      <div id="aboutSection" style="padding: 4.5rem 0 5rem; background: #FFFFFF; border-top: 1px solid var(--gray-200);">
         <div class="container">
           <div class="section-header">
-            <span class="section-badge">How It Works</span>
-            <h2 class="section-title">Your 4-Step Path to Industry Certification</h2>
-            <p class="section-subtitle">A streamlined, transparent admissions process connecting you directly to expert trainers, physical hardware labs, and certified credentials.</p>
+            <span class="section-badge"><i class="fa-solid fa-building-columns text-red"></i> About iSOFT</span>
+            <h2 class="section-title">Peshawar's Leading IT Training Academy</h2>
+            <p class="section-subtitle">Practical hands-on training, industry certifications, and 1-on-1 mentorship by veteran software engineers.</p>
           </div>
 
-          <div class="flow-grid">
-            <div class="flow-card">
-              <div class="flow-icon"><i class="fa-solid fa-list-check"></i></div>
-              <div class="flow-step-tag">Step 01</div>
-              <h3 class="flow-title">Browse Course Catalog</h3>
-              <p class="flow-desc">Explore in-depth curriculums, lesson outlines, and free previews across C++, Python, Networking, and Databases.</p>
-            </div>
-            <div class="flow-card">
-              <div class="flow-icon"><i class="fa-solid fa-file-pen"></i></div>
-              <div class="flow-step-tag">Step 02</div>
-              <h3 class="flow-title">Course Registration Form</h3>
-              <p class="flow-desc">Fill out the quick registration form with your active WhatsApp number, desired course, and learning mode.</p>
-            </div>
-            <div class="flow-card">
-              <div class="flow-icon"><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i></div>
-              <div class="flow-step-tag">Step 03</div>
-              <h3 class="flow-title">Submit via WhatsApp</h3>
-              <p class="flow-desc">Your registration is instantly sent to WhatsApp <strong>0333 6606262</strong>. Our admissions officer confirms your seat immediately.</p>
-            </div>
-            <div class="flow-card" style="border-color: rgba(211, 32, 39, 0.4);">
-              <div class="flow-icon" style="color: var(--primary-red);"><i class="fa-solid fa-award"></i></div>
-              <div class="flow-step-tag" style="color: var(--primary-red);">Step 04</div>
-              <h3 class="flow-title">Lab & Drive Access</h3>
-              <p class="flow-desc">Receive campus hardware lab schedule and private 4K Google Drive video lecture folder for revision.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Courses on Home -->
-      <div class="courses-section">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-badge">Featured Tracks</span>
-            <h2 class="section-title">Industry-Recognized Certification Programs</h2>
-            <p class="section-subtitle">Designed by veteran enterprise architects and network engineers for today's competitive IT job market.</p>
-          </div>
-          <div class="course-grid" id="homeFeaturedCourses"></div>
-          <div style="text-align: center; margin-top: 3rem;">
-            <a href="#courses" class="btn btn-secondary btn-lg" data-view-target="courses">
-              <i class="fa-solid fa-layer-group"></i> View All Available Courses
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ Section -->
-      <div style="padding: 5rem 0; background: #FFFFFF; border-top: 1px solid var(--gray-200);">
-        <div class="container" style="max-width: 860px;">
-          <div class="section-header">
-            <span class="section-badge">Got Questions?</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Everything you need to know about enrollments, WhatsApp submissions, and lecture access.</p>
-          </div>
-          <div id="faqAccordion"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 2: ALL COURSES (CATALOG) ==================== -->
-    <section id="view_courses" class="view-section" style="display: none; padding: 4rem 0 6rem;">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-badge">Academy Catalog</span>
-          <h2 class="section-title">Explore All Online & On-Site Programs</h2>
-          <p class="section-subtitle">From beginner coding foundations to advanced Cisco networking, machine learning, and enterprise databases.</p>
-        </div>
-
-        <!-- Catalog Controls: Filter pills & Search -->
-        <div class="catalog-controls">
-          <div class="category-pills">
-            <button class="cat-btn active" data-category="all"><i class="fa-solid fa-layer-group"></i> All Programs</button>
-            <button class="cat-btn" data-category="packages"><i class="fa-solid fa-fire text-red"></i> Special Packages</button>
-            <button class="cat-btn" data-category="programming"><i class="fa-solid fa-code"></i> Programming & Dev</button>
-            <button class="cat-btn" data-category="networking"><i class="fa-solid fa-network-wired"></i> Networking & MCSE</button>
-            <button class="cat-btn" data-category="datascience"><i class="fa-solid fa-chart-line"></i> Data Science & AI</button>
-            <button class="cat-btn" data-category="cybersecurity"><i class="fa-solid fa-shield-halved"></i> Cybersecurity</button>
-            <button class="cat-btn" data-category="database"><i class="fa-solid fa-database"></i> Database Engineering</button>
-          </div>
-          <div class="search-input-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="catalogSearchInput" class="search-input" placeholder="Search by course title...">
-          </div>
-        </div>
-
-        <!-- Course Cards Grid -->
-        <div class="course-grid" id="catalogCoursesGrid"></div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 3: COURSE DETAIL & LECTURE PREVIEW ==================== -->
-    <section id="view_course-detail" class="view-section" style="display: none; padding: 3rem 0 6rem;">
-      <div class="container">
-        <!-- Breadcrumbs -->
-        <div style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-          <a href="#home" data-view-target="home"><i class="fa-solid fa-house"></i> Home</a>
-          <span>/</span>
-          <a href="#courses" data-view-target="courses">Courses</a>
-          <span>/</span>
-          <span id="courseDetailBreadcrumb" style="color: var(--brand-dark); font-weight: 600;">Course Detail</span>
-        </div>
-
-        <div class="course-detail-grid">
-          <!-- Left Column: Video Preview Player & Curriculum -->
-          <div class="course-detail-main">
-            <span class="status-badge" id="courseDetailCategory" style="background: var(--primary-red-light); color: var(--primary-red); font-size: 0.85rem; margin-bottom: 0.75rem; font-weight: 700;">Category</span>
-            <h1 id="courseDetailTitle" style="font-size: 2.25rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem; line-height: 1.25;">Course Title</h1>
-            <p id="courseDetailRating" style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1.5rem;"></p>
-
-            <!-- Video Preview Player -->
-            <div style="background: #000000; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; box-shadow: var(--shadow-lg);">
-              <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                <iframe id="previewVideoPlayer" src="https://www.youtube.com/embed/kqtD5dpn9C8" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <!-- Academy Vision & Profile -->
+          <div class="about-vision-card">
+            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.5rem; flex-wrap: wrap;">
+              <img src="assets/images/isoft-logo.png" alt="iSOFT Logo" style="height: 54px;">
+              <div>
+                <h3 style="font-size: 1.35rem; color: var(--brand-dark); font-weight: 800; margin: 0;">Excellence in Technology Education</h3>
+                <p style="font-size: 0.85rem; color: var(--primary-red); font-weight: 700; margin: 0;">Certified Training Academy &amp; Software House</p>
               </div>
-              <div style="padding: 0.85rem 1.25rem; background: var(--brand-charcoal); color: #FFFFFF; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
-                <span id="currentPlayingLessonTitle" style="font-weight: 600;"><i class="fa-solid fa-circle-play" style="color: var(--primary-red);"></i> Sample Lecture Preview</span>
-                <span style="font-size: 0.75rem; color: var(--gray-400);">4K Ultra HD</span>
+            </div>
+            <p style="margin-bottom: 1.25rem;">
+              <strong>iSOFT IT Training &amp; Software Solutions</strong> is a premier technology training institute located at <strong>Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar</strong>. Under the dynamic leadership of <strong>CEO Engr. Shafiq Ur Rehman</strong>, our mission is to empower college students, university graduates, and IT job-seekers with hands-on, job-ready skills aligned with international standards.
+            </p>
+            <p style="margin-bottom: 1.25rem;">
+              Our academy specializes in <strong>Programming for Beginners (C++ &amp; Python), Cisco Certified Network Associate (CCNA), Microsoft Certified Systems Engineer (MCSE 2025), Database Administration (Oracle &amp; SQL Server), Cyber Security, and Data Science</strong>.
+            </p>
+            <p style="margin-bottom: 0;">
+              Every student enjoys access to physical computer and network hardware labs at our Peshawar campus, 1-on-1 trainer mentorship, and <strong>verified Google Drive 4K lecture archives</strong> for revision anytime, anywhere.
+            </p>
+          </div>
+
+          <!-- ==================== OUR TEAM & FACULTY SECTION (5 Teachers with CEO Sir Shafiq) ==================== -->
+          <div class="team-section-box">
+            <div class="team-header-box">
+              <span class="section-badge"><i class="fa-solid fa-users-gear text-red"></i> Our Faculty &amp; Mentors</span>
+              <h2 class="section-title">Meet Our Leadership &amp; Expert Team</h2>
+              <p class="section-subtitle">
+                Learn from 5 seasoned software architects, network specialists, and AI researchers led by CEO Engr. Shafiq Ur Rehman.
+              </p>
+            </div>
+
+            <!-- 1. CEO & Founder Featured Showcase Card (Sir Shafiq) -->
+            <div id="ceoShowcaseContainer">
+              <div class="ceo-showcase-card">
+                <div class="ceo-card-grid">
+                  <div class="ceo-avatar-wrap">
+                    <span>SR</span>
+                    <div class="ceo-crown-pill">
+                      <i class="fa-solid fa-crown"></i> CEO &amp; FOUNDER
+                    </div>
+                  </div>
+                  <div class="ceo-info-content">
+                    <h3>
+                      <span>Engr. Shafiq Ur Rehman (Sir Shafiq)</span>
+                      <span class="ceo-role-badge">Founder &amp; CEO</span>
+                    </h3>
+                    <div class="ceo-designation">Chief Executive Officer &amp; Chief Enterprise Architect</div>
+                    <p class="ceo-bio">
+                      Visionary founder of iSOFT IT Training &amp; Software Solutions. Senior enterprise architect with 14+ years of industry experience empowering ambitious students and IT engineers with practical, job-ready skills in software engineering, Cisco networking, and database administration.
+                    </p>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">
+                      <div style="display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--gray-600); flex-wrap: wrap;">
+                        <span><i class="fa-solid fa-award" style="color: var(--primary-red);"></i> 14+ Years Leadership</span>
+                        <span><i class="fa-solid fa-star" style="color: #F59E0B;"></i> <strong>4.99 ★ Rating</strong></span>
+                        <span><i class="fa-solid fa-user-graduate" style="color: var(--success);"></i> <strong>5,000+ Students</strong> Mentored</span>
+                      </div>
+                      <a href="https://wa.me/923336606262?text=Hello%20Sir%20Shafiq!%20I%20would%20like%20to%20inquire%20about%20courses%20and%20admission%20at%20iSOFT." target="_blank" class="btn btn-whatsapp btn-sm">
+                        <i class="fa-brands fa-whatsapp"></i> Chat with Sir Shafiq
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Course Description -->
-            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem;">
-              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1rem;">Course Overview</h3>
-              <p id="courseDetailDesc" style="color: var(--gray-700); line-height: 1.8; margin-bottom: 1.5rem;"></p>
+            <!-- 2. Other 4 Expert Faculty Cards -->
+            <div class="faculty-grid" id="facultyGridContainer"></div>
+          </div>
+        </div>
+      </div>
 
-              <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.75rem;">What You Will Learn</h4>
-              <ul id="courseLearningObjectives" style="list-style: none; padding: 0;"></ul>
-            </div>
-
-            <!-- Curriculum Accordion -->
-            <div style="background: #FFFFFF; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem;">
-              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1rem;">Course Curriculum & Lectures</h3>
-              <div id="curriculumAccordion"></div>
-            </div>
+      <!-- ==================== CAMPUS LOCATION & CONTACT ==================== -->
+      <div id="contactSection" style="padding: 4.5rem 0 5rem; background: var(--gray-50); border-top: 1px solid var(--gray-200);">
+        <div class="container" style="max-width: 960px;">
+          <div class="section-header">
+            <span class="section-badge"><i class="fa-solid fa-location-dot text-red"></i> Visit Campus</span>
+            <h2 class="section-title">Peshawar Campus Location &amp; Admissions Desk</h2>
+            <p class="section-subtitle">Reach out directly via WhatsApp, call our helpline, or visit our physical campus at Abdra BRT Station.</p>
           </div>
 
-          <!-- Right Column: Sticky Enrollment Box -->
-          <div>
-            <div class="course-detail-sidebar">
-              <div id="courseDetailPriceBox" style="margin-bottom: 1.25rem;"></div>
-
-              <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
-                <button id="courseDetailEnrollBtn" class="btn btn-primary btn-lg" style="width: 100%;">
-                  <i class="fa-solid fa-file-pen"></i> Register for Course Online
-                </button>
-                <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp btn-lg" style="width: 100%;">
-                  <i class="fa-brands fa-whatsapp"></i> WhatsApp Helpline (0333 6606262)
+          <div class="contact-grid-box">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Peshawar Campus</h3>
+              <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem; line-height: 1.6;">
+                <i class="fa-solid fa-location-dot" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+                <strong>Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar, Pakistan</strong>
+              </p>
+              <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-phone" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+                <strong>Admissions Desk:</strong> 0333 6606262
+              </p>
+              <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1rem;">
+                <i class="fa-solid fa-phone-volume" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+                <strong>Secondary Helpline:</strong> 0313 9999749
+              </p>
+              <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem;">
+                <i class="fa-solid fa-envelope" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
+                admissions@isoft.edu.pk
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp Helpline
+                </a>
+                <a href="tel:03336606262" class="btn btn-secondary">
+                  <i class="fa-solid fa-phone"></i> Call Now
                 </a>
               </div>
-
-              <!-- Key Highlights Box -->
-              <div style="border-top: 1px solid var(--gray-200); padding-top: 1.25rem;">
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.75rem;">This Course Includes:</h4>
-                <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--gray-600); line-height: 2;">
-                  <li><i class="fa-brands fa-google-drive" style="color: #4285F4; width: 20px;"></i> Verified Google Drive 4K Lectures</li>
-                  <li><i class="fa-solid fa-code" style="color: var(--primary-red); width: 20px;"></i> Full Source Code & Projects</li>
-                  <li><i class="fa-solid fa-building-columns" style="color: var(--info); width: 20px;"></i> Peshawar Campus On-Site Labs</li>
-                  <li><i class="fa-solid fa-certificate" style="color: var(--warning); width: 20px;"></i> Verifiable Academy Certificate</li>
-                  <li><i class="fa-brands fa-whatsapp" style="color: #25D366; width: 20px;"></i> Direct WhatsApp Trainer Support</li>
-                </ul>
-              </div>
-
-              <!-- Lead Instructor Card -->
-              <div style="border-top: 1px solid var(--gray-200); padding-top: 1.25rem; margin-top: 1.25rem;">
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 0.5rem;">Lead Instructor</div>
-                <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem;">
-                  <div class="instructor-avatar-sm" style="width: 44px; height: 44px; font-size: 1rem;">SR</div>
-                  <div>
-                    <h5 id="courseInstructorName" style="font-size: 0.95rem; font-weight: 700; color: var(--brand-dark); margin: 0;">Engr. Shafiq Ur Rehman</h5>
-                    <p id="courseInstructorTitle" style="font-size: 0.75rem; color: var(--primary-red); font-weight: 600; margin: 0;">CEO & Lead Enterprise Architect</p>
-                  </div>
-                </div>
-                <p id="courseInstructorBio" style="font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; margin: 0;"></p>
-                <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.75rem; color: var(--gray-500);">
-                  <span>Students: <strong id="courseInstructorStudents">5,000+</strong></span>
-                  <span>Rating: <strong id="courseInstructorRating" style="color: #F59E0B;">4.99 ★</strong></span>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ==================== VIEW 4: ABOUT ACADEMY & OUR TEAM ==================== -->
-    <section id="view_about" class="view-section" style="display: none; padding: 4rem 0 6rem;">
-      <div class="container" style="max-width: 1080px;">
-        <div class="section-header">
-          <span class="section-badge">About Us</span>
-          <h2 class="section-title">iSOFT IT Training & Software Solutions</h2>
-          <p class="section-subtitle">Professional skills • Practical learning • Career-focused training in Peshawar & Online.</p>
-        </div>
-
-        <!-- Academy Vision & Profile -->
-        <div class="about-vision-card">
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.5rem; flex-wrap: wrap;">
-            <img src="assets/images/isoft-logo.png" alt="iSOFT Logo" style="height: 60px;">
-            <div>
-              <h3 style="font-size: 1.35rem; color: var(--brand-dark); font-weight: 800; margin: 0;">Excellence in Technology Education</h3>
-              <p style="font-size: 0.85rem; color: var(--primary-red); font-weight: 700; margin: 0;">Certified Training Academy & Software House</p>
-            </div>
-          </div>
-          <p style="margin-bottom: 1.25rem;">
-            <strong>iSOFT IT Training & Software Solutions</strong> is a premier technology training institute located at <strong>Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar</strong>. Under the dynamic leadership of <strong>CEO Engr. Shafiq Ur Rehman</strong>, our mission is to empower college students, university graduates, and IT job-seekers with hands-on, job-ready skills aligned with international standards.
-          </p>
-          <p style="margin-bottom: 1.25rem;">
-            Our academy specializes in <strong>Programming for Beginners (C++ & Python), Cisco Certified Network Associate (CCNA), Microsoft Certified Systems Engineer (MCSE 2025), Database Administration (Oracle & SQL Server), Cyber Security, and Data Science</strong>.
-          </p>
-          <p style="margin-bottom: 0;">
-            Every student enjoys access to physical computer and network hardware labs at our Peshawar campus, 1-on-1 trainer mentorship, and <strong>verified Google Drive 4K lecture archives</strong> for revision anytime, anywhere.
-          </p>
-        </div>
-
-        <!-- ==================== OUR TEAM & FACULTY SECTION (5 Teachers with CEO Sir Shafiq) ==================== -->
-        <div class="team-section-box">
-          <div class="team-header-box">
-            <span class="section-badge"><i class="fa-solid fa-users-gear text-red"></i> Our Faculty & Mentors</span>
-            <h2 class="section-title">Meet Our Leadership & Expert Team</h2>
-            <p class="section-subtitle">
-              Learn from 5 seasoned software architects, network specialists, and AI researchers led by CEO Engr. Shafiq Ur Rehman.
-            </p>
-          </div>
-
-          <!-- 1. CEO & Founder Featured Showcase Card (Sir Shafiq) -->
-          <div id="ceoShowcaseContainer">
-            <div class="ceo-showcase-card">
-              <div class="ceo-card-grid">
-                <div class="ceo-avatar-wrap">
-                  <span>SR</span>
-                  <div class="ceo-crown-pill">
-                    <i class="fa-solid fa-crown"></i> CEO & FOUNDER
-                  </div>
-                </div>
-                <div class="ceo-info-content">
-                  <h3>
-                    <span>Engr. Shafiq Ur Rehman (Sir Shafiq)</span>
-                    <span class="ceo-role-badge">Founder & CEO</span>
-                  </h3>
-                  <div class="ceo-designation">Chief Executive Officer & Chief Enterprise Architect</div>
-                  <p class="ceo-bio">
-                    Visionary founder of iSOFT IT Training & Software Solutions. Senior enterprise architect with 14+ years of industry experience empowering ambitious students and IT engineers with practical, job-ready skills in software engineering, Cisco networking, and database administration.
-                  </p>
-                  
-                  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;">
-                    <span class="faculty-pill" style="background: #FEF2F2; color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-check"></i> C++ Programming</span>
-                    <span class="faculty-pill" style="background: #FEF2F2; color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-check"></i> Python Architecture</span>
-                    <span class="faculty-pill" style="background: #FEF2F2; color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-check"></i> Cisco CCNA / CCNP</span>
-                    <span class="faculty-pill" style="background: #FEF2F2; color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-check"></i> Oracle & SQL Server DBA</span>
-                    <span class="faculty-pill" style="background: #FEF2F2; color: var(--primary-red); font-weight: 700;"><i class="fa-solid fa-check"></i> Systems Engineering</span>
-                  </div>
-
-                  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">
-                    <div style="display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--gray-600); flex-wrap: wrap;">
-                      <span><i class="fa-solid fa-award" style="color: var(--primary-red);"></i> 14+ Years Leadership</span>
-                      <span><i class="fa-solid fa-star" style="color: #F59E0B;"></i> <strong>4.99 ★ Rating</strong></span>
-                      <span><i class="fa-solid fa-user-graduate" style="color: var(--success);"></i> <strong>5,000+ Students</strong> Mentored</span>
-                    </div>
-                    <a href="https://wa.me/923336606262?text=Hello%20Sir%20Shafiq!%20I%20would%20like%20to%20inquire%20about%20courses%20and%20admission%20at%20iSOFT." target="_blank" class="btn btn-whatsapp btn-sm">
-                      <i class="fa-brands fa-whatsapp"></i> Chat with Sir Shafiq
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. Other 4 Expert Faculty Cards -->
-          <div class="faculty-grid" id="facultyGridContainer"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 5: CONTACT & SUPPORT ==================== -->
-    <section id="view_contact" class="view-section" style="display: none; padding: 4rem 0 6rem;">
-      <div class="container" style="max-width: 900px;">
-        <div class="section-header">
-          <span class="section-badge">Get in Touch</span>
-          <h2 class="section-title">Contact Admissions & Campus Helpline</h2>
-          <p class="section-subtitle">Have questions about courses, class timings, or admissions? Reach out to us directly.</p>
-        </div>
-
-        <div class="contact-grid-box">
-          <div>
-            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Peshawar Campus</h3>
-            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem; line-height: 1.6;">
-              <i class="fa-solid fa-location-dot" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
-              Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar, Pakistan
-            </p>
-            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 0.5rem;">
-              <i class="fa-solid fa-phone" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
-              <strong>Admissions Desk:</strong> 0333 6606262
-            </p>
-            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1rem;">
-              <i class="fa-solid fa-phone-volume" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
-              <strong>Secondary Line:</strong> 0313 9999749
-            </p>
-            <p style="font-size: 0.95rem; color: var(--gray-700); margin-bottom: 1.5rem;">
-              <i class="fa-solid fa-envelope" style="color: var(--primary-red); margin-right: 0.5rem;"></i>
-              admissions@isoft.edu.pk
-            </p>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <a href="https://wa.me/923336606262" target="_blank" class="btn btn-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp: 0333 6606262
-              </a>
-              <button class="btn btn-primary" onclick="app.openRegistrationModal()">
-                <i class="fa-solid fa-file-pen"></i> Register Online
+            <!-- Quick Inquiry Card -->
+            <div style="background: #FFFFFF; padding: 2rem; border-radius: var(--radius-xl); border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm);">
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 0.75rem;">
+                Campus Hours &amp; Batches
+              </h4>
+              <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--gray-700); line-height: 1.8;">
+                <li><i class="fa-solid fa-clock" style="color: var(--primary-red); margin-right: 0.5rem;"></i> <strong>Morning Shift:</strong> 10:00 AM – 1:00 PM</li>
+                <li><i class="fa-solid fa-clock" style="color: var(--primary-red); margin-right: 0.5rem;"></i> <strong>Evening Shift:</strong> 5:30 PM – 7:30 PM</li>
+                <li><i class="fa-solid fa-clock" style="color: var(--primary-red); margin-right: 0.5rem;"></i> <strong>Night Shift:</strong> 8:00 PM – 10:30 PM</li>
+                <li><i class="fa-solid fa-calendar-check" style="color: var(--success); margin-right: 0.5rem;"></i> <strong>Weekend Batches:</strong> Saturday &amp; Sunday</li>
+              </ul>
+              <button class="btn btn-primary" style="width: 100%;" onclick="app.openRegistrationModal()">
+                <i class="fa-solid fa-file-pen"></i> Apply for Upcoming Batch
               </button>
             </div>
           </div>
-
-          <div>
-            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 1.25rem;">Send Direct Inquiry</h3>
-            <form onsubmit="event.preventDefault(); const n=this.elements[0].value; const p=this.elements[1].value; const m=this.elements[2].value; window.open('https://wa.me/923336606262?text=' + encodeURIComponent('Inquiry from ' + n + ' (' + p + '): ' + m), '_blank'); this.reset();">
-              <div style="margin-bottom: 1rem;">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" placeholder="Your name" required>
-              </div>
-              <div style="margin-bottom: 1rem;">
-                <label class="form-label">WhatsApp Number</label>
-                <input type="tel" class="form-control" placeholder="0333 1234567" required>
-              </div>
-              <div style="margin-bottom: 1rem;">
-                <label class="form-label">Message / Inquiry</label>
-                <textarea class="form-control" rows="3" placeholder="Tell us which course or package you are interested in..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-whatsapp" style="width: 100%;">
-                <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp to 0333 6606262
-              </button>
-            </form>
-          </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ========================================================================
-       MODALS SYSTEM
+       MODALS SYSTEM (100% RESPONSIVE, AUTO-OPENED, SCROLLABLE)
        ======================================================================== -->
 
   <!-- 1. POSTER LIGHTBOX MODAL (Click poster to view high-res full size) -->
   <div class="lightbox-modal" id="posterLightboxModal" onclick="if(event.target === this) app.closePosterLightbox()">
+    <button class="lightbox-close-btn" onclick="app.closePosterLightbox()" title="Close (Esc)">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
     <div class="lightbox-content-box">
-      <button class="lightbox-close-btn" onclick="app.closePosterLightbox()" title="Close">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
       <img id="lightboxPosterImg" class="lightbox-img" src="" alt="Course Poster">
       <div class="lightbox-footer-bar">
         <span id="lightboxPosterTitle" style="color: #FFFFFF; font-weight: 700; font-size: 1.1rem; margin-right: 1rem;"></span>
@@ -619,11 +464,10 @@
   </div>
 
   <!-- 2. COMPREHENSIVE COURSE REGISTRATION MODAL (Submits All Details to WhatsApp) -->
-    <!-- 2. STUDENT REGISTRATION FORM POPUP (Submits All Details to WhatsApp) -->
   <div class="modal-overlay" id="courseRegistrationModal" onclick="if(event.target === this) app.closeRegistrationModal()">
-    <div class="modal-card modal-card-lg reg-modal-card">
-      <div class="modal-header reg-modal-header">
-        <div class="modal-title-group">
+    <div class="modal-card reg-modal-card">
+      <div class="reg-modal-header">
+        <div class="reg-modal-title-group">
           <div class="reg-modal-badge-row">
             <span class="reg-modal-badge"><i class="fa-solid fa-graduation-cap"></i> ADMISSIONS 2026</span>
             <span class="reg-modal-wa-badge"><i class="fa-brands fa-whatsapp"></i> Admissions: 0333 6606262</span>
@@ -633,7 +477,7 @@
             Apply online for certified IT training. Fill in your details below to send your application directly to our official admissions officer on WhatsApp.
           </p>
         </div>
-        <button class="modal-close-btn reg-modal-close" onclick="app.closeRegistrationModal()" aria-label="Close Registration Form" title="Close">
+        <button class="reg-modal-close" onclick="app.closeRegistrationModal()" aria-label="Close Registration Form" title="Close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -645,7 +489,7 @@
             <!-- Dynamic Course Preview Box -->
             <div id="regCoursePreviewBox" class="reg-course-preview" style="display: none;"></div>
 
-            <!-- 5. Select Course Field -->
+            <!-- Course Field -->
             <div class="form-group mb-3">
               <label class="form-label" for="regCourseSelect">
                 Select Course / Program <span class="required">*</span>
@@ -657,39 +501,39 @@
             </div>
 
             <div class="form-grid">
-              <!-- 1. Full Name -->
+              <!-- Full Name -->
               <div class="form-group">
                 <label class="form-label" for="regStudentName">Full Name <span class="required">*</span></label>
                 <input type="text" id="regStudentName" class="form-control" placeholder="e.g. Muhammad Hamza" required autocomplete="name">
               </div>
 
-              <!-- 2. Father's Name -->
+              <!-- Father's Name -->
               <div class="form-group">
                 <label class="form-label" for="regFatherName">Father's Name <span class="required">*</span></label>
                 <input type="text" id="regFatherName" class="form-control" placeholder="e.g. Tariq Mehmood" required>
               </div>
 
-              <!-- 3. WhatsApp Number -->
+              <!-- WhatsApp Number -->
               <div class="form-group">
                 <label class="form-label" for="regStudentPhone">WhatsApp Number <span class="required">*</span></label>
                 <input type="tel" id="regStudentPhone" class="form-control" placeholder="0333 1234567" required autocomplete="tel">
                 <div class="form-hint">Seat confirmation and batch schedule will be sent here.</div>
               </div>
 
-              <!-- 4. Email Address -->
+              <!-- Email Address -->
               <div class="form-group">
                 <label class="form-label" for="regStudentEmail">Email Address <span class="required">*</span></label>
                 <input type="email" id="regStudentEmail" class="form-control" placeholder="hamza@example.com" required autocomplete="email">
                 <div class="form-hint">Used to grant verified 4K Google Drive lecture access.</div>
               </div>
 
-              <!-- 6. City -->
+              <!-- City -->
               <div class="form-group">
                 <label class="form-label" for="regStudentCity">City <span class="required">*</span></label>
                 <input type="text" id="regStudentCity" class="form-control" placeholder="e.g. Peshawar, Mardan, Islamabad" value="Peshawar" required>
               </div>
 
-              <!-- 7. Educational Qualification -->
+              <!-- Educational Qualification -->
               <div class="form-group">
                 <label class="form-label" for="regEducation">Educational Qualification <span class="required">*</span></label>
                 <select id="regEducation" class="form-control" required>
@@ -704,7 +548,7 @@
                 </select>
               </div>
 
-              <!-- 8. Preferred Learning Method (Online/Physical) -->
+              <!-- Preferred Learning Method (Online/Physical) -->
               <div class="form-group-full">
                 <label class="form-label">Preferred Learning Method <span class="required">*</span></label>
                 <div class="reg-method-selector">
@@ -725,7 +569,7 @@
                 </div>
               </div>
 
-              <!-- 9. Additional Message (Optional) -->
+              <!-- Additional Message (Optional) -->
               <div class="form-group-full">
                 <label class="form-label" for="regNotes">Additional Message (Optional)</label>
                 <textarea id="regNotes" class="form-control" rows="2" placeholder="Any preferred batch timings, questions, or notes for the admissions desk..."></textarea>
@@ -734,18 +578,18 @@
 
             <!-- Submit Button directly to WhatsApp -->
             <div class="reg-submit-wrap">
-              <button type="submit" id="regSubmitBtn" class="btn btn-primary btn-lg reg-submit-btn">
-                <i class="fa-brands fa-whatsapp"></i> Submit Registration
+              <button type="submit" id="regSubmitBtn" class="btn btn-whatsapp btn-lg reg-submit-btn">
+                <i class="fa-brands fa-whatsapp"></i> Submit Registration via WhatsApp
               </button>
               <div class="reg-trust-row">
-                <span><i class="fa-solid fa-shield-check"></i> Official Helpline: <strong>0333 6606262</strong></span>
-                <span><i class="fa-solid fa-location-dot"></i> Peshawar Campus: Abdra BRT Station</span>
+                <span><i class="fa-solid fa-shield-check" style="color: var(--success);"></i> Official Helpline: <strong>0333 6606262</strong></span>
+                <span><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Peshawar Campus: Abdra BRT Station</span>
               </div>
             </div>
           </form>
         </div>
 
-        <!-- Redirection & Verification Container -->
+        <!-- Success Container -->
         <div id="regSuccessContainer" style="display: none;"></div>
       </div>
     </div>
@@ -774,7 +618,7 @@
         <div class="footer-brand">
           <img src="assets/images/isoft-logo.png" alt="iSOFT IT Training & Software Solutions Logo" style="height: 52px; background: #FFFFFF; padding: 6px 12px; border-radius: 8px;">
           <p>
-            Official platform of iSOFT IT Training & Software Solutions. Professional skills • Practical learning • Career-focused training. Hands-on computer labs in Peshawar & verified Google Drive lecture archives.
+            Official platform of iSOFT IT Training &amp; Software Solutions. Professional skills • Practical learning • Career-focused training. Hands-on computer labs in Peshawar &amp; verified Google Drive lecture archives.
           </p>
           <div class="footer-socials">
             <a href="https://facebook.com" target="_blank" class="footer-social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -790,58 +634,57 @@
           <ul class="footer-links">
             <li><a href="#home" data-view-target="home">Home</a></li>
             <li><a href="#packages" data-view-target="packages">Course Packages</a></li>
-            <li><a href="#courses" data-view-target="courses">All Courses</a></li>
-            <li><a href="#about" data-view-target="about">About Academy & Faculty</a></li>
-            <li><a href="#contact" data-view-target="contact">Contact Admissions</a></li>
-            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal()">Online Registration</a></li>
+            <li><a href="#about" data-view-target="about">About Academy &amp; Faculty</a></li>
+            <li><a href="#contact" data-view-target="contact">Peshawar Campus &amp; Contact</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal()">Online Registration Form</a></li>
           </ul>
         </div>
 
-        <!-- Course Tracks -->
+        <!-- Course Tracks from Posters -->
         <div class="footer-col">
           <h4>Popular Packages</h4>
           <ul class="footer-links">
-            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-cpp-py-01')">C++ & Python (50% OFF)</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-cpp-py-01')">C++ &amp; Python (50% OFF)</a></li>
             <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-ccna-01')">CCNA Cisco Networking</a></li>
             <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-cyber-01')">Cyber Security Training</a></li>
-            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-ds-01')">Data Science & ML Bootcamp</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-ds-01')">Data Science &amp; ML Bootcamp</a></li>
             <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-db-01')">Database Software Engineer</a></li>
             <li><a href="javascript:void(0)" onclick="app.openRegistrationModal('course-mcse-01')">MCSE 2025 Career Training</a></li>
           </ul>
         </div>
 
-        <!-- Academy Contact -->
+        <!-- Official Campus Contact -->
         <div class="footer-col">
           <h4>Peshawar Campus</h4>
-          <p style="color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">
+          <p style="font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.75rem; line-height: 1.6;">
             Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar, Pakistan
           </p>
-          <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">
-            <strong>WhatsApp / Phone:</strong> 0333 6606262
+          <p style="font-size: 0.85rem; color: #FFFFFF; font-weight: 700; margin-bottom: 0.35rem;">
+            <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp: 0333 6606262
           </p>
-          <p style="color: var(--gray-400); font-size: 0.9rem; margin-bottom: 0.5rem;">
-            <strong>Secondary Line:</strong> 0313 9999749
+          <p style="font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-phone" style="color: var(--primary-red);"></i> Helpline: 0313 9999749
           </p>
-          <p style="color: var(--gray-400); font-size: 0.9rem;">
-            <strong>Email:</strong> admissions@isoft.edu.pk
+          <p style="font-size: 0.85rem; color: var(--gray-400);">
+            <i class="fa-solid fa-envelope"></i> admissions@isoft.edu.pk
           </p>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>
-          &copy; 2026 <strong>iSOFT IT Training & Software Solutions</strong>. All rights reserved.
+          &copy; 2026 iSOFT IT Training &amp; Software Solutions. All rights reserved. CEO Engr. Shafiq Ur Rehman.
         </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="#about" data-view-target="about">Terms & Conditions</a>
-          <a href="#about" data-view-target="about">Privacy Policy</a>
-          <a href="#about" data-view-target="about">Refund Policy</a>
+        <div style="display: flex; gap: 1.5rem; font-size: 0.8rem;">
+          <a href="#about" data-view-target="about">About Academy</a>
+          <a href="#packages" data-view-target="packages">Course Packages</a>
+          <a href="javascript:void(0)" onclick="app.openRegistrationModal()">Online Registration</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Application Logic -->
   <script src="assets/js/data.js"></script>
   <script src="assets/js/store.js"></script>
   <script src="assets/js/app.js"></script>

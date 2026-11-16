@@ -29,8 +29,13 @@ class Application {
     window.addEventListener('hashchange', () => this.handleRouting());
     this.handleRouting();
 
-    // Re-render when data updates
-    
+    // AUTO-OPEN REGISTRATION MODAL BY DEFAULT FOR VISITORS
+    setTimeout(() => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash || hash === 'home' || hash === 'packages' || hash === 'register') {
+        this.openRegistrationModal();
+      }
+    }, 600);
   }
 
   // --- ROUTING & VIEW SWITCHING ---
@@ -44,7 +49,6 @@ class Application {
     }
 
     if (viewName === 'packages') {
-      this.showView('home');
       setTimeout(() => {
         const sec = document.getElementById('packagesSection');
         if (sec) sec.scrollIntoView({ behavior: 'smooth' });
@@ -52,19 +56,24 @@ class Application {
       return;
     }
 
-    if (['admin', 'dashboard', 'drive-guide', 'certificate-verify'].includes(viewName)) {
-      window.location.hash = 'home';
+    if (viewName === 'about') {
+      setTimeout(() => {
+        const sec = document.getElementById('aboutSection');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
       return;
     }
 
-    if (viewName === 'course' && param) {
-      const course = COURSES.find(c => c.id === param || c.slug === param);
-      if (course) {
-        this.openCourseDetail(course.id);
-        return;
-      }
-    } else if (viewName === 'checkout' && param) {
-      this.openCheckoutView(param);
+    if (viewName === 'contact') {
+      setTimeout(() => {
+        const sec = document.getElementById('contactSection');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+
+    if (viewName === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
@@ -125,13 +134,20 @@ class Application {
         if (targetView === 'register') {
           this.openRegistrationModal();
         } else if (targetView === 'packages') {
-          this.showView('home');
-          setTimeout(() => {
-            const sec = document.getElementById('packagesSection');
-            if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
+          const sec = document.getElementById('packagesSection');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+          window.location.hash = 'packages';
+        } else if (targetView === 'about') {
+          const sec = document.getElementById('aboutSection');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+          window.location.hash = 'about';
+        } else if (targetView === 'contact') {
+          const sec = document.getElementById('contactSection');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+          window.location.hash = 'contact';
         } else {
-          window.location.hash = targetView;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.location.hash = 'home';
         }
         closeMobileMenu();
       });
@@ -352,16 +368,96 @@ class Application {
 
   // --- COMPREHENSIVE COURSE REGISTRATION MODAL & WHATSAPP SUBMISSION ---
   setupRegistrationFormModal() {
+    // 1. Modal Select
     const select = document.getElementById('regCourseSelect');
     if (select) {
       this.populateCourseSelectOptions(select);
       select.addEventListener('change', () => this.updateCoursePreviewCard());
     }
 
+    // 2. Hero Form Select
+    const heroSelect = document.getElementById('heroCourseSelect');
+    if (heroSelect) {
+      this.populateCourseSelectOptions(heroSelect);
+    }
+
+    // 3. Modal Form Submit
     const form = document.getElementById('quickRegistrationForm');
     if (form) {
       form.addEventListener('submit', (e) => this.submitRegistrationToWhatsApp(e));
     }
+
+    // 4. Hero Quick Form Submit
+    const heroForm = document.getElementById('heroQuickRegForm');
+    if (heroForm) {
+      heroForm.addEventListener('submit', (e) => this.submitHeroRegistrationToWhatsApp(e));
+    }
+  }
+
+  submitHeroRegistrationToWhatsApp(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById('heroStudentName')?.value.trim();
+    const fatherName = document.getElementById('heroFatherName')?.value.trim();
+    const phone = document.getElementById('heroStudentPhone')?.value.trim();
+    const city = document.getElementById('heroStudentCity')?.value.trim() || 'Peshawar';
+    const courseVal = document.getElementById('heroCourseSelect')?.value;
+    const mode = document.querySelector('input[name="heroMode"]:checked')?.value || 'Online';
+
+    if (!fullName || fullName.length < 2) {
+      this.showToast('Please enter your full name.', 'danger');
+      document.getElementById('heroStudentName')?.focus();
+      return;
+    }
+
+    if (!fatherName || fatherName.length < 2) {
+      this.showToast("Please enter father's name.", 'danger');
+      document.getElementById('heroFatherName')?.focus();
+      return;
+    }
+
+    if (!phone || phone.length < 10) {
+      this.showToast('Please enter a valid WhatsApp number (e.g. 0333 1234567).', 'danger');
+      document.getElementById('heroStudentPhone')?.focus();
+      return;
+    }
+
+    if (!courseVal) {
+      this.showToast('Please select a course or package.', 'danger');
+      document.getElementById('heroCourseSelect')?.focus();
+      return;
+    }
+
+    const pkg = COURSE_PACKAGES.find(p => p.courseId === courseVal || p.id === courseVal);
+    const course = COURSES.find(c => c.id === courseVal);
+    const courseTitle = pkg ? pkg.title : (course ? course.title : courseVal);
+    const courseFee = pkg ? pkg.feeFormatted : (course ? `Rs. ${course.discountPrice.toLocaleString()}` : 'N/A');
+    const courseDuration = pkg ? pkg.duration : (course ? course.duration : 'Standard');
+
+    const whatsappMessage = 
+`🎓 *iSOFT IT TRAINING & SOFTWARE SOLUTIONS*
+📋 *QUICK ADMISSION APPLICATION*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 *Full Name:* ${fullName}
+👨‍👦 *Father's Name:* ${fatherName}
+📱 *WhatsApp Number:* ${phone}
+📍 *City / Location:* ${city}
+
+📚 *Selected Course:* ${courseTitle}
+💰 *Course Fee:* ${courseFee}
+⏱️ *Duration:* ${courseDuration}
+🏫 *Learning Method:* ${mode}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏢 *Campus:* Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar
+📞 *Helpline:* 0333 6606262 | 0313 9999749
+
+_Assalam-o-Alaikum Sir! I have submitted my admission application through the iSOFT official website. Please confirm my seat and send batch details._`;
+
+    const encodedMsg = encodeURIComponent(whatsappMessage);
+    const waUrl = `https://wa.me/923336606262?text=${encodedMsg}`;
+
+    this.showToast('Opening WhatsApp with your application details...', 'success');
+    window.open(waUrl, '_blank');
   }
 
   populateCourseSelectOptions(select) {
