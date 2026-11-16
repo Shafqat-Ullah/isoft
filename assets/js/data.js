@@ -646,12 +646,12 @@ const COURSES = [
     duration: "6 Months",
     lecturesCount: 60,
     instructor: {
-      name: "Hamza Bilal & Software Team",
+      name: "Shafqat Ullah & Full Stack Team",
       title: "Senior Full Stack Architect",
-      avatar: "assets/images/instructors/hamza.jpg",
+      avatar: "assets/images/shafqat-ullah.jpg",
       rating: 4.91,
       studentsCount: 2600,
-      bio: "8+ years scaling React, Node.js, and cloud native SaaS applications."
+      bio: "3+ years scaling React, Node.js, and modern full stack web applications."
     },
     price: 8000,
     discountPrice: 4000,
@@ -1088,19 +1088,19 @@ const TEAM_MEMBERS = [
     bio: "Visionary founder of iSOFT IT Training & Software Solutions. Senior enterprise architect with 14+ years of industry experience empowering ambitious students and IT engineers with practical, job-ready skills.",
     contactWhatsapp: "03336606262"
   },
-  {
-    id: "team-hamza",
-    name: "Hamza Bilal",
+    {
+    id: "team-shafqat",
+    name: "Shafqat Ullah",
     role: "Lead Full Stack Instructor",
-    designation: "Head of Web Development & SaaS Architecture",
-    avatar: "assets/images/instructors/hamza.jpg",
-    initials: "HB",
+    designation: "Full Stack Developer (3+ Years Experience)",
+    avatar: "assets/images/shafqat-ullah.jpg",
+    initials: "SU",
     isCeo: false,
-    experience: "8+ Years Web Engineering",
-    rating: "4.92 ★",
-    studentsCount: "2,600+",
-    specializations: ["MERN Stack", "React 19 & Next.js", "TypeScript", "Node.js & Express", "MongoDB & Firebase"],
-    bio: "Senior full stack architect with extensive background building enterprise SaaS products. Mentors students through real-world web development, frontend mastery, and scalable cloud APIs.",
+    experience: "3+ Years Full Stack Experience",
+    rating: "4.95 ★",
+    studentsCount: "1,800+",
+    specializations: ["Full Stack Web Development", "MERN Stack (React, Node, Express)", "JavaScript & TypeScript", "Next.js & REST APIs", "Database & Cloud Architecture"],
+    bio: "Full Stack Developer with 3+ years of professional industry experience building high-performance web applications, scalable cloud APIs, and modern responsive frontend interfaces. Mentors students through practical project-based web development at iSOFT.",
     contactWhatsapp: "03336606262"
   },
   {

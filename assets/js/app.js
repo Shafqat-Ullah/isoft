@@ -262,7 +262,7 @@ class Application {
         <div class="faculty-card">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem;">
             <div class="faculty-avatar-box">
-              ${member.initials}
+              ${member.avatar ? `<img src="${member.avatar}" alt="${member.name}" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" onerror="this.style.display='none'; this.parentElement.innerText='${member.initials}';">` : member.initials}
             </div>
             <span style="font-size:0.8rem; font-weight:700; color:#F59E0B; background:#FFFBEB; padding:3px 8px; border-radius:var(--radius-full); border:1px solid #FDE68A;">
               ${member.rating}
