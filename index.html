@@ -253,8 +253,8 @@
         <div class="container">
           <div class="section-header">
             <span class="section-badge">How It Works</span>
-            <h2 class="section-title">The Official 4-Step Learning Journey</h2>
-            <p class="section-subtitle">A transparent, secure process ensuring every student gets verified practical lab training and official certification.</p>
+            <h2 class="section-title">Your 4-Step Path to Industry Certification</h2>
+            <p class="section-subtitle">A streamlined, transparent admissions process connecting you directly to expert trainers, physical hardware labs, and certified credentials.</p>
           </div>
 
           <div class="flow-grid">
@@ -291,8 +291,8 @@
         <div class="container">
           <div class="section-header">
             <span class="section-badge">Featured Tracks</span>
-            <h2 class="section-title">Industry-Demanded Tech Programs</h2>
-            <p class="section-subtitle">Curated by veteran software architects and network engineers for the 2026 job market.</p>
+            <h2 class="section-title">Industry-Recognized Certification Programs</h2>
+            <p class="section-subtitle">Designed by veteran enterprise architects and network engineers for today's competitive IT job market.</p>
           </div>
           <div class="course-grid" id="homeFeaturedCourses"></div>
           <div style="text-align: center; margin-top: 3rem;">
@@ -619,135 +619,133 @@
   </div>
 
   <!-- 2. COMPREHENSIVE COURSE REGISTRATION MODAL (Submits All Details to WhatsApp) -->
-  <div class="modal-overlay" id="courseRegistrationModal">
-    <div class="modal-card modal-card-lg" style="max-width: 760px;">
-      <div class="modal-header" style="background: linear-gradient(135deg, #181B1F 0%, #2A1012 100%); color: #FFFFFF; border-bottom: 2px solid var(--primary-red);">
+    <!-- 2. STUDENT REGISTRATION FORM POPUP (Submits All Details to WhatsApp) -->
+  <div class="modal-overlay" id="courseRegistrationModal" onclick="if(event.target === this) app.closeRegistrationModal()">
+    <div class="modal-card modal-card-lg reg-modal-card">
+      <div class="modal-header reg-modal-header">
         <div class="modal-title-group">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-            <span class="top-bar-badge" style="background: var(--primary-red); color: #fff; font-size: 0.75rem;">
-              <i class="fa-solid fa-bolt"></i> 2026 ADMISSIONS OPEN
-            </span>
-            <span style="font-size: 0.8rem; color: #25D366; font-weight: 700;">
-              <i class="fa-brands fa-whatsapp"></i> WhatsApp: 0333 6606262
-            </span>
+          <div class="reg-modal-badge-row">
+            <span class="reg-modal-badge"><i class="fa-solid fa-graduation-cap"></i> ADMISSIONS 2026</span>
+            <span class="reg-modal-wa-badge"><i class="fa-brands fa-whatsapp"></i> Admissions: 0333 6606262</span>
           </div>
-          <h3 style="color: #FFFFFF; font-size: 1.45rem;">Course Registration / آن لائن رجسٹریشن</h3>
-          <p style="color: var(--gray-300); font-size: 0.85rem;">
-            Select your desired course and submit your application directly to our admissions officer on WhatsApp.
+          <h2 class="reg-modal-title">Student Registration Form</h2>
+          <p class="reg-modal-subtitle">
+            Apply online for certified IT training. Fill in your details below to send your application directly to our official admissions officer on WhatsApp.
           </p>
         </div>
-        <button class="modal-close-btn" onclick="app.closeRegistrationModal()" style="color: #FFFFFF;">
+        <button class="modal-close-btn reg-modal-close" onclick="app.closeRegistrationModal()" aria-label="Close Registration Form" title="Close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <div class="modal-body" style="padding: 1.5rem;">
+      <div class="modal-body reg-modal-body">
         <!-- Form Container -->
         <div id="regFormContainer">
-          <form id="quickRegistrationForm">
+          <form id="quickRegistrationForm" novalidate>
             <!-- Dynamic Course Preview Box -->
             <div id="regCoursePreviewBox" class="reg-course-preview" style="display: none;"></div>
 
-            <!-- Course Selection Field (Categorized All Courses & Packages) -->
-            <div style="margin-bottom: 1.25rem;">
-              <label class="form-label" for="regCourseSelect" style="font-weight: 800; font-size: 0.95rem; color: var(--brand-dark);">
-                Select Course / Package (کورس کا انتخاب کریں) <span class="required">*</span>
+            <!-- 5. Select Course Field -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="regCourseSelect">
+                Select Course / Program <span class="required">*</span>
               </label>
-              <select id="regCourseSelect" class="form-control" style="font-weight: 600; padding: 0.75rem 1rem; border-color: var(--primary-red-border);" required>
+              <select id="regCourseSelect" class="form-control" required>
                 <!-- Populated dynamically by JavaScript -->
               </select>
-              <div class="form-hint">Choose from special promotional packages or modular diplomas.</div>
+              <div class="form-hint">Choose from special promotional packages or career diplomas.</div>
             </div>
 
             <div class="form-grid">
-              <!-- Full Name -->
-              <div>
-                <label class="form-label" for="regStudentName">Full Name (پورا نام) <span class="required">*</span></label>
-                <input type="text" id="regStudentName" class="form-control" placeholder="e.g. Muhammad Ali" required>
+              <!-- 1. Full Name -->
+              <div class="form-group">
+                <label class="form-label" for="regStudentName">Full Name <span class="required">*</span></label>
+                <input type="text" id="regStudentName" class="form-control" placeholder="e.g. Muhammad Hamza" required autocomplete="name">
               </div>
 
-              <!-- WhatsApp Number -->
-              <div>
-                <label class="form-label" for="regStudentPhone">WhatsApp Number (واٹس ایپ نمبر) <span class="required">*</span></label>
-                <input type="tel" id="regStudentPhone" class="form-control" placeholder="0333 1234567" required>
-                <div class="form-hint">Admission confirmation & batch timings will be sent on this number.</div>
+              <!-- 2. Father's Name -->
+              <div class="form-group">
+                <label class="form-label" for="regFatherName">Father's Name <span class="required">*</span></label>
+                <input type="text" id="regFatherName" class="form-control" placeholder="e.g. Tariq Mehmood" required>
               </div>
 
-              <!-- Email Address (Gmail for Drive) -->
-              <div>
-                <label class="form-label" for="regStudentEmail">Gmail Address (for Drive Lectures)</label>
-                <input type="email" id="regStudentEmail" class="form-control" placeholder="your.name@gmail.com">
-                <div class="form-hint">Used to grant 4K Google Drive video lecture access.</div>
+              <!-- 3. WhatsApp Number -->
+              <div class="form-group">
+                <label class="form-label" for="regStudentPhone">WhatsApp Number <span class="required">*</span></label>
+                <input type="tel" id="regStudentPhone" class="form-control" placeholder="0333 1234567" required autocomplete="tel">
+                <div class="form-hint">Seat confirmation and batch schedule will be sent here.</div>
               </div>
 
-              <!-- City / Location -->
-              <div>
-                <label class="form-label" for="regStudentCity">City / Location (شہر) <span class="required">*</span></label>
-                <input type="text" id="regStudentCity" class="form-control" placeholder="e.g. Peshawar, Islamabad, Mardan" value="Peshawar" required>
+              <!-- 4. Email Address -->
+              <div class="form-group">
+                <label class="form-label" for="regStudentEmail">Email Address <span class="required">*</span></label>
+                <input type="email" id="regStudentEmail" class="form-control" placeholder="hamza@example.com" required autocomplete="email">
+                <div class="form-hint">Used to grant verified 4K Google Drive lecture access.</div>
               </div>
 
-              <!-- Preferred Mode of Learning -->
+              <!-- 6. City -->
+              <div class="form-group">
+                <label class="form-label" for="regStudentCity">City <span class="required">*</span></label>
+                <input type="text" id="regStudentCity" class="form-control" placeholder="e.g. Peshawar, Mardan, Islamabad" value="Peshawar" required>
+              </div>
+
+              <!-- 7. Educational Qualification -->
+              <div class="form-group">
+                <label class="form-label" for="regEducation">Educational Qualification <span class="required">*</span></label>
+                <select id="regEducation" class="form-control" required>
+                  <option value="" disabled selected>-- Select Qualification --</option>
+                  <option value="Matric / O-Levels">Matric / O-Levels</option>
+                  <option value="Intermediate (FSc / ICS / FA / A-Levels)">Intermediate (FSc / ICS / FA / A-Levels)</option>
+                  <option value="DAE (Diploma of Associate Engineering)">DAE (Diploma of Associate Engineering)</option>
+                  <option value="BS CS / Software Eng / IT">BS Computer Science / Software Eng / IT</option>
+                  <option value="University Graduate (Other Fields)">University Graduate (Other Fields)</option>
+                  <option value="Working Professional">Working Professional / Job Holder</option>
+                  <option value="Beginner (No Prior Tech Background)">Beginner (No Prior Tech Background)</option>
+                </select>
+              </div>
+
+              <!-- 8. Preferred Learning Method (Online/Physical) -->
               <div class="form-group-full">
-                <label class="form-label" style="font-weight: 700;">Preferred Learning Mode (طریقہ کار) <span class="required">*</span></label>
-                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 0.5rem 0;">
-                  <label class="checkbox-label" style="cursor: pointer;">
+                <label class="form-label">Preferred Learning Method <span class="required">*</span></label>
+                <div class="reg-method-selector">
+                  <label class="method-option-card">
                     <input type="radio" name="regMode" value="Online" checked>
-                    <span><strong>Online</strong> (Live Classes + Google Drive 4K Lectures)</span>
+                    <div class="method-option-content">
+                      <div class="method-title"><i class="fa-solid fa-laptop-code"></i> Online Learning</div>
+                      <div class="method-desc">Live Virtual Classes + Google Drive 4K Lecture Archives</div>
+                    </div>
                   </label>
-                  <label class="checkbox-label" style="cursor: pointer;">
-                    <input type="radio" name="regMode" value="On-Site">
-                    <span><strong>On-Site</strong> (Peshawar Campus: Office 17, Abdra BRT Station)</span>
+                  <label class="method-option-card">
+                    <input type="radio" name="regMode" value="Physical (Peshawar Campus)">
+                    <div class="method-option-content">
+                      <div class="method-title"><i class="fa-solid fa-building-columns"></i> Physical Campus</div>
+                      <div class="method-desc">Office 17, Jabir Flat, Abdra BRT Station, Peshawar</div>
+                    </div>
                   </label>
                 </div>
               </div>
 
-              <!-- Preferred Batch / Timing -->
-              <div>
-                <label class="form-label" for="regBatchTime">Preferred Class Timing / Shift</label>
-                <select id="regBatchTime" class="form-control">
-                  <option value="As per Poster Timings" selected>As per Poster Timings (Recommended)</option>
-                  <option value="Evening (5:30 PM - 6:30 PM)">Evening (5:30 PM - 6:30 PM) [CCNA / Database]</option>
-                  <option value="Evening (6:30 PM - 7:30 PM)">Evening (6:30 PM - 7:30 PM) [MCSE 2025]</option>
-                  <option value="Night (8:00 PM - 9:00 PM)">Night (8:00 PM - 9:00 PM) [C++ & Python]</option>
-                  <option value="Night (9:30 PM - 10:30 PM)">Night (9:30 PM - 10:30 PM) [Data Science]</option>
-                  <option value="Morning Shift (10:00 AM - 12:00 PM)">Morning Shift (10:00 AM - 12:00 PM)</option>
-                  <option value="Weekend Batch (Sat & Sun)">Weekend Batch (Sat & Sun)</option>
-                </select>
-              </div>
-
-              <!-- Qualification / Current Status -->
-              <div>
-                <label class="form-label" for="regEducation">Educational Background / Level</label>
-                <select id="regEducation" class="form-control">
-                  <option value="Matric / Intermediate" selected>Matric / Intermediate (FSc / FA / ICS)</option>
-                  <option value="BS CS / SE / IT Student">BS Computer Science / Software Eng / IT</option>
-                  <option value="University Graduate">University Graduate (Any Field)</option>
-                  <option value="Working Professional">Working Professional / Job Holder</option>
-                  <option value="Beginner (No Prior Coding)">Beginner (No Prior Tech Background)</option>
-                </select>
-              </div>
-
-              <!-- Questions or Notes -->
+              <!-- 9. Additional Message (Optional) -->
               <div class="form-group-full">
-                <label class="form-label" for="regNotes">Any Questions or Special Note (اختیاری پیغام)</label>
-                <textarea id="regNotes" class="form-control" rows="2" placeholder="e.g. I want to join the upcoming batch / need installment guidance..."></textarea>
+                <label class="form-label" for="regNotes">Additional Message (Optional)</label>
+                <textarea id="regNotes" class="form-control" rows="2" placeholder="Any preferred batch timings, questions, or notes for the admissions desk..."></textarea>
               </div>
             </div>
 
             <!-- Submit Button directly to WhatsApp -->
-            <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--gray-200); display: flex; flex-direction: column; gap: 0.75rem;">
-              <button type="submit" class="btn btn-whatsapp btn-lg" style="width: 100%; font-size: 1.1rem; padding: 1rem;">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Submit Registration via WhatsApp (0333 6606262)
+            <div class="reg-submit-wrap">
+              <button type="submit" id="regSubmitBtn" class="btn btn-primary btn-lg reg-submit-btn">
+                <i class="fa-brands fa-whatsapp"></i> Submit Registration
               </button>
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--gray-500); flex-wrap: wrap; gap: 0.5rem;">
-                <span><i class="fa-solid fa-shield-check" style="color: var(--success);"></i> 100% Verified Admissions & Fast Response</span>
-                <span>Helpline: <strong>0333 6606262</strong> | <strong>0313 9999749</strong></span>
+              <div class="reg-trust-row">
+                <span><i class="fa-solid fa-shield-check"></i> Official Helpline: <strong>0333 6606262</strong></span>
+                <span><i class="fa-solid fa-location-dot"></i> Peshawar Campus: Abdra BRT Station</span>
               </div>
             </div>
           </form>
         </div>
 
-        <!-- Success Container -->
+        <!-- Redirection & Verification Container -->
         <div id="regSuccessContainer" style="display: none;"></div>
       </div>
     </div>

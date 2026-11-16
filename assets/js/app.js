@@ -484,12 +484,12 @@ class Application {
       </div>
     `;
 
-    // Also auto-select mode radio if course is on-site only or online only
+    // Also auto-select mode radio if course is physical only or online only
     const modeRadioOnline = document.querySelector('input[name="regMode"][value="Online"]');
-    const modeRadioOnsite = document.querySelector('input[name="regMode"][value="On-Site"]');
-    if (mode.toLowerCase().includes('on-site') && !mode.toLowerCase().includes('online')) {
-      if (modeRadioOnsite) modeRadioOnsite.checked = true;
-    } else if (mode.toLowerCase().includes('online') && !mode.toLowerCase().includes('on-site')) {
+    const modeRadioPhysical = document.querySelector('input[name="regMode"][value^="Physical"]') || document.querySelector('input[name="regMode"][value="On-Site"]');
+    if ((mode.toLowerCase().includes('on-site') || mode.toLowerCase().includes('physical')) && !mode.toLowerCase().includes('online')) {
+      if (modeRadioPhysical) modeRadioPhysical.checked = true;
+    } else if (mode.toLowerCase().includes('online') && !(mode.toLowerCase().includes('on-site') || mode.toLowerCase().includes('physical'))) {
       if (modeRadioOnline) modeRadioOnline.checked = true;
     }
   }
@@ -498,86 +498,129 @@ class Application {
     event.preventDefault();
 
     const fullName = document.getElementById('regStudentName')?.value.trim();
+    const fatherName = document.getElementById('regFatherName')?.value.trim();
     const phone = document.getElementById('regStudentPhone')?.value.trim();
-    const email = document.getElementById('regStudentEmail')?.value.trim() || 'Not Provided';
+    const email = document.getElementById('regStudentEmail')?.value.trim();
     const city = document.getElementById('regStudentCity')?.value.trim();
     const courseVal = document.getElementById('regCourseSelect')?.value;
+    const education = document.getElementById('regEducation')?.value;
     const mode = document.querySelector('input[name="regMode"]:checked')?.value || 'Online';
-    const shift = document.getElementById('regBatchTime')?.value || 'As per poster timing';
-    const education = document.getElementById('regEducation')?.value || 'Not Specified';
     const notes = document.getElementById('regNotes')?.value.trim() || 'None';
 
-    if (!fullName || !phone || !city || !courseVal) {
-      this.showToast('Please fill out all required fields marked with *', 'danger');
+    // 1. Comprehensive Field Validation
+    if (!fullName || fullName.length < 2) {
+      this.showToast('Please enter your full name.', 'danger');
+      document.getElementById('regStudentName')?.focus();
       return;
     }
 
-    // Resolve course information
+    if (!fatherName || fatherName.length < 2) {
+      this.showToast("Please enter father's name.", 'danger');
+      document.getElementById('regFatherName')?.focus();
+      return;
+    }
+
+    if (!phone || phone.length < 10) {
+      this.showToast('Please enter a valid WhatsApp number (e.g. 0333 1234567).', 'danger');
+      document.getElementById('regStudentPhone')?.focus();
+      return;
+    }
+
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      this.showToast('Please enter a valid email address.', 'danger');
+      document.getElementById('regStudentEmail')?.focus();
+      return;
+    }
+
+    if (!courseVal) {
+      this.showToast('Please select a course or program from the dropdown.', 'danger');
+      document.getElementById('regCourseSelect')?.focus();
+      return;
+    }
+
+    if (!city || city.length < 2) {
+      this.showToast('Please enter your city.', 'danger');
+      document.getElementById('regStudentCity')?.focus();
+      return;
+    }
+
+    if (!education) {
+      this.showToast('Please select your educational qualification.', 'danger');
+      document.getElementById('regEducation')?.focus();
+      return;
+    }
+
+    // 2. Resolve Course Details
     const pkg = COURSE_PACKAGES.find(p => p.courseId === courseVal || p.id === courseVal);
     const course = COURSES.find(c => c.id === courseVal);
     const courseTitle = pkg ? pkg.title : (course ? course.title : courseVal);
     const courseFee = pkg ? pkg.feeFormatted : (course ? `Rs. ${course.discountPrice.toLocaleString()}` : 'N/A');
     const courseDuration = pkg ? pkg.duration : (course ? course.duration : 'Standard');
-    const courseTiming = pkg ? pkg.timing : (course ? (course.classTiming || 'Evening') : 'Flexible');
 
     const now = new Date();
     const formattedDate = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    // Construct Clean, Elegant WhatsApp Message
+    // 3. Format the Complete WhatsApp Application Message
     const whatsappMessage = 
 `🎓 *iSOFT IT TRAINING & SOFTWARE SOLUTIONS*
-📋 *NEW COURSE REGISTRATION APPLICATION*
+📋 *STUDENT REGISTRATION APPLICATION*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 *Student Name:* ${fullName}
+👤 *Full Name:* ${fullName}
+👨‍👦 *Father's Name:* ${fatherName}
 📱 *WhatsApp Number:* ${phone}
 📧 *Email Address:* ${email}
-📍 *City / Campus:* ${city}
-🎓 *Education / Background:* ${education}
+📍 *City:* ${city}
+🎓 *Educational Qualification:* ${education}
 
 📚 *Selected Course:* ${courseTitle}
 💰 *Course Fee:* ${courseFee}
 ⏱️ *Duration:* ${courseDuration}
-🕒 *Course Schedule:* ${courseTiming}
-🏫 *Learning Mode:* ${mode}
-⏰ *Preferred Shift:* ${shift}
+🏫 *Preferred Learning Method:* ${mode}
 
-💬 *Student Note / Query:*
+💬 *Additional Message:*
 ${notes}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📅 *Date:* ${formattedDate}
-🌐 *Sent via Official Website:* https://isoft.edu.pk
-📍 *Campus:* Office 17, Jabir Flat, Abdra BRT Station, Peshawar`;
+🏢 *Campus:* Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar
+🌐 *Official Website:* https://isoft.edu.pk`;
 
-    const cleanNumber = ACADEMY_INFO.whatsappClean || "923336606262";
+    const cleanNumber = (typeof ACADEMY_INFO !== 'undefined' && ACADEMY_INFO.whatsappClean) ? ACADEMY_INFO.whatsappClean : "923336606262";
     const waUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // Store application locally in store for student tracking
+    // 4. Record Application Locally
     try {
-      store.createApplication({
-        courseId: courseVal,
-        courseTitle: courseTitle,
-        courseFee: (pkg && pkg.fee) || (course && course.discountPrice) || 0,
-        studentName: fullName,
-        studentEmail: email !== 'Not Provided' ? email : `student_${phone.replace(/\D/g, '')}@isoft.edu.pk`,
-        studentPhone: phone,
-        country: "Pakistan",
-        city: city,
-        skillLevel: education,
-        reason: "Career Training",
-        preferredMethod: mode,
-        paymentMethod: "whatsapp_direct",
-        transactionId: "WA-" + Date.now().toString().slice(-6),
-        receiptUrl: "",
-        driveFolderId: (course && course.driveFolderId) || ""
-      });
+      if (typeof store !== 'undefined' && store.createApplication) {
+        store.createApplication({
+          courseId: courseVal,
+          courseTitle: courseTitle,
+          courseFee: (pkg && pkg.fee) || (course && course.discountPrice) || 0,
+          studentName: fullName,
+          fatherName: fatherName,
+          studentEmail: email,
+          studentPhone: phone,
+          country: "Pakistan",
+          city: city,
+          skillLevel: education,
+          reason: "Career Training",
+          preferredMethod: mode,
+          paymentMethod: "whatsapp_direct",
+          transactionId: "WA-" + Date.now().toString().slice(-6),
+          receiptUrl: "",
+          driveFolderId: (course && course.driveFolderId) || ""
+        });
+      }
     } catch (err) {
-      console.warn("Local storage log warning:", err);
+      console.warn("Application storage note:", err);
     }
 
-    // Try to open WhatsApp in a new window/tab
-    const waWindow = window.open(waUrl, '_blank');
+    // 5. Open WhatsApp via click-to-chat
+    try {
+      window.open(waUrl, '_blank');
+    } catch (e) {
+      console.log('Direct open blocked, user can click the launch button');
+    }
 
-    // Switch Modal View to Success View
+    // 6. Switch Modal View to Active Redirection Step
     const formBox = document.getElementById('regFormContainer');
     const successBox = document.getElementById('regSuccessContainer');
     if (formBox) formBox.style.display = 'none';
@@ -585,40 +628,50 @@ ${notes}
     if (successBox) {
       successBox.style.display = 'block';
       successBox.innerHTML = `
-        <div class="reg-success-box">
-          <div class="reg-success-icon"><i class="fa-solid fa-circle-check"></i></div>
-          <h3 style="font-size:1.6rem; font-weight:800; color:var(--brand-dark); margin-bottom:0.5rem;">Registration Application Ready!</h3>
-          <p style="color:var(--gray-600); font-size:0.95rem; max-width:520px; margin:0 auto 1.5rem;">
-            Thank you <strong>${this.escapeHtml(fullName)}</strong>! Your registration details for <strong>${this.escapeHtml(courseTitle)}</strong> have been compiled.
+        <div class="reg-redirect-card">
+          <div class="reg-redirect-icon-wrap">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h3 class="reg-redirect-title">Ready to Send via WhatsApp</h3>
+          <p class="reg-redirect-desc">
+            Your application for <strong>${this.escapeHtml(courseTitle)}</strong> is prepared. Please deliver the pre-filled message on WhatsApp to complete your admission.
           </p>
 
-          <div style="background:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--radius-lg); padding:1.25rem; max-width:520px; margin:0 auto 1.5rem; text-align:left;">
-            <div style="font-weight:700; color:var(--brand-dark); margin-bottom:0.5rem;"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp Submission:</div>
-            <div style="font-size:0.85rem; color:var(--gray-700); line-height:1.6;">
-              Please click the green button below to deliver your application directly to our admissions officer on WhatsApp (<strong>0333 6606262</strong>).
-            </div>
+          <div class="reg-redirect-summary">
+            <div class="summary-row"><span>Student Name:</span> <strong>${this.escapeHtml(fullName)}</strong></div>
+            <div class="summary-row"><span>Father's Name:</span> <strong>${this.escapeHtml(fatherName)}</strong></div>
+            <div class="summary-row"><span>Course:</span> <strong>${this.escapeHtml(courseTitle)}</strong></div>
+            <div class="summary-row"><span>Learning Method:</span> <strong>${this.escapeHtml(mode)}</strong></div>
+            <div class="summary-row"><span>City:</span> <strong>${this.escapeHtml(city)}</strong></div>
+            <div class="summary-row"><span>Admissions Helpline:</span> <strong>0333 6606262</strong></div>
           </div>
 
-          <div style="display:flex; flex-direction:column; gap:0.75rem; max-width:420px; margin:0 auto;">
-            <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-lg" style="width:100%; font-size:1.05rem;">
-              <i class="fa-brands fa-whatsapp" style="font-size:1.35rem;"></i> Send to WhatsApp Now (0333 6606262)
+          <div class="reg-redirect-actions">
+            <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-lg reg-wa-launch-btn">
+              <i class="fa-brands fa-whatsapp"></i> Open WhatsApp & Send Application
             </a>
-            <a href="https://wa.me/923139999749?text=${encodeURIComponent(whatsappMessage)}" target="_blank" class="btn btn-whatsapp-outline" style="width:100%;">
-              <i class="fa-brands fa-whatsapp"></i> Send to Secondary Line (0313 9999749)
-            </a>
-            <button type="button" class="btn btn-outline" onclick="app.closeRegistrationModal()" style="margin-top:0.5rem;">
+            <button type="button" class="btn btn-outline" onclick="app.showRegFormAgain()">
+              <i class="fa-solid fa-arrow-left"></i> Edit Registration Details
+            </button>
+            <button type="button" class="btn btn-link" onclick="app.closeRegistrationModal()" style="font-size:0.9rem; color:var(--gray-600); margin-top:0.25rem;">
               Done & Return to Website
             </button>
           </div>
 
-          <div style="margin-top:2rem; font-size:0.8rem; color:var(--gray-500);">
-            <i class="fa-solid fa-location-dot" style="color:var(--primary-red);"></i> Campus: Office 17, Jabir Flat, Abdra BRT Station, University Road, Peshawar
+          <div class="reg-redirect-note">
+            <i class="fa-solid fa-circle-info" style="color:var(--primary-red);"></i>
+            <span><strong>Important:</strong> Please ensure you press <strong>Send</strong> in WhatsApp so our admissions coordinator receives your details immediately.</span>
           </div>
         </div>
       `;
     }
+  }
 
-    this.showToast('Registration prepared! Opening WhatsApp...', 'success');
+  showRegFormAgain() {
+    const formBox = document.getElementById('regFormContainer');
+    const successBox = document.getElementById('regSuccessContainer');
+    if (formBox) formBox.style.display = 'block';
+    if (successBox) successBox.style.display = 'none';
   }
 
   // --- CATALOG VIEW & FILTERING ---
