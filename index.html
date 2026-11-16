@@ -578,12 +578,17 @@
 
             <!-- Submit Button directly to WhatsApp -->
             <div class="reg-submit-wrap">
-              <button type="submit" id="regSubmitBtn" class="btn btn-whatsapp btn-lg reg-submit-btn">
-                <i class="fa-brands fa-whatsapp"></i> Submit Registration via WhatsApp
-              </button>
+              <div class="reg-buttons-row">
+                <button type="submit" id="regSubmitBtn" class="btn btn-whatsapp btn-lg reg-submit-btn">
+                  <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Submit Admission on WhatsApp (0333 6606262)
+                </button>
+                <button type="button" class="btn btn-outline reg-close-btn-bottom" onclick="app.closeRegistrationModal()" title="Close Form and Explore Website">
+                  <i class="fa-solid fa-xmark"></i> Close &amp; Browse Courses
+                </button>
+              </div>
               <div class="reg-trust-row">
-                <span><i class="fa-solid fa-shield-check" style="color: var(--success);"></i> Official Helpline: <strong>0333 6606262</strong></span>
-                <span><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Peshawar Campus: Abdra BRT Station</span>
+                <span><i class="fa-solid fa-shield-check" style="color: var(--success);"></i> 100% Free Consultation &amp; Fast Seat Confirmation</span>
+                <span><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Peshawar Campus: Office 17, Abdra BRT Station</span>
               </div>
             </div>
           </form>

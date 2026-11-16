@@ -4176,3 +4176,92 @@ html, body {
     padding: 0.85rem !important;
   }
 }
+
+
+
+/* ==========================================================================
+   PERFECT MODAL CLOSE & APPLY BUTTONS POSITIONING
+   ========================================================================== */
+.reg-modal-header {
+  position: relative !important;
+  padding: 1.25rem 1.5rem !important;
+  background: linear-gradient(135deg, #181B20 0%, #2A1012 100%) !important;
+  color: #FFFFFF !important;
+  border-bottom: 3px solid var(--primary-red) !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+.reg-modal-title-group {
+  padding-right: 48px !important;
+}
+
+.reg-modal-close {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 1.15rem !important;
+  z-index: 25 !important;
+  transition: all 0.2s ease !important;
+}
+
+.reg-modal-close:hover {
+  background: var(--primary-red) !important;
+  border-color: #FFFFFF !important;
+  transform: rotate(90deg) scale(1.08) !important;
+}
+
+.reg-buttons-row {
+  display: flex !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+.reg-submit-btn {
+  flex: 1 1 320px !important;
+  width: auto !important;
+}
+
+.reg-close-btn-bottom {
+  padding: 0.95rem 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--gray-700) !important;
+  border: 1.5px solid var(--gray-300) !important;
+  border-radius: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  background: #FFFFFF !important;
+}
+
+.reg-close-btn-bottom:hover {
+  background: var(--gray-100) !important;
+  color: var(--brand-dark) !important;
+  border-color: var(--gray-400) !important;
+}
+
+@media (max-width: 640px) {
+  .reg-buttons-row {
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+  }
+  .reg-submit-btn, .reg-close-btn-bottom {
+    width: 100% !important;
+    flex: none !important;
+  }
+}

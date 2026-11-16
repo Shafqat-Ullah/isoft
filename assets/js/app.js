@@ -29,13 +29,18 @@ class Application {
     window.addEventListener('hashchange', () => this.handleRouting());
     this.handleRouting();
 
-    // AUTO-OPEN REGISTRATION MODAL BY DEFAULT FOR VISITORS
+    // AUTO-OPEN REGISTRATION MODAL IMMEDIATELY ON LINK CLICK / VISIT
     setTimeout(() => {
-      const hash = window.location.hash.replace('#', '');
-      if (!hash || hash === 'home' || hash === 'packages' || hash === 'register') {
-        this.openRegistrationModal();
+      this.openRegistrationModal();
+    }, 200);
+
+    // Escape key listener to close modals
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeRegistrationModal();
+        this.closePosterLightbox();
       }
-    }, 600);
+    });
   }
 
   // --- ROUTING & VIEW SWITCHING ---
